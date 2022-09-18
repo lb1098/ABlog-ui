@@ -7,17 +7,9 @@
       </h1>
     </header>
     <section>
-      <div>
-        <img
-          src="static/img/coffee.jpg"
-          alt=""
-          style="max-width: 20%"
-          class="coffee"
-        />
-      </div>
       <h1>赞赏说明：</h1>
       <p>
-        如果我的课程对你有所帮助，你可以请作者喝杯咖啡表示鼓励
+        如果我的教程对你有所帮助，你可以请作者喝杯咖啡表示鼓励
         ☕️)请备注留下你的姓名/昵称方便我公布赞赏记录。
       </p>
       <hr />
