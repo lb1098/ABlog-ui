@@ -53,7 +53,7 @@
                                 </div>
                             </header>
                             <section>
-                                <p v-html="analyzeEmoji(item.content)">{{analyzeEmoji(item.content)}}</p>
+                                <p v-test="analyzeEmoji(item.content)">{{analyzeEmoji(item.content)}}</p>
                                 <div v-if="haslogin" class="tmsg-replay" @click="respondMsg(item.id,item.id,item.createBy)">
                                     回复
                                 </div>
@@ -72,7 +72,7 @@
                                             </div>
                                     </header>
                                     <section>
-                                        <p v-html="analyzeEmoji(citem.content)">{{citem.content}}</p>
+                                        <p v-test="analyzeEmoji(citem.content)">{{citem.content}}</p>
                                         <div v-show="haslogin" class="tmsg-replay" @click="respondMsg(item.id,citem.id,citem.createBy)">
                                             回复
                                         </div>
@@ -206,7 +206,7 @@
                     //加载更多
                     this.commentList = this.commentList.concat(msg);
                 }
-                
+
                 this.hasMore = result.total>this.commentList.length
               },
           //选择表情包
@@ -304,7 +304,7 @@
               }
 
               //公用设置数据方法
-              
+
               if(that.$route.name=='DetailArticle'){//文章列表的评论
                   that.type = 0;
                   getArticleComment(that.queryParams).then((response)=>{
