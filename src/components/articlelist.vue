@@ -19,7 +19,7 @@
                     <i class="fa fa-fw fa-eye"></i>{{item.viewCount}} 次围观 •
 
                 </h2>
-                <div class="ui label">
+                <div class="ui label" v-if="item.categoryId">
                     <a :href="'#/Share?classId='+item.categoryId">{{item.categoryName}}</a>
                 </div>
             </header>
