@@ -1,6 +1,9 @@
 <template>
   <div class="listBox">
     <el-row>
+      <div class="top">归档</div>
+    </el-row>
+    <el-row>
       <h1 class="title">分类</h1>
       <el-row class="ab-select-category">
         <a :class="['ab-select-category-link',{'ab-select-category-link-active': category.id == queryParams.categoryId }]"
@@ -170,6 +173,12 @@ export default {
 </script>
 
 <style scoped>
+.top {
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+  padding: 30px 0;
+}
 .listBox{
   background: #fff;
   padding: 15px;
