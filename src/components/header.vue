@@ -15,7 +15,8 @@
                               :index="'/Share?classId='+item.id">{{ item.name }}
                 </el-menu-item>
               </el-submenu>
-              <el-menu-item index="/Friendslink"><i class="fa fa-wa fa-users"></i>友链</el-menu-item>
+              <el-menu-item index="/Archive"><i class="fa fa-wa fa-archive"></i> 归档</el-menu-item>
+              <el-menu-item index="/Friendslink"><i class="fa fa-wa fa-users"></i> 友链</el-menu-item>
               <el-menu-item index="/Reward">赞赏</el-menu-item>
 
               <div class="userInfo">
@@ -53,7 +54,7 @@
 
         <h2 class="h-description">
 
-          {{ this.$store.state.themeObj.autograph ? this.$store.state.themeObj.autograph : "三更灯火五更鸡，正是男儿读书时" }}
+          {{ this.$store.state.themeObj.autograph ? this.$store.state.themeObj.autograph : "每一步，都是更接近目标的一步" }}
 
         </h2>
       </div>

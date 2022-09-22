@@ -7,7 +7,7 @@
           :src="
             this.$store.state.themeObj.center_smailimg
               ? this.$store.state.themeObj.center_smailimg
-              : 'static/img/img01.jpg'
+              : 'static/img/headbg04.jpg'
           "
           alt=""
         />

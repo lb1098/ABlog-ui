@@ -67,6 +67,14 @@ export default new Router({
 			},
 			name: 'FriendsLink'
 		}, //友链
+    {
+      path: '/Archive',
+      component: resolve => require(['../pages/Archive.vue'], resolve),
+      meta: {
+        auth: true
+      },
+      name: 'Archive'
+    }, // 这个是我自己的归档
 		{
 			path: '/Login',
 			component: resolve => require(['../pages/Login.vue'], resolve),
