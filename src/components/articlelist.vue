@@ -24,10 +24,8 @@
                 </div>
             </header>
             <div class="article-content">
-                <p style="text-indent:2em;">
-                    {{item.summary}}
-                </p>
-                <p  style="max-height:300px;overflow:hidden;text-align:center;">
+              <div class="markdown-body" v-html="item.content"></div>
+                <p  style="max-height:300px;width:auto;overflow:hidden;text-align:center;">
                     <img :src="item.thumbnail" alt="" class="maxW">
                 </p>
             </div>
@@ -48,6 +46,9 @@
 <script>
 import {initDate} from '../utils/server.js'
 import {articleList} from '../api/article'
+import { mavonEditor } from 'mavon-editor'
+import "mavon-editor/dist/markdown/github-markdown.min.css";
+import "mavon-editor/dist/highlightjs/styles/github-dark-dimmed.min.css";
     export default {
         name:'Share',
         data() { //选项 / 数据
@@ -69,7 +70,16 @@ import {articleList} from '../api/article'
             },
             getList(){
                 articleList(this.queryParams).then((response)=>{
+                    const markdownIt = mavonEditor.getMarkdownIt()
+                    var jsonArray = response.rows;
+                    for(var i in jsonArray){
+                      var obj = jsonArray[i]
+                      if(obj.content!=null){
+                        obj.content = markdownIt.render(obj.content);
+                      }
+                    }
                     this.articleList = this.articleList.concat(response.rows)
+
                     if(response.total<=this.articleList.length){
                         this.hasMore=false
                     }else{
@@ -145,14 +155,12 @@ import {articleList} from '../api/article'
     color:#64609E;
 
 }
-/*文章列表*/
-    .sharelistBox{
-        transition: all 0.5s ease-out;
-        font-size: 15px;
-    }
-
-
-    /*.sharelistBox .viewmore a:hover,.s-item .viewdetail a:hover{
-        background: #48456C;
-    }*/
+.sharelistBox{
+    transition: all 0.5s ease-out;
+    font-size: 15px;
+}
+.markdown-body{
+  max-height: 200px;
+  overflow: hidden;
+}
 </style>

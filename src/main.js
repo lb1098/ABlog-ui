@@ -7,7 +7,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './assets/css/style.less'
 import store from './store'
+import 'mavon-editor/dist/css/index.css'
 import MavonEditor from 'mavon-editor'
+
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
