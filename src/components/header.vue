@@ -9,19 +9,15 @@
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
                      :router="true">
               <el-menu-item index="/Home"><i class="fa fa-wa fa-home"></i> 首页</el-menu-item>
-              <el-submenu index="/Share">
-                <template slot="title"><i class="fa fa-wa fa-archive"></i> 分类</template>
-                <el-menu-item v-for="(item,index) in classListObj" :key="'class1'+index"
-                              :index="'/Share?classId='+item.id">{{ item.name }}
-                </el-menu-item>
-              </el-submenu>
-              <el-menu-item index="/Friendslink"><i class="fa fa-wa fa-users"></i>友链</el-menu-item>
+              <el-menu-item index="/Archive"><i class="fa fa-wa fa-archive"></i> 归档</el-menu-item>
+              <el-menu-item index="/Friendslink"><i class="fa fa-wa fa-users"></i> 友链</el-menu-item>
               <el-menu-item index="/Reward">赞赏</el-menu-item>
 
               <div class="userInfo">
                 <div v-show="!haslogin" class="nologin">
-                  <a href="javascript:void(0);" @click="logoinFun(1)">登录&nbsp;</a>|<a href="javascript:void(0);"
-                                                                                      @click="logoinFun(0)">&nbsp;注册</a>
+                  <a href="javascript:void(0);" @click="logoinFun(1)">登录&nbsp;</a>
+                  |
+                  <a href="javascript:void(0);" @click="logoinFun(0)">&nbsp;注册</a>
                 </div>
                 <div v-show="haslogin" class="haslogin">
                   <i class="fa fa-fw fa-user-circle userImg"></i>
@@ -53,7 +49,7 @@
 
         <h2 class="h-description">
 
-          {{ this.$store.state.themeObj.autograph ? this.$store.state.themeObj.autograph : "三更灯火五更鸡，正是男儿读书时" }}
+          {{ this.$store.state.themeObj.autograph ? this.$store.state.themeObj.autograph : "每一步，都是更接近目标的一步" }}
 
         </h2>
       </div>
@@ -84,7 +80,6 @@ export default {
       projectList: '' //项目列表
     }
   },
-  watch: {},
   methods: { //事件处理器
     handleOpen(key, keyPath) { //分组菜单打开
       // console.log(key, keyPath);
