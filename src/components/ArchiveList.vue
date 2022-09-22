@@ -83,7 +83,7 @@ export default {
       // 查询参数
       queryParams: {
         pageNum: 1,
-        pageSize: 2,
+        pageSize: 10,
         categoryId: 0,
         tagId:0,
       },
