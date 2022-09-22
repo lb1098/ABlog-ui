@@ -14,9 +14,18 @@
         </a>
       </el-row>
     </el-row>
-    <el-row>
+    <el-row v-if="tagList.length>0">
       <h3 class="label">标签</h3>
-
+      <el-row class="ab-select-category">
+        <a :class="['ab-select-tag-link',{'ab-select-tag-link-active': tag.id == queryParams.tagId }]"
+           type="primary"
+           v-for="(tag,index) in tagList"
+           :key="index"
+           @click="selectTagList(tag.id)"
+        >
+          {{ tag.name }}
+        </a>
+      </el-row>
 
     </el-row>
 
@@ -53,7 +62,7 @@
 </template>
 
 <script>
-import {articleList} from "../api/article";
+import {articleListAndTag,getTagByCategoryId} from "../api/article";
 import axios from 'axios';
 import {getCategoryList} from "../api/category";
 
@@ -75,9 +84,12 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 2,
-        categoryId: 0
+        categoryId: 0,
+        tagId:0,
       },
+
       articleList:[],
+      tagList:[],
       // hasMore:true,
       articleCount:0,
 
@@ -88,34 +100,37 @@ export default {
     // this.getAllCategoryList();
   },
   watch:{
-    '$route':function(){
+    $route:function(){
       this.routeChange();
     },
+    queryParams : {
+      deep:true,
+      handler:function () {
+        if(this.queryParams.categoryId>0){
+          getTagByCategoryId(this.queryParams.categoryId).then((response)=>{
+            this.tagList=response;
+            // console.log(this.tagList)
+          });
+        } else {
+          this.tagList = [];
+        }
+      }
+    }
   },
   methods:{
     routeChange : function(){
       var that = this;
       this.queryParams.categoryId = (that.$route.query.categoryId==undefined?0:parseInt(that.$route.query.categoryId));//获取传参的classId
-      this.queryParams.pageNum = (that.$route.query.page==undefined?0:parseInt(that.$route.query.page));//获取传参的classId
-      this.showSearchShowList(true);
+      this.queryParams.pageNum = (that.$route.query.pageNum==undefined?0:parseInt(that.$route.query.pageNum));
+      this.queryParams.tagId = (that.$route.query.tagId==undefined?0:parseInt(that.$route.query.tagId));
+      // console.log(this.queryParams)
+      this.getList();
       this.getAllCategoryList();
     },
-    showSearchShowList:function(initData){//展示数据
-      if(initData){
-        this.articleList = []
-      }
-      this.getList()
-    },
     getList:function(){
-      articleList(this.queryParams).then((response)=>{
-        this.articleList = this.articleList.concat(response.rows)
+      articleListAndTag(this.queryParams).then((response)=>{
+        this.articleList = response.rows;
         this.articleCount = response.total;
-        // if(response.total<=this.articleList.length){
-        //   this.hasMore=false
-        // }else{
-        //   this.hasMore=true
-        //   this.queryParams.pageNum++
-        // }
       })
     },
     getAllCategoryList:function (){
@@ -126,16 +141,27 @@ export default {
           name:'全部'
         });
         this.categoryList = this.categoryList.concat(response);
-
       });
     },
     // 分类选项
     freshPage :function (currentPage){
       this.queryParams.pageNum = currentPage;
       // console.log(this.$route.path)
-      this.$router.push(this.$route.path+'?categoryId='+this.queryParams.categoryId+'&page='+this.queryParams.pageNum)
+      var path = this.$route.path+'?categoryId='+this.queryParams.categoryId+'&pageNum='+this.queryParams.pageNum;
+      if(this.queryParams.tagId>0)
+        path += '&tagId='+this.queryParams.tagId
+      this.$router.push(path)
+    },
+    // 查询标签信息
+    selectTagList:function (tagId){
+      this.queryParams.tagId = tagId;
+      // console.log(this.queryParams)
+      this.$router.push(this.$route.path+
+          '?categoryId='+this.queryParams.categoryId+
+          '&pageNum='+1+
+        '&tagId='+this.queryParams.tagId
+      )
     }
-
 
   },
 
@@ -151,6 +177,7 @@ export default {
   padding-right: 50px;
   border-radius: 5px;
   margin-bottom: 40px;
+
 }
 .title{
   text-align: left;
@@ -174,7 +201,8 @@ export default {
 .ab-select-category-link {
   padding: 8px 10px;
   color: #E6A23C;
-  margin: 0 5px;
+  font-weight: 700;
+  margin: 0 3px;
 }
 .ab-select-category-link-active {
   background-color: #E6A23C;
@@ -187,5 +215,28 @@ export default {
   color: white;
   border-radius: 4px;
   border: 0;
+}
+.ab-select-tag-link {
+  padding: 8px 10px;
+  color: #F56C6C;
+  font-weight: 700;
+  margin: 0 3px;
+  cursor: pointer;
+}
+.ab-select-tag-link-active {
+  padding: 8px 10px;
+  background-color: #F56C6C;
+  color: white;
+  font-weight: 700;
+  border-radius: 4px;
+  margin: 0 3px;
+}
+.ab-select-tag-link:hover {
+  padding: 8px 10px;
+  background-color: #F56C6C;
+  color: white;
+  font-weight: 700;
+  border-radius: 4px;
+  margin: 0 3px;
 }
 </style>
