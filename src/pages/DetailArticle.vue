@@ -6,7 +6,7 @@
             <el-row  :gutter="30">
                 <el-col :sm="24" :md="16" style="transition:all .5s ease-out;margin-bottom:30px;">
                     <sg-articleDetail></sg-articleDetail>
-                    <sg-message></sg-message>
+                    <!--  <sg-message></sg-message>-->
                 </el-col>
                 <el-col :sm="24"  :md="8" >
                     <sg-rightlist></sg-rightlist>
@@ -20,7 +20,7 @@
 import header from '../components/header.vue'
 import rightlist from '../components/rightlist.vue'
 import articleDetail from '../components/articleDetail.vue'
-import message from '../components/message.vue'
+
     export default {
         name:'DetailShare',
         data() { //选项 / 数据
@@ -34,7 +34,7 @@ import message from '../components/message.vue'
         components: { //定义组件
             'sg-nav':header,
             'sg-articleDetail':articleDetail,
-            'sg-message':message,
+            // 'sg-message':message,
             'sg-rightlist':rightlist,
         },
         created() { //生命周期函数

@@ -1,5 +1,6 @@
 <!-- 文章详情模块 -->
 <template>
+    <div>
         <div class="detailBox tcommonBox" >
             <span class="s-round-date">
                 <span class="month" v-html="showInitDate(detailObj.createTime,'month')+'月'"></span>
@@ -12,8 +13,8 @@
                     </a>
                 </h1>
                 <h2>
-                    <i class="fa fa-fw fa-user"></i>发表于 <span >{{detailObj.createTime}}</span> •
-                    <i class="fa fa-fw fa-eye"></i>{{detailObj.viewCount}} 次围观 •
+                    <i class="fa fa-fw fa-user"></i>发表于 <span >{{detailObj.createTime}}</span>
+                    <i class="fa fa-fw fa-eye"></i>{{detailObj.viewCount}} 次围观
                 </h2>
                 <div class="ui label">
                     <a :href="'#/Share?classId='+detailObj.categoryId">{{detailObj.categoryName}}</a>
@@ -41,12 +42,15 @@
                 </el-row>
             </div>
         </div>
+        <sg-message v-if="detailObj.isComment==0"></sg-message>
+    </div>
 </template>
 
 <script>
 import {initDate} from '../utils/server.js'
 import {getArticle,updateViewCount} from '../api/article.js'
 import { mavonEditor } from 'mavon-editor'
+import message from '../components/message.vue'
     export default {
         data() { //选项 / 数据
             return {
@@ -92,7 +96,7 @@ import { mavonEditor } from 'mavon-editor'
            '$route':'routeChange'
          },
         components: { //定义组件
-
+          'sg-message':message,
         },
         created() { //生命周期函数
             var that = this;
