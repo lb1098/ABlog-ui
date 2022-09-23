@@ -496,6 +496,7 @@ export default {
   background-position: center 50%;
   background-repeat: no-repeat;
   margin-bottom: 90px;
+  z-index: 3;
 }
 
 .h-information {
@@ -591,7 +592,6 @@ export default {
   top: 160px;
   font-family: 'Sigmar One', Arial;
   text-shadow: 0 2px 2px #47456d;
-
 }
 
 .headImgBox .scene span {
