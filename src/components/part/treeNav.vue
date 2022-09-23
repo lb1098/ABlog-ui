@@ -121,9 +121,8 @@ export default {
     },
     scrollToPosition(data) {    //点击目录标题跳转方法
       let id = data.href
-      const position = $(id).offset();
-      position.top = position.top - 35
-      $("html,body").animate({scrollTop: position.top}, 500);
+      let number = ($('#article1').offset().top + $('#article1').height()) - $(id).offset().top;
+      $("html,body").animate({scrollTop: $('#detail').height()- number}, 200);
     },
   }
 }
