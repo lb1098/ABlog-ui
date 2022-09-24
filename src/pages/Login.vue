@@ -3,10 +3,10 @@
     <div>
         <div class="container">
             <h1 class="loginTitle">
-                
+
             </h1>
             <!-- 登录注册 -->
-            <div v-show="!err2005" class="">
+            <div class="">
                 <div v-if="login==1" class="loginBox">
                     <div class="lr-title">
                         <h1>登录</h1>
@@ -57,6 +57,7 @@
                     <el-input
                         type="text"
                         placeholder="用户名"
+                        required
                         v-model="nusername">
                     </el-input>
                     <el-alert
@@ -68,7 +69,7 @@
                     <el-input
                         type="text"
                         placeholder="昵称"
-                        v-model="nnickName">
+                        v-model="nickName">
                     </el-input>
                     <el-input
                         type="email"
@@ -115,6 +116,7 @@
 <script>
 import {userLogin,userRegister} from '../api/user.js'
 import {setToken} from '../utils/auth.js'
+import {MessageBox} from "element-ui";
     export default {
         name: 'Login',
         data() { //选项 / 数据
@@ -123,6 +125,7 @@ import {setToken} from '../utils/auth.js'
                 email: '',//邮箱
                 password: '',//密码
                 nusername: '',//新用户注册名
+                nickName: '', // 昵称
                 nemail: '',//新用户注册邮箱
                 npassword: '',//新用户注册密码
                 npassword2: '',//新用户注册重复密码
@@ -166,8 +169,14 @@ import {setToken} from '../utils/auth.js'
                     }else{
                         this.$router.push({path:'/'});
                     }
+                    this.$notify({
+                      title: '登录成功',
+                      message: '欢迎回来 （自动关闭）',
+                      type: 'success',
+                      duration: 3000,
+                    });
                 })
-      
+
             },
             registerEnterFun: function(e){
                 var keyCode = window.event? e.keyCode:e.which;
@@ -202,9 +211,15 @@ import {setToken} from '../utils/auth.js'
                 }
                 if(!that.nusernameErr&&!that.nemailErr&&!that.npasswordErr){
                     that.fullscreenLoading = true;
-                    userRegister(that.nusername,that.nnickName,that.nemail,that.npassword).then((response)=>{
-                         //注册成功后调整到登录
-                         that.goLogin()
+                    userRegister(that.nusername,that.nickName,that.nemail,that.npassword).then((response)=>{
+                      //注册成功后调整到登录
+                      that.goLogin()
+                      this.$notify({
+                        title: '注册成功',
+                        message: '您可以顺利登录了',
+                        type: 'success',
+                        duration: 3000,
+                      });
                     }).catch((error)=>{
                       that.fullscreenLoading = false;
                     })

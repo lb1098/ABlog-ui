@@ -56,7 +56,7 @@ import "mavon-editor/dist/highlightjs/styles/github-dark-dimmed.min.css";
                 // 查询参数
                 queryParams: {
                     pageNum: 1,
-                    pageSize: 3,
+                    pageSize: 5,
                     categoryId: 0
                 },
                 articleList:[],
