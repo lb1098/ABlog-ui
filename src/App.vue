@@ -158,6 +158,7 @@ a {
     border-radius: 5px;
     margin-bottom: 40px;
     font-size: 15px;
+    z-index: 2;
 }
 .tcommonBox header{
     white-space: normal;

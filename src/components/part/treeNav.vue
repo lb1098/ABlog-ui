@@ -141,7 +141,7 @@ export default {
   position: fixed;
   top: 90px;
   right: 10%;
-  box-shadow: #333;
+  //box-shadow: #333;
   width: 355px;
   border-radius: 5px;
   z-index: 0;
@@ -150,6 +150,7 @@ export default {
   text-align: center;
   margin: 0 0 0 -65px;
   letter-spacing: 0.5px;
+  box-shadow: 1px 1px 6px #666;
 }
 
 .treeFixed:hover {
