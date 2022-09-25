@@ -11,6 +11,7 @@
         </el-col>
       </el-row>
     </div>
+    <ab-footer></ab-footer>
   </div>
 </template>
 
@@ -18,6 +19,7 @@
 import header from "../components/header";
 import rightlist from "../components/rightlist";
 import archiveList from "../components/ArchiveList";
+import footer from "../components/footer";
 export default {
   name: "Archive",
   data() { //选项 / 数据
@@ -32,6 +34,7 @@ export default {
     'sg-navbar':header,
     'ab-archiveList':archiveList,
     'sg-rightlist':rightlist,
+    'ab-footer': footer,
   },
   created() { //生命周期函数
 

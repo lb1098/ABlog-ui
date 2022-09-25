@@ -12,6 +12,7 @@
 			</el-col>
 		</el-row>
 	</div>
+  <ab-footer></ab-footer>
 </div>
 </template>
 
@@ -19,6 +20,7 @@
 import header from '../components/header.vue'
 import rightlist from '../components/rightlist.vue'
 import reward from '../components/reward.vue'
+import footer from "../components/footer";
 export default {
 	name: 'Reward',
 	data() { //选项 / 数据
@@ -33,6 +35,7 @@ export default {
 		'sg-nav': header,
 		'sg-reward': reward,
 		'sg-rightlist': rightlist,
+    'ab-footer': footer,
 	},
 	created() { //生命周期函数
 

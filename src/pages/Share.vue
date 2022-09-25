@@ -1,4 +1,5 @@
 <!-- 文章列表 -->
+<!-- 已废弃 -->
 <template>
 <div>
 	<sg-nav></sg-nav>
@@ -12,6 +13,7 @@
 			</el-col>
 		</el-row>
 	</div>
+  <ab-footer></ab-footer>
 </div>
 </template>
 
@@ -19,6 +21,7 @@
 import header from '../components/header.vue'
 import articlelist from '../components/articlelist.vue'
 import rightlist from '../components/rightlist.vue'
+import footer from "../components/footer";
 export default {
 	name: "Share",
 	data() { //选项 / 数据
@@ -33,6 +36,7 @@ export default {
 		'sg-nav': header,
 		'sg-articlelist': articlelist,
 		'sg-rightlist': rightlist,
+    'ab-footer': footer,
 	},
 
 	created() { //生命周期函数

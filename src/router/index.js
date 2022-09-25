@@ -91,6 +91,23 @@ export default new Router({
 			},
 			name: 'UserInfo'
 		}, //用户个人中心
+    {
+      path:'/Info',
+      component:resolve => require(['../pages/Info.vue'], resolve),
+      meta: {
+        auth: false
+      },
+      name: 'Info'
+    },
 
+    // 404页面
+    {
+      path:'/*',
+      component:resolve => require(['../pages/Error.vue'], resolve),
+      meta: {
+        auth: false
+      },
+      name: 'Error'
+    },
 	]
 })
