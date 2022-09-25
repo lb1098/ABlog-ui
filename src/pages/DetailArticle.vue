@@ -13,6 +13,7 @@
         </el-col>
       </el-row>
     </div>
+    <ab-footer></ab-footer>
   </div>
 </template>
 
