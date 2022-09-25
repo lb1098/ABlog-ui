@@ -119,6 +119,9 @@ h1, h2 {
 a {
   color: #444;
 }
+.ab-padding{
+  padding: 15px 50px 50px;
+}
 .container{
     max-width: 80%;
     margin:0 auto;
@@ -154,7 +157,7 @@ a {
     word-break: break-all;
     position: relative;
     background: #fff;
-    padding:15px;
+    padding:15px ;
     border-radius: 5px;
     margin-bottom: 40px;
     font-size: 15px;

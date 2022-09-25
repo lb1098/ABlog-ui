@@ -112,7 +112,7 @@
       </div>
 
     </div>
-    <ab-footer></ab-footer>
+    <ab-footer style="position: fixed;bottom: 0;"></ab-footer>
   </div>
 </template>
 

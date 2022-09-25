@@ -42,6 +42,7 @@
             </div>
           </el-col>
         </el-row>
+        <div class="last_update_time" v-if="detailObj.updateTime">最后更新时间：{{detailObj.updateTime}}</div>
       </div>
     </div>
     <tree-nav ref="treenav"></tree-nav>
@@ -118,7 +119,12 @@ export default {
 
 <style lang="less">
 
-
+.last_update_time {
+  text-align: right;
+  font-size: 20px;
+  font-family: 微软雅黑;
+  font-style: italic;
+}
 // default Markdown
 .detailBox .article-content {
   font-size: 15px;

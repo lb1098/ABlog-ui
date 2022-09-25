@@ -98,6 +98,9 @@ export default {
 </script>
 
 <style>
+.tRewardBox{
+  padding: 15px 50px 50px;
+}
 .tRewardBox section {
   padding-bottom: 20px;
 }
