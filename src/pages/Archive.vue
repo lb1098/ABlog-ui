@@ -1,6 +1,7 @@
 <template>
   <div>
     <sg-navbar></sg-navbar>
+    <ab-head-img-box></ab-head-img-box>
     <div class="container">
       <el-row  :gutter="30">
         <el-col :sm="24" :md="16" style="transition:all .5s ease-out;margin-bottom:30px;">
@@ -20,6 +21,7 @@ import header from "../components/header";
 import rightlist from "../components/rightlist";
 import archiveList from "../components/ArchiveList";
 import footer from "../components/footer";
+import headImgBox from '../components/part/headImgBox'
 export default {
   name: "Archive",
   data() { //选项 / 数据
@@ -35,6 +37,7 @@ export default {
     'ab-archiveList':archiveList,
     'sg-rightlist':rightlist,
     'ab-footer': footer,
+    'ab-head-img-box':headImgBox,
   },
   created() { //生命周期函数
 

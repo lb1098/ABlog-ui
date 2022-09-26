@@ -1,7 +1,8 @@
 <!-- 用户中心 -->
 <template>
   <div>
-    <wbc-nav></wbc-nav>
+    <sg-nav></sg-nav>
+    <ab-head-img-box></ab-head-img-box>
     <div class="container">
       <div v-show="isEdit" class="tcommonBox">
         <header>
@@ -97,6 +98,7 @@ import header from '../components/header.vue'
 import {getUserInfo, savaUserInfo} from '../api/user.js'//获取用户信息，保存用户信息
 import store from '../store'
 import footer from "../components/footer";
+import headImgBox from "../components/part/headImgBox";
 
 export default {
   name: 'UserInfo',
@@ -164,7 +166,8 @@ export default {
     }
   },
   components: { //定义组件
-    'wbc-nav': header,
+    'sg-nav': header,
+    'ab-head-img-box':headImgBox,
     'ab-footer': footer,
   },
   watch: {

@@ -1,6 +1,7 @@
 <template>
   <div>
     <sg-nav></sg-nav>
+    <ab-head-img-box></ab-head-img-box>
     <div class="container">
       <el-row class="error404">
         <div style="font-size: 80px">404 页面未找到</div>
@@ -13,6 +14,7 @@
 <script>
 import header from '../components/header.vue'
 import footer from "../components/footer";
+import headImgBox from "../components/part/headImgBox";
 
 export default {
   name: "Error",
@@ -27,6 +29,7 @@ export default {
   components: { //定义组件
     'sg-nav': header,
     'ab-footer': footer,
+    'ab-head-img-box':headImgBox,
   },
   created() { //生命周期函数
 

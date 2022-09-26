@@ -1,6 +1,7 @@
 <!-- 头部公用 -->
 <template>
-  <div class="">
+  <div>
+
     <div class="headBack">
       <el-row class="container">
         <el-col :span="24">
@@ -37,33 +38,14 @@
       </el-row>
     </div>
 
-    <div class="headImgBox"
-         :style="{backgroundImage:this.$store.state.themeObj.top_image?'url('+this.$store.state.themeObj.top_image+')':'url(static/img/headbg05.jpg)'}">
-      <div class="scene">
-        <div><span id="luke"></span></div>
-      </div>
-      <div class="h-information">
-
-        <img
-          :src="this.$store.state.themeObj.head_portrait?this.$store.state.themeObj.head_portrait:'static/img/tou.png'"
-          alt="">
-
-        <h2 class="h-description">
-
-          {{ this.$store.state.themeObj.autograph ? this.$store.state.themeObj.autograph : "每一步，都是更接近目标的一步" }}
-
-        </h2>
-      </div>
-    </div>
   </div>
 </template>
 <script>
 import {logout} from '../api/user'
-import {removeToken,getToken} from '../utils/auth'
+import {removeToken, getToken} from '../utils/auth'
 import {getCategoryList} from '../api/category'
-import {
-  Typeit
-} from '../utils/plug.js'
+import {Typeit} from '../utils/plug.js'
+
 
 export default {
   data() { //选项 / 数据
@@ -127,7 +109,7 @@ export default {
       }).then(() => {
         // console.log(that.$route.path);
         // 获取判断有无token，如果没有，直接退出即可
-        if(getToken()){
+        if (getToken()) {
           // 如果得到了Token
           logout().then((response) => {
             removeToken()
@@ -636,6 +618,7 @@ export default {
     opacity: 0;
   }
 }
+
 .ab-white {
   color: white !important;
 }

@@ -2,6 +2,7 @@
 <template>
   <div>
     <sg-navbar></sg-navbar>
+    <ab-head-img-box></ab-head-img-box>
     <div class="container">
       <el-row :gutter="30">
         <el-col :sm="24" :md="16" style="transition:all .5s ease-out;margin-bottom:30px;">
@@ -21,6 +22,7 @@ import header from '../components/header.vue'
 import articlelist from '../components/articlelist.vue'
 import rightlist from '../components/rightlist.vue'
 import footer from "../components/footer";
+import headImgBox from "../components/part/headImgBox";
 
 export default {
   name: 'Home',
@@ -32,6 +34,7 @@ export default {
   },
   components: { //定义组件
     'sg-navbar': header,
+    'ab-head-img-box':headImgBox,
     'sg-articlelist': articlelist,
     'sg-rightlist': rightlist,
     'ab-footer': footer,

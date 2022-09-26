@@ -2,6 +2,7 @@
 <template>
   <div>
     <sg-nav></sg-nav>
+    <ab-head-img-box></ab-head-img-box>
     <div class="container" id="detail">
       <el-row :gutter="30">
         <el-col :sm="24" :md="16" style="transition:all .5s ease-out;margin-bottom:30px;">
@@ -22,6 +23,7 @@ import header from '../components/header.vue'
 import rightlist from '../components/rightlist.vue'
 import articleDetail from '../components/articleDetail.vue'
 import footer from "../components/footer";
+import headImgBox from "../components/part/headImgBox";
 
 export default {
   name: 'DetailShare',
@@ -37,6 +39,7 @@ export default {
     // 'sg-message':message,
     'sg-rightlist': rightlist,
     'ab-footer': footer,
+    'ab-head-img-box':headImgBox,
   },
   created() { //生命周期函数
 

@@ -2,6 +2,7 @@
 <template>
 <div>
 	<sg-nav></sg-nav>
+  <ab-head-img-box></ab-head-img-box>
 	<div class="container">
 		<el-row :gutter="30">
 			<el-col :sm="24" :md="16" style="transition:all .5s ease-out;margin-bottom:30px;">
@@ -21,6 +22,7 @@ import header from '../components/header.vue'
 import rightlist from '../components/rightlist.vue'
 import reward from '../components/reward.vue'
 import footer from "../components/footer";
+import headImgBox from "../components/part/headImgBox";
 export default {
 	name: 'Reward',
 	data() { //选项 / 数据
@@ -33,6 +35,7 @@ export default {
 	},
 	components: { //定义组件
 		'sg-nav': header,
+    'ab-head-img-box':headImgBox,
 		'sg-reward': reward,
 		'sg-rightlist': rightlist,
     'ab-footer': footer,
