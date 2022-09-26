@@ -134,7 +134,7 @@ export default {
             that.haslogin = false;
             that.$notify({
               type: 'success',
-              message: '退出成功! ' + that.$route.path
+              message: '退出成功!'
             });
             if (that.$route.path === '/UserInfo') {
               that.$router.push({
