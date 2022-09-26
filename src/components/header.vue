@@ -36,6 +36,7 @@
         </el-col>
       </el-row>
     </div>
+
     <div class="headImgBox"
          :style="{backgroundImage:this.$store.state.themeObj.top_image?'url('+this.$store.state.themeObj.top_image+')':'url(static/img/headbg05.jpg)'}">
       <div class="scene">
