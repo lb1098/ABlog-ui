@@ -132,21 +132,20 @@ export default {
             removeToken()
             localStorage.removeItem('userInfo');
             that.haslogin = false;
-            window.location.reload();
-            that.$message({
+            that.$notify({
               type: 'success',
-              message: '退出成功!'
+              message: '退出成功! ' + that.$route.path
             });
-            if (that.$route.path == '/UserInfo') {
+            if (that.$route.path === '/UserInfo') {
               that.$router.push({
-                path: '/'
+                path: '/Home'
               });
             }
           })
         } else {
           // 如果没有，就直接删除userInfo
           localStorage.removeItem('userInfo');
-          that.$message({
+          that.$notify({
             type: 'success',
             message: '退出成功!'
           });
