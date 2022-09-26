@@ -158,7 +158,7 @@ export default {
         that.haslogin = false;
       }
       //获取分类
-      this.getCategoryList()
+      // this.getCategoryList()
 
       if ((this.$route.name == "Share" || this.$route.name == "Home") && this.$store.state.keywords) {
         this.input = this.$store.state.keywords;
