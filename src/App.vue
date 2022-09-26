@@ -54,7 +54,8 @@ time, mark, audio, video {
 }
 body{
   font-family:Arial,"STHeiti", Helvetica, sans-serif;
-  background:#efefef;
+  //background:#efefef;
+  background: url(/static/img/bgc.png);
   font-size:14px;
   color:#444!important;
   min-height:100vh;
