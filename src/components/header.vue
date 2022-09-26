@@ -58,7 +58,7 @@
 </template>
 <script>
 import {logout} from '../api/user'
-import {removeToken} from '../utils/auth'
+import {removeToken,getToken} from '../utils/auth'
 import {getCategoryList} from '../api/category'
 import {
   Typeit
@@ -125,24 +125,39 @@ export default {
         type: 'warning'
       }).then(() => {
         // console.log(that.$route.path);
-
-        logout().then((response) => {
-          removeToken()
+        // 获取判断有无token，如果没有，直接退出即可
+        if(getToken()){
+          // 如果得到了Token
+          logout().then((response) => {
+            removeToken()
+            localStorage.removeItem('userInfo');
+            that.haslogin = false;
+            window.location.reload();
+            that.$message({
+              type: 'success',
+              message: '退出成功!'
+            });
+            if (that.$route.path == '/UserInfo') {
+              that.$router.push({
+                path: '/'
+              });
+            }
+          })
+        } else {
+          // 如果没有，就直接删除userInfo
           localStorage.removeItem('userInfo');
-          that.haslogin = false;
-          window.location.reload();
           that.$message({
             type: 'success',
             message: '退出成功!'
           });
-          if (that.$route.path == '/UserInfo') {
-            that.$router.push({
-              path: '/'
-            });
-          }
-        })
+          that.$router.push({
+            path: '/'
+          });
+        }
+
       }).catch(() => {
         //
+        console.log("失败")
       });
 
     },
@@ -150,7 +165,7 @@ export default {
       var that = this;
       that.pMenu = true
       this.activeIndex = this.$route.path == '/' ? '/Home' : this.$route.path;
-      if (localStorage.getItem('userInfo')) { //存储用户信息
+      if (localStorage.getItem('userInfo') && getToken()) { //存储用户信息
         that.haslogin = true;
         that.userInfo = JSON.parse(localStorage.getItem('userInfo'));
         // console.log(that.userInfo);

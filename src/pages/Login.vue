@@ -163,12 +163,13 @@ export default {
         this.gotoHome();
       }
     },
-    gotoHome: function () {//用户登录
+    gotoHome: function () {
+      //用户登录
       userLogin(this.username, this.password).then((response) => {
         // 登录成功记录token和用户信息，登录失败给对应提示
-        setToken(response.token)
+        setToken(response.token) // 会话关闭后就关闭了。
         // 存储用户信息
-        localStorage.setItem("userInfo", JSON.stringify(response.userInfo))
+        localStorage.setItem("userInfo", JSON.stringify(response.userInfo)) // 设置用户信息
         if (localStorage.getItem('logUrl')) {
           this.$router.push({path: localStorage.getItem('logUrl')});
         } else {
