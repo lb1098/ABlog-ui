@@ -114,6 +114,6 @@ export default {
 .catch-me a i{
   font-size: 30px;
   color: white;
-  opacity: 50%;
+  opacity: 85%;
 }
 </style>

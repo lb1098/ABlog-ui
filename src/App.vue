@@ -265,22 +265,23 @@ a {
     .headBox{
         display: none;
     }
+    .headBox-mobile{
+      display: block;
+    }
     .mobileBox{//手机端导航栏显示
         display: block;
     }
     .headImgBox{
-        height:450px!important;
-        margin-bottom:-140px!important;
+        //height:450px!important;
+        //margin-bottom:-140px!important;
     }
     .h-information{
-        display:none;
+        //display:none;
     }
     .headImgBox .scene{
         font-size: 50px!important;
         top:120px;
     }
-
-
 }
 
 
@@ -288,10 +289,14 @@ a {
     .headBox{
         display: block;
     }
+    .headBox-mobile{
+      display: none;
+    }
     .mobileBox{
         display: none;
     }
 }
+
 @media screen and  (max-width:800px){
     .container{
         max-width: 100%!important;

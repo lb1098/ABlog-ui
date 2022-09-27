@@ -7,8 +7,7 @@
         <el-col :span="24">
           <!-- pc端导航 -->
           <div class="headBox">
-            <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
-                     :router="true">
+            <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :router="true">
               <el-menu-item index="/Home"><i class="fa fa-wa fa-home ab-white"></i> 首页</el-menu-item>
               <el-menu-item index="/Archive"><i class="fa fa-wa fa-archive ab-white"></i> 归档</el-menu-item>
               <el-menu-item index="/Friendslink"><i class="fa fa-wa fa-users ab-white"></i> 友链</el-menu-item>
@@ -34,8 +33,52 @@
               </div>
             </el-menu>
           </div>
+          <!-- 移动端导航区域 -->
+          <div class="headBox headBox-mobile">
+            <div class="ab-menu" @click="toggleTac">
+              <i class="el-icon-s-grid"></i> 菜单
+            </div>
+            <div class="userInfo">
+              <div v-show="!haslogin" class="nologin">
+                <a href="javascript:void(0);" @click="logoinFun(1)">登录&nbsp;</a>
+                |
+                <a href="javascript:void(0);" @click="logoinFun(0)">&nbsp;注册</a>
+              </div>
+              <div v-show="haslogin" class="haslogin">
+                <i class="fa fa-fw fa-user-circle userImg"></i>
+                <ul class="haslogin-info">
+                  <li>
+                    <a href="#/UserInfo">个人中心</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" @click="userlogout">退出登录</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!--  侧边栏         -->
+            <el-row class="tac ab-tac" v-if="mobileShowTar">
+
+              <el-menu
+                :default-active="activeIndex"
+                class="el-menu-vertical-demo my-menu"
+                @open="handleOpen"
+                @close="handleClose"
+                :router="true"
+              >
+                <el-menu-item index="/Home"><i class="fa fa-wa fa-home ab-white"></i> 首页</el-menu-item>
+                <el-menu-item index="/Archive"><i class="fa fa-wa fa-archive ab-white"></i> 归档</el-menu-item>
+                <el-menu-item index="/Friendslink"><i class="fa fa-wa fa-users ab-white"></i> 友链</el-menu-item>
+                <el-menu-item index="/Reward"><i class="fa fa-wa fa-cny ab-white"></i> 赞赏</el-menu-item>
+                <el-menu-item index="/Info"><i class="fa fa-wa fa-vcard ab-white"></i> 关于</el-menu-item>
+              </el-menu>
+
+            </el-row>
+          </div>
         </el-col>
       </el-row>
+
+
     </div>
 
   </div>
@@ -60,31 +103,12 @@ export default {
       input: '', //input输入内容
       headBg: 'url(static/img/headbg05.jpg)', //头部背景图
       headTou: '', //头像
-      projectList: '' //项目列表
+      projectList: '', //项目列表
+      mobileShowTar:false, // 侧边栏
     }
   },
   methods: { //事件处理器
-    handleOpen(key, keyPath) { //分组菜单打开
-      // console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) { //分组菜单关闭
-      // console.log(key, keyPath);
-    },
-    searchChangeFun(e) { //input change 事件
-      // console.log(e)
-      if (this.input == '') {
-        this.$store.state.keywords = '';
-        this.$router.push({path: '/'});
-      }
-    },
-    getCategoryList() {
-      getCategoryList().then((response) => {
-        this.classListObj = response
-      })
-    },
-    handleSelect(key, keyPath) { //pc菜单选择
-      //    console.log(key, keyPath);
-    },
+
     logoinFun: function (msg) { //用户登录和注册跳转
       // console.log(msg);
       localStorage.setItem('logUrl', this.$route.fullPath);
@@ -163,7 +187,11 @@ export default {
         this.input = '';
         this.$store.state.keywords = '';
       }
-    }
+    },
+    toggleTac(){
+      this.mobileShowTar = !this.mobileShowTar;
+    },
+
   },
   components: { //定义组件
 
@@ -181,17 +209,15 @@ export default {
           null;
     var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
     var onVisibilityChange = function () {
-      if (!document[hiddenProperty]) { //被隐藏
-        if (that.$route.path != '/DetailShare') {
-          if (localStorage.getItem('userInfo')) {
-            that.haslogin = true;
-          } else {
-            that.haslogin = false;
-          }
-        }
+      if (!document[hiddenProperty]) {
+        // 没有被隐藏！
+        $(document).attr("title", "欢迎回来~O(∩_∩)O");
+      } else {
+        // 被隐藏了！
+        $(document).attr("title", "等你下课~┭┮﹏┭┮");
       }
     }
-    document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+    document.addEventListener(visibilityChangeEvent, onVisibilityChange); // 页面可见性改变事件
     // console.log();
     this.routeChange();
 
@@ -593,4 +619,43 @@ export default {
 .ab-white {
   color: white !important;
 }
+
+.headBox-mobile {
+  height: 40px;
+  line-height: 40px;
+  color: white;
+  padding: 0 10px;
+}
+
+.ab-menu {
+  display: inline-block;
+  padding: 0 10px;
+  transition: background-color linear 0.1s;
+  cursor: pointer;
+  resize: none;
+  outline: none;
+  user-select: none;
+}
+
+.ab-menu:active {
+  background-color: #fff;
+  color: #1b1f23;
+}
+
+.ab-tac {
+  position: fixed;
+  left: 0;
+  width: auto;
+  background-color: rgba(40, 42, 44, 0.6);
+  padding: 0 20px;
+}
+.ab-tac .el-menu-item {
+  height: 40px;
+  line-height: 40px;
+}
+.my-menu {
+  border: 0;
+}
+
 </style>
+
