@@ -2,23 +2,21 @@
 <template>
   <div>
     <div class="detailBox tcommonBox">
-            <span class="s-round-date">
-                <span class="month" v-html="showInitDate(detailObj.createTime,'month')+'月'"></span>
-                <span class="day" v-html="showInitDate(detailObj.createTime,'date')"></span>
-            </span>
       <header>
+        <a class="category" :href="'#/Home?categoryId='+detailObj.categoryId">
+          <el-tag effect="plain">{{ detailObj.categoryName }}
+          </el-tag>
+        </a>
         <h1>
           <a>
             {{ detailObj.title }}
           </a>
         </h1>
         <h2>
-          <i class="fa fa-fw fa-user"></i>发表于 <span>{{ detailObj.createTime }}</span>
-          <i class="fa fa-fw fa-eye"></i>{{ detailObj.viewCount }} 次围观
+          <i class="fa fa-fw fa-clock-o"></i><span> {{ detailObj.createTime }}</span>
+          <i class="fa fa-fw fa-eye"></i> {{ detailObj.viewCount }} 次围观
         </h2>
-        <div class="ui label">
-          <a :href="'#/Share?classId='+detailObj.categoryId">{{ detailObj.categoryName }}</a>
-        </div>
+
       </header>
       <div id="article1" class="article-content markdown-body" v-html="detailObj.content"></div>
 
@@ -118,7 +116,14 @@ export default {
 </script>
 
 <style lang="less">
-
+.detailBox {
+  border: 1px solid #d4d4d5;
+  position: relative;
+}
+.category {
+  position: absolute;
+  top:15px;
+}
 .last_update_time {
   text-align: right;
   font-size: 20px;
