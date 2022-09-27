@@ -1,46 +1,56 @@
 <!-- 文章列表 -->
 <template>
-  <el-row class="sharelistBox">
-      <el-col :span="24" class="s-item tcommonBox" v-for="(item,index) in articleList" :key="'article'+index">
-              <span class="s-round-date">
-                  <span class="month" v-html="showInitDate(item.createTime,'month')+'月'"></span>
-                  <span class="day" v-html="showInitDate(item.createTime,'date')"></span>
+  <div>
+    <el-row class="ab-article-list">
+      <!-- 新版 -->
+      <!-- 头部  -->
+      <el-col class="ab-title">
+        <h1>文章列表</h1>
+        <span>共 <i style="font-size: 24px;color:#E6A23C; ">{{ total }}</i> 篇  </span>
+      </el-col>
+
+      <el-col class="ab-content-list">
+        <!-- 内容 -->
+        <el-row class="ab-content" v-for="(item,index) in articleList" :key="'ab_article'+index">
+          <a :href="'#/DetailArticle?aid='+item.id" target="_blank">
+          <el-col :span="18" class="ab-content-left">
+            <header>{{ item.title }}</header>
+            <div class="markdown-body" v-text="item.summary" v-if="item.summary"></div>
+            <div class="markdown-body" v-else>暂无摘要</div>
+            <footer>
+              <i class="fa fa-fw fa-clock-o"></i>
+              <span v-html="showInitDate(item.createTime,'all')">{{ showInitDate(item.createTime, 'all') }}</span>
+              <span>
+                <i class="fa fa-fw fa-eye"></i>{{ item.viewCount }}次围观
               </span>
-        <header>
-          <h1>
-            <a :href="'#/DetailArticle?aid='+item.id" target="_blank">
-              {{ item.title }}
-            </a>
-          </h1>
-          <h2>
-            <i class="fa fa-fw fa-user"></i>发表于
-            <i class="fa fa-fw fa-clock-o"></i><span
-            v-html="showInitDate(item.createTime,'all')">{{ showInitDate(item.createTime, 'all') }}</span> •
-            <i class="fa fa-fw fa-eye"></i>{{ item.viewCount }} 次围观 •
+              <a class="category" :href="'#/Home?categoryId='+item.categoryId">
+                <el-tag effect="plain">{{ item.categoryName }}
+                </el-tag>
+              </a>
 
-          </h2>
-          <div class="ui label" v-if="item.categoryId">
-            <a :href="'#/Share?classId='+item.categoryId">{{ item.categoryName }}</a>
-          </div>
-        </header>
-        <div class="article-content">
-          <div class="markdown-body" v-html="item.content"></div>
-          <p style="max-height:300px;width:auto;overflow:hidden;text-align:center;">
-            <img :src="item.thumbnail" alt="" class="maxW">
-          </p>
-        </div>
-        <div class="viewdetail">
-          <a class="tcolors-bg" :href="'#/DetailArticle?aid='+item.id" target="_blank">
-            阅读全文>>
+            </footer>
+          </el-col>
           </a>
-        </div>
+          <el-col :span="6" class="ab-content-right" v-if="item.thumbnail">
+            <el-image :src="item.thumbnail" class="maxW" lazy :preview-src-list="[item.thumbnail,]">
 
+            </el-image>
+          </el-col>
+        </el-row>
       </el-col>
-      <el-col class="viewmore">
-        <a v-show="hasMore" class="tcolors-bg" href="javascript:void(0);" @click="addMoreFun">点击加载更多</a>
-        <a v-show="!hasMore" class="tcolors-bg" href="javascript:void(0);">暂无更多数据</a>
+      <!-- 底部 导航条 -->
+      <el-col class="ab-page-nav">
+        <el-pagination
+          layout="prev, pager, next"
+          :current-page="queryParams.pageNum"
+          :page-size="queryParams.pageSize"
+          @current-change="freshPage"
+          :total="total">
+        </el-pagination>
       </el-col>
-  </el-row>
+    </el-row>
+
+  </div>
 </template>
 
 <script>
@@ -61,7 +71,7 @@ export default {
         categoryId: 0
       },
       articleList: [],
-      hasMore: true
+      total: 0,
     }
   },
 
@@ -80,14 +90,15 @@ export default {
           }
         }
         this.articleList = this.articleList.concat(response.rows)
-
-        if (response.total <= this.articleList.length) {
-          this.hasMore = false
-        } else {
-          this.hasMore = true
-          this.queryParams.pageNum++
-        }
+        this.total = response.total;
       })
+    },
+    // 分类选项
+    freshPage :function (currentPage){
+      this.queryParams.pageNum = currentPage;
+      console.log(currentPage)
+      var path = this.$route.path+'?categoryId='+this.queryParams.categoryId+'&pageNum='+this.queryParams.pageNum;
+      this.$router.push(path)
     },
     showSearchShowList: function (initData) {//展示数据
       if (initData) {
@@ -101,7 +112,10 @@ export default {
     },
     routeChange: function () {
       var that = this;
-      this.queryParams.categoryId = (that.$route.query.classId == undefined ? 0 : parseInt(that.$route.query.classId));//获取传参的classId
+      console.log(this.queryParams)
+      this.queryParams.pageNum = that.$route.query.pageNum == undefined ? 1 : parseInt(that.$route.query.pageNum);
+      this.queryParams.categoryId = that.$route.query.categoryId == undefined ? 0 : parseInt(that.$route.query.categoryId);//获取传参的classId
+      console.log(this.queryParams)
       this.showSearchShowList(true);
     }
   },
@@ -121,19 +135,7 @@ export default {
 }
 </script>
 
-<style>
-/*分享标题*/
-.shareTitle {
-  margin-bottom: 40px;
-  position: relative;
-  border-radius: 5px;
-  background: #fff;
-  padding: 15px;
-}
-
-.shareclassTwo {
-  width: 100%;
-}
+<style scoped>
 
 .shareclassTwo li {
   display: inline-block;
@@ -170,5 +172,98 @@ export default {
 .markdown-body {
   max-height: 200px;
   overflow: hidden;
+}
+
+.box-card {
+  padding: 14px;
+}
+
+.ab-article-list {
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.ab-title {
+  border: 1px solid #d4d4d5;
+  display: block;
+  line-height: 20px;
+  padding: 14px;
+  border-radius: 5px 5px 0 0;
+}
+
+.ab-title h1 {
+  float: left;
+  font-weight: 700;
+  font-size: 20px;
+  color: #409EFF;
+}
+
+.ab-title span {
+  float: right;
+  font-size: 18px;
+}
+.ab-content-list {
+  border-left: 1px solid #d4d4d5;
+  border-right: 1px solid #d4d4d5;
+  /*border-bottom: 1px solid #d4d4d5;*/
+  position: relative;
+}
+.ab-content-list footer {
+
+
+}
+.ab-content {
+  padding: 14px 0;
+  margin:0 14px;
+  border-bottom: 1px solid #d4d4d5;
+  max-height: 150px;
+}
+.ab-content:last-child {
+  border: 0;
+}
+.ab-content-left{
+  position: relative;
+}
+.ab-content-left header{
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding-bottom: 10px;
+}
+.ab-content-left
+.markdown-body {
+  text-indent: 2em;
+  font-weight: 300;
+  padding-bottom: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  /*margin-bottom: 10px;*/
+}
+.ab-content-right {
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  height: 100%;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  text-align: center;
+}
+.maxW {
+  border-radius: 5px;
+  max-height: 100%;
+  overflow: hidden;
+  border:1px solid #d4d4d5;
+}
+.category {
+  position: absolute;
+  bottom: 0;
+  right: 5px;
+}
+
+.ab-page-nav {
+  padding: 14px 0;
+  border: 1px solid #d4d4d5;
+  border-radius: 0 0 5px 5px;
 }
 </style>

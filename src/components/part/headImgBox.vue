@@ -63,9 +63,9 @@ export default {
     }
   },
   mounted: function () {
-    $(".headImgBox").height($(window).height())
+    $(".headImgBox").height($(window).height() *0.8)
     $(window).resize(function () {
-      $(".headImgBox").height($(window).height())
+      $(".headImgBox").height($(window).height()*0.8)
     });
   }
 }
@@ -94,7 +94,7 @@ export default {
   width: 100%;
   margin: auto;
   position: absolute;
-  bottom: 20%;
+  bottom: 10%;
   padding: 40px 0;
   font-size: 16px;
   opacity: 0.98;
