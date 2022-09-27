@@ -9,38 +9,38 @@
 
             <el-row>
               <div class="top">关于作者</div>
-              <el-card class="box-card">
-                <p>
-                  23应届生求职中~
-                </p>
-              </el-card>
+
+              <p>
+                23应届生求职中~
+              </p>
+
             </el-row>
             <el-row>
               <div class="top">关于项目</div>
-              <el-card class="box-card">
-                <div>
-                  <p >
-                    博客采用前后端分离开发
-                  </p>
-                  <p >
-                    前端采用 Vue + ElementUI + Axios + Mavon Editor + jQuery(部分)
-                  </p>
-                  <p >
-                    后端采用 SpringBoot + Spring Security + JWT + MySQL +
-                    Redis + MinIO + MyBatis-Plus + Lombok + Swagger
-                  </p>
-                </div>
-              </el-card>
+
+              <div>
+                <p>
+                  博客采用前后端分离开发
+                </p>
+                <p>
+                  前端采用 Vue + ElementUI + Axios + Mavon Editor + jQuery(部分)
+                </p>
+                <p>
+                  后端采用 SpringBoot + Spring Security + JWT + MySQL +
+                  Redis + MinIO + MyBatis-Plus + Lombok + Swagger
+                </p>
+              </div>
+
             </el-row>
             <el-row>
               <div class="top">后续升级计划</div>
               <div>
-                <el-card class="box-card">
-                  <p>1. 留言板</p>
-                  <p>2. ElasticSearch并用于搜索</p>
-                  <p>3. 消息通知</p>
-                  <p>...</p>
-                </el-card>
+
+                <p>1. 留言板</p>
+                <p>2. ElasticSearch并用于搜索</p>
+                <p>3. 消息通知</p>
+                <p>...</p>
+
               </div>
             </el-row>
           </div>
@@ -63,16 +63,14 @@ import headImgBox from "../components/part/headImgBox";
 export default {
   name: "Info",
   data() { //选项 / 数据
-    return {
-
-    }
+    return {}
   },
   methods: { //事件处理器
 
   },
   components: { //定义组件
     'sg-nav': header,
-    'ab-head-img-box':headImgBox,
+    'ab-head-img-box': headImgBox,
     'sg-rightlist': rightlist,
     'ab-footer': footer,
   },
@@ -93,6 +91,7 @@ export default {
   text-align: left;
   padding: 30px 0;
 }
+
 .leftRight {
   font-size: 18px;
   background: #fff;
@@ -101,9 +100,11 @@ export default {
   margin-bottom: 40px;
 
 }
+
 p {
   text-indent: 2em;
 }
+
 div p {
   line-height: 34px;
 }

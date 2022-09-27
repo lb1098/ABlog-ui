@@ -96,7 +96,7 @@ export default {
     // 分类选项
     freshPage :function (currentPage){
       this.queryParams.pageNum = currentPage;
-      console.log(currentPage)
+      // console.log(currentPage)
       var path = this.$route.path+'?categoryId='+this.queryParams.categoryId+'&pageNum='+this.queryParams.pageNum;
       this.$router.push(path)
     },
@@ -107,15 +107,12 @@ export default {
       }
       this.getList()
     },
-    addMoreFun: function () {//查看更多
-      this.showSearchShowList(false);
-    },
     routeChange: function () {
       var that = this;
-      console.log(this.queryParams)
+      // console.log(this.queryParams)
       this.queryParams.pageNum = that.$route.query.pageNum == undefined ? 1 : parseInt(that.$route.query.pageNum);
       this.queryParams.categoryId = that.$route.query.categoryId == undefined ? 0 : parseInt(that.$route.query.categoryId);//获取传参的classId
-      console.log(this.queryParams)
+      // console.log(this.queryParams)
       this.showSearchShowList(true);
     }
   },
@@ -228,6 +225,9 @@ export default {
   font-size: 1.25rem;
   font-weight: 700;
   padding-bottom: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
 }
 .ab-content-left
 .markdown-body {
@@ -257,7 +257,7 @@ export default {
 }
 .category {
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: 5px;
 }
 

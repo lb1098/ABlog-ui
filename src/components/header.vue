@@ -62,8 +62,6 @@
               <el-menu
                 :default-active="activeIndex"
                 class="el-menu-vertical-demo my-menu"
-                @open="handleOpen"
-                @close="handleClose"
                 :router="true"
               >
                 <el-menu-item index="/Home"><i class="fa fa-wa fa-home ab-white"></i> 首页</el-menu-item>
