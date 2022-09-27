@@ -3,6 +3,7 @@
        :style="{backgroundImage:this.$store.state.themeObj.top_image?'url('+this.$store.state.themeObj.top_image+')':'url(static/img/headbg05.jpg)'}">
     <div class="scene">
       <div><span id="luke"></span></div>
+
     </div>
     <div class="h-information">
       <img
@@ -39,7 +40,10 @@
         </div>
       </div>
     </div>
-
+    <div class="ab-bottom-tip">
+      <div>向下滚动</div>
+      <div><i class="el-icon-arrow-down"></i></div>
+    </div>
   </div>
 </template>
 
@@ -79,14 +83,16 @@ export default {
   background-repeat: no-repeat;
   margin-bottom: 50px;
   z-index: 3;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .h-information {
   text-align: center;
-  width: 70%;
+  width: 100%;
   margin: auto;
-  position: relative;
-  top: 480px;
+  position: absolute;
+  bottom: 20%;
   padding: 40px 0;
   font-size: 16px;
   opacity: 0.98;
@@ -115,5 +121,15 @@ export default {
   font-size: 30px;
   color: white;
   opacity: 85%;
+}
+.ab-bottom-tip{
+  position: absolute;
+  bottom: 5px;
+  text-align: center;
+  width: 100%;
+  color: white;
+}
+.ab-bottom-tip i {
+  font-size: 24px;
 }
 </style>
