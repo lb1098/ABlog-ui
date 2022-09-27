@@ -206,6 +206,7 @@ export default {
 .ab-select-category{
   padding: 0 10px;
   margin-bottom: 40px;
+  line-height: 40px;
 }
 .ab-select-category-link {
   padding: 8px 10px;
