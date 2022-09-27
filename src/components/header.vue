@@ -483,35 +483,6 @@ export default {
 }
 
 
-/*头部背景图*/
-
-.headImgBox {
-  height: 650px;
-  position: relative;
-  width: 100%;
-  background-size: cover;
-  background-position: center 50%;
-  background-repeat: no-repeat;
-  margin-bottom: 90px;
-  z-index: 3;
-}
-
-.h-information {
-  text-align: center;
-  width: 70%;
-  margin: auto;
-  position: relative;
-  top: 480px;
-  padding: 40px 0;
-  font-size: 16px;
-  opacity: 0.98;
-  background: rgba(230, 244, 249, 0.8);
-  border-radius: 5px;
-  z-index: 1;
-  animation: b 1s ease-out;
-  -webkit-animation: b 1s ease-out;
-}
-
 @-webkit-keyframes b {
   0% {
     -webkit-transform: translateY(90px);

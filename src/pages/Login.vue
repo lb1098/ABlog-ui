@@ -1,6 +1,7 @@
 <!-- 登录注册 -->
 <template>
   <div>
+    <ab-header></ab-header>
     <div class="container">
       <h1 class="loginTitle">
 
@@ -121,6 +122,7 @@ import {userLogin, userRegister} from '../api/user.js'
 import {setToken} from '../utils/auth.js'
 import {MessageBox} from "element-ui";
 import footer from "../components/footer";
+import header from "../components/header";
 
 export default {
   name: 'Login',
@@ -241,6 +243,7 @@ export default {
   },
   components: { //定义组件
     'ab-footer': footer,
+    'ab-header':header,
   },
   watch: {
     // 如果路由有变化，会再次执行该方法

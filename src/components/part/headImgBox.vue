@@ -1,5 +1,5 @@
 <template>
-  <div class="headImgBox"
+  <div id="headImgBox" class="headImgBox"
        :style="{backgroundImage:this.$store.state.themeObj.top_image?'url('+this.$store.state.themeObj.top_image+')':'url(static/img/headbg05.jpg)'}">
     <div class="scene">
       <div><span id="luke"></span></div>
@@ -11,16 +11,109 @@
       <h2 class="h-description">
         {{ this.$store.state.themeObj.autograph ? this.$store.state.themeObj.autograph : "每一步，都是更接近目标的一步" }}
       </h2>
+
+      <div class="bottom-body">
+        <div class="catch-me">
+          <el-tooltip class="item" effect="dark" content="QQ" placement="bottom">
+            <a :href="catchMeObj.qq" target="_blank"
+            > <i class="iconfont icon-QQ"></i> </a>
+          </el-tooltip>
+          <el-tooltip class="item" effect="dark" content="微信" placement="bottom">
+            <a :href="catchMeObj.wechat" target="_blank"
+            > <i class="iconfont icon-wechat"></i> </a>
+          </el-tooltip>
+          <el-tooltip class="item" effect="dark" content="力扣" placement="bottom">
+            <a :href="catchMeObj.leetcode" target="_blank"
+            > <i class="iconfont icon-leetcode"></i> </a>
+          </el-tooltip>
+          <el-tooltip class="item" content="Github" placement="bottom">
+            <a :href="catchMeObj.git" target="_blank">
+              <i class="iconfont icon-github"></i>
+            </a>
+          </el-tooltip>
+          <el-tooltip class="item" effect="dark" content="Gitee" placement="bottom">
+            <a :href="catchMeObj.gitee" target="_blank"
+            > <i class="iconfont icon-gitee"></i> </a>
+          </el-tooltip>
+
+        </div>
+      </div>
     </div>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: "headImgBox"
+  name: "headImgBox",
+  data() {
+    return {
+      catchMeObj: {
+        //个人信息
+        git: "https://github.com/lb1098",
+        gitee: "https://gitee.com/lb1098",
+        leetcode: "https://leetcode.cn/u/glb2023/",
+        qq: "/static/img/qq.jpg",
+        wechat: "/static/img/wechat.jpg",
+      },
+    }
+  },
+  mounted: function () {
+    $(".headImgBox").height($(window).height())
+    $(window).resize(function () {
+      $(".headImgBox").height($(window).height())
+    });
+  }
 }
 </script>
 
 <style scoped>
+/*头部背景图*/
 
+.headImgBox {
+  height: 650px;
+  position: relative;
+  width: 100%;
+  background-size: cover;
+  background-position: center 50%;
+  background-repeat: no-repeat;
+  margin-bottom: 50px;
+  z-index: 3;
+}
+
+.h-information {
+  text-align: center;
+  width: 70%;
+  margin: auto;
+  position: relative;
+  top: 480px;
+  padding: 40px 0;
+  font-size: 16px;
+  opacity: 0.98;
+  /*background: rgba(230, 244, 249, 0.8);*/
+  border-radius: 5px;
+  z-index: 1;
+  animation: b 1s ease-out;
+  -webkit-animation: b 1s ease-out;
+}
+
+.h-description {
+  color: white;
+}
+.bottom-body {
+  margin-top: 15px;
+}
+.catch-me a{
+  display: inline-block;
+  margin-bottom: 7px;
+  position: relative;
+  text-decoration: none;
+  width: 50px;
+
+}
+.catch-me a i{
+  font-size: 30px;
+  color: white;
+  opacity: 50%;
+}
 </style>

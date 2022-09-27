@@ -1,49 +1,49 @@
 ﻿<!-- 右侧固定导航栏 -->
 <template>
   <div class="rightlistBox">
-    <section>
-      <div class="r1-head">
-        <img
-          :src="
-            this.$store.state.themeObj.center_smailimg
-              ? this.$store.state.themeObj.center_smailimg
-              : 'static/img/headbg04.jpg'
-          "
-          alt=""
-        />
-        <h1 v-if="this.$store.state.themeObj.user_start != 0">
-          <span>今天依然是充满希望的一天</span>
-        </h1>
-      </div>
-      <div class="r1-body">
-        <p>abin</p>
-        <div class="catch-me">
-          <div class="">
-            <el-tooltip class="item" effect="dark" content="QQ" placement="top">
-              <a :href="catchMeObj.qq" target="_blank"
-              > <i class="iconfont icon-QQ"></i> </a>
-            </el-tooltip>
-            <el-tooltip class="item" effect="dark" content="微信" placement="top">
-              <a :href="catchMeObj.wechat" target="_blank"
-              > <i class="iconfont icon-wechat"></i> </a>
-            </el-tooltip>
-            <el-tooltip class="item" effect="dark" content="力扣" placement="top">
-              <a :href="catchMeObj.leetcode" target="_blank"
-              > <i class="iconfont icon-leetcode"></i> </a>
-            </el-tooltip>
-            <el-tooltip class="item" content="Github" placement="top">
-              <a :href="catchMeObj.git" target="_blank">
-                <i class="iconfont icon-github"></i>
-              </a>
-            </el-tooltip>
-            <el-tooltip class="item" effect="dark" content="Gitee" placement="top">
-              <a :href="catchMeObj.gitee" target="_blank"
-              > <i class="iconfont icon-gitee"></i> </a>
-            </el-tooltip>
-          </div>
-        </div>
-      </div>
-    </section>
+<!--    <section>-->
+<!--      <div class="r1-head">-->
+<!--        <img-->
+<!--          :src="-->
+<!--            this.$store.state.themeObj.center_smailimg-->
+<!--              ? this.$store.state.themeObj.center_smailimg-->
+<!--              : 'static/img/headbg04.jpg'-->
+<!--          "-->
+<!--          alt=""-->
+<!--        />-->
+<!--        <h1 v-if="this.$store.state.themeObj.user_start != 0">-->
+<!--          <span>今天依然是充满希望的一天</span>-->
+<!--        </h1>-->
+<!--      </div>-->
+<!--      <div class="r1-body">-->
+<!--        <p>abin</p>-->
+<!--        <div class="catch-me">-->
+<!--          <div class="">-->
+<!--            <el-tooltip class="item" effect="dark" content="QQ" placement="top">-->
+<!--              <a :href="catchMeObj.qq" target="_blank"-->
+<!--              > <i class="iconfont icon-QQ"></i> </a>-->
+<!--            </el-tooltip>-->
+<!--            <el-tooltip class="item" effect="dark" content="微信" placement="top">-->
+<!--              <a :href="catchMeObj.wechat" target="_blank"-->
+<!--              > <i class="iconfont icon-wechat"></i> </a>-->
+<!--            </el-tooltip>-->
+<!--            <el-tooltip class="item" effect="dark" content="力扣" placement="top">-->
+<!--              <a :href="catchMeObj.leetcode" target="_blank"-->
+<!--              > <i class="iconfont icon-leetcode"></i> </a>-->
+<!--            </el-tooltip>-->
+<!--            <el-tooltip class="item" content="Github" placement="top">-->
+<!--              <a :href="catchMeObj.git" target="_blank">-->
+<!--                <i class="iconfont icon-github"></i>-->
+<!--              </a>-->
+<!--            </el-tooltip>-->
+<!--            <el-tooltip class="item" effect="dark" content="Gitee" placement="top">-->
+<!--              <a :href="catchMeObj.gitee" target="_blank"-->
+<!--              > <i class="iconfont icon-gitee"></i> </a>-->
+<!--            </el-tooltip>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
     <section class="rs4">
       <h2 class="ui label">热门文章</h2>
       <ul>
