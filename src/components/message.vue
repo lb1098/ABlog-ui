@@ -354,6 +354,7 @@
     padding:15px;
     margin-bottom: 20px;
     border-radius: 5px;
+  border: 1px solid #d4d4d5;
 }
 .tmsg-respond h3{
     font-size: 18px;

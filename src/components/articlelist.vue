@@ -225,9 +225,7 @@ export default {
   font-size: 1.25rem;
   font-weight: 700;
   padding-bottom: 10px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space:nowrap;
+
 }
 .ab-content-left
 .markdown-body {

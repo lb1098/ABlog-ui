@@ -186,7 +186,7 @@ export default {
   padding-right: 50px;
   border-radius: 5px;
   margin-bottom: 40px;
-
+  border: 1px solid #d4d4d5;
 }
 .title{
   text-align: left;
