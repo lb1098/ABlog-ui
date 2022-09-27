@@ -73,7 +73,9 @@ export default {
 
 <style scoped>
 /*头部背景图*/
-
+* {
+  user-select: none;
+}
 .headImgBox {
   height: 650px;
   position: relative;

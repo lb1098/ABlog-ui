@@ -240,7 +240,7 @@ export default {
 
 .headBack {
   width: 100%;
-  background: rgba(40, 42, 44, 0.6);
+  background: rgba(40, 42, 44, 0.3);
   /*margin-bottom:30px;*/
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
   position: fixed;
@@ -646,7 +646,7 @@ export default {
   position: fixed;
   left: 0;
   width: auto;
-  background-color: rgba(40, 42, 44, 0.6);
+  background-color: rgba(40, 42, 44, 0.4);
   padding: 0 20px;
 }
 .ab-tac .el-menu-item {
