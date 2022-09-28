@@ -136,7 +136,8 @@ export default {
       let id = data.href
       let number = ($('#article1').offset().top + $('#article1').height()) - $(id).offset().top;
       let h = $('#headImgBox').height();
-      $("html,body").animate({scrollTop: ($('#detail').height()- number) - h  }, 200);
+      let wh = $(window).height();
+      $("html,body").animate({scrollTop: ($('#detail').height()- number) - h +wh*0.6 }, 200);
     },
   }
 }
