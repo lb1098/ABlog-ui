@@ -17,6 +17,15 @@
         accordion>
       </el-tree>
     </el-collapse-transition>
+    <el-button
+      type="primary"
+      icon="el-icon-menu"
+      class="treeMenu"
+      @click="openMenu"
+    >
+      <span v-if="showDirectory">关闭目录</span>
+      <span v-else>打开目录</span>
+    </el-button>
   </div>
 </template>
 
@@ -32,7 +41,7 @@ export default {
         label: 'name'
       },
       catalogue: [],  //节点元素的id和其距顶部的距离
-      showDirectory: true,   //是否显示目录
+      showDirectory: false,   //是否显示目录
       isFixed: false,     //目录css样式选择
     }
   },
@@ -40,6 +49,10 @@ export default {
 
   },
   methods:{
+    openMenu(){
+      this.showDirectory = !this.showDirectory;
+      this.tocAndCli();
+    },
     tocAndCli() {   //生成目录树方法
       this.$nextTick(() => {
         const aArr1 = $(
@@ -122,29 +135,32 @@ export default {
     scrollToPosition(data) {    //点击目录标题跳转方法
       let id = data.href
       let number = ($('#article1').offset().top + $('#article1').height()) - $(id).offset().top;
-      $("html,body").animate({scrollTop: $('#detail').height()- number}, 200);
+      let h = $('#headImgBox').height();
+      $("html,body").animate({scrollTop: ($('#detail').height()- number) - h  }, 200);
     },
   }
 }
 
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 // added
 // 当前选中目录标题样式
- .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
-   border-radius: 4px;
-   color: #409eff;
- }
+.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
+ border-radius: 4px;
+ color: #409eff;
+}
 
 .treeFixed {
   position: fixed;
-  top: 90px;
+  //top: 90px;
   right: 10%;
+  bottom: 10%;
+  transform: translateY(-40px);
   //box-shadow: #333;
-  width: 355px;
+  width: 250px;
   border-radius: 5px;
-  z-index: 0;
+  z-index: 5;
   transition: all 0.2s linear;
   padding: 15px;
   text-align: center;
@@ -154,7 +170,17 @@ export default {
 }
 
 .treeFixed:hover {
-  transform: translate(0, -2px);
+  transform: translate(0, -42px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.treeMenu {
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+  z-index: 6;
+  cursor: pointer;
+}
+.treeMenu:active {
+
 }
 </style>
