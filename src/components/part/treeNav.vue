@@ -7,7 +7,7 @@
         empty-text="暂无目录"
         :props="defaultProps"
         highlight-current
-        :indent="20"
+        :indent="16"
         node-key="id"
         @node-click="scrollToPosition"
         ref="menuTree"
@@ -167,6 +167,12 @@ export default {
   margin: 0 0 0 -65px;
   letter-spacing: 0.5px;
   box-shadow: 1px 1px 6px #666;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space:nowrap !important;
+}
+.treeFixed .el-tree-node {
+
 }
 
 .treeFixed:hover {
