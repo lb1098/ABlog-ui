@@ -197,9 +197,13 @@ export default {
   border-top: 0;
 }
 .hot-article-list div {
-  line-height: 16px;
-  font-size: 16px;
+  line-height: 14px;
+  font-size: 14px;
   padding: 5px 0;
+  border-bottom: 1px solid #d4d4d5;
+}
+.hot-article-list div:last-child{
+  border-bottom: 0;
 }
 .hot-article-list a {
   display: inline-block;
