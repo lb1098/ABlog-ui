@@ -1,6 +1,6 @@
 <template>
   <el-row class="el-row ab-footer  ">
-    <el-col>域名正在备案中~</el-col>
+    <el-col><a href="https://beian.miit.gov.cn">闽ICP备2022014152号</a></el-col>
     <el-col>托管于 <a href="https://cloud.tencent.com/">腾讯云</a> 轻量应用服务器.</el-col>
     <el-col>Made By ABin.</el-col>
   </el-row>

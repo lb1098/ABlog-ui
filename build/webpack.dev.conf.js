@@ -22,6 +22,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+    allowedHosts: [
+      'abinblog.cn', // 允许访问的域名地址，即花生壳内网穿透的地址
+      '.abinblog.cn'   // .是二级域名的通配符
+    ],
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [
