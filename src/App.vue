@@ -14,7 +14,7 @@ export default {
 
 <style lang="less">
 // 原博客主提色
-@tcolors:#97dffd;//按钮和标签颜色
+@tcolors:#409EFF;//按钮和标签颜色
 @tcolorm:#64609E;//分类的选中的颜色
 @tcolord:#48456D;//按钮hover 的颜色
 

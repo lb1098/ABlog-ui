@@ -3,13 +3,14 @@
   <div>
     <div class="detailBox tcommonBox">
       <header>
-        <a class="category" :href="'#/Home?categoryId='+detailObj.categoryId">
-          <el-tag effect="plain">{{ detailObj.categoryName }}
-          </el-tag>
-        </a>
         <h1>
+
           <a>
             {{ detailObj.title }}
+          </a>
+          <a class="category" :href="'#/Home?categoryId='+detailObj.categoryId">
+            <el-tag effect="plain" size="small">{{ detailObj.categoryName }}
+            </el-tag>
           </a>
         </h1>
         <h2>
@@ -124,8 +125,8 @@ export default {
   position: relative;
 }
 .category {
-  position: absolute;
-  top:15px;
+  //position: absolute;
+  //top:15px;
 }
 .last_update_time {
   text-align: right;
