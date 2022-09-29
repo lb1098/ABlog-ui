@@ -14,7 +14,12 @@
         <el-row class="ab-content" v-for="(item,index) in articleList" :key="'ab_article'+index">
           <a :href="'#/DetailArticle?aid='+item.id" target="_blank">
           <el-col :span="18" class="ab-content-left">
-            <header>{{ item.title }}</header>
+            <header>
+              <a class="category" :href="'#/Home?categoryId='+item.categoryId">
+                <el-tag size="mini" effect="plain">{{ item.categoryName }}
+                </el-tag>
+              </a>
+              {{ item.title }}</header>
             <div class="markdown-body" v-text="item.summary" v-if="item.summary"></div>
             <div class="markdown-body" v-else>暂无摘要</div>
             <footer>
@@ -23,11 +28,6 @@
               <span>
                 <i class="fa fa-fw fa-eye"></i>{{ item.viewCount }}次围观
               </span>
-              <a class="category" :href="'#/Home?categoryId='+item.categoryId">
-                <el-tag effect="plain">{{ item.categoryName }}
-                </el-tag>
-              </a>
-
             </footer>
           </el-col>
           </a>
@@ -225,7 +225,9 @@ export default {
   font-size: 1.25rem;
   font-weight: 700;
   padding-bottom: 10px;
-
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .ab-content-left
 .markdown-body {
@@ -254,9 +256,7 @@ export default {
   border:1px solid #d4d4d5;
 }
 .category {
-  position: absolute;
-  top: 0;
-  right: 5px;
+
 }
 
 .ab-page-nav {

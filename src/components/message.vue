@@ -63,7 +63,7 @@
                             <li class="tmsg-c-item" v-for="(citem,cindex) in item.children" :key="'citem'+cindex">
                                 <article class="">
                                     <header>
-                                            <img :src="$store.state.errorImg"  :onerror="$store.state.errorImg">
+                                            <img :src="$store.state.errorImg" :onerror="$store.state.errorImg">
                                             <div class="i-name">
                                                 {{citem.username}} <span>回复</span> {{citem.toCommentUserName}}
                                             </div>

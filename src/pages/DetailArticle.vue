@@ -24,7 +24,6 @@ import rightlist from '../components/rightlist.vue'
 import articleDetail from '../components/articleDetail.vue'
 import footer from "../components/footer";
 import headImgBox from "../components/part/headImgBox";
-
 export default {
   name: 'DetailShare',
   data() { //选项 / 数据
@@ -40,6 +39,7 @@ export default {
     'sg-rightlist': rightlist,
     'ab-footer': footer,
     'ab-head-img-box':headImgBox,
+
   },
   created() { //生命周期函数
 
