@@ -44,7 +44,6 @@
       </div>
     </div>
     <tree-nav ref="treenav"></tree-nav>
-    <ab-message v-if="detailObj.isComment==0"></ab-message>
     <sg-message v-if="detailObj.isComment==0"></sg-message>
   </div>
 </template>
@@ -57,7 +56,6 @@ import message from '../components/message.vue'
 import treeNav from "./part/treeNav";
 import "mavon-editor/dist/markdown/github-markdown.min.css";
 import "mavon-editor/dist/highlightjs/styles/github-dark-dimmed.min.css";
-import abMessage from "./abMessage";
 
 export default {
   data() { //选项 / 数据
@@ -108,7 +106,6 @@ export default {
   },
   components: { //定义组件
     'sg-message': message,
-    'ab-message':abMessage,
     treeNav,
 
   },
