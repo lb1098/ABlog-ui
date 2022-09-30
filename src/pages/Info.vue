@@ -35,10 +35,8 @@
             <el-row>
               <div class="top">后续升级计划</div>
               <div>
-
-                <p>1. 留言板</p>
-                <p>2. ElasticSearch并用于搜索</p>
-                <p>3. 消息通知</p>
+                <p>消息通知（已完成）</p>
+                <p>ElasticSearch并用于搜索</p>
                 <p>...</p>
 
               </div>
