@@ -21,10 +21,18 @@
                 </div>
                 <div v-show="haslogin" class="haslogin">
                   <i class="fa fa-fw fa-user-circle userImg"></i>
+                  <span v-text="userInfo.nickName"></span>
+                  <el-badge class="mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
                   <ul class="haslogin-info">
+                    <li>
+                      <a href="#/Notify">通知
+                        <el-badge class="mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
+                      </a>
+                    </li>
                     <li>
                       <a href="#/UserInfo">个人中心</a>
                     </li>
+
                     <li>
                       <a href="javascript:void(0);" @click="userlogout">退出登录</a>
                     </li>
@@ -45,8 +53,17 @@
                 <a href="javascript:void(0);" @click="logoinFun(0)">&nbsp;注册</a>
               </div>
               <div v-show="haslogin" class="haslogin">
+
                 <i class="fa fa-fw fa-user-circle userImg"></i>
+                <span v-text="userInfo.nickName"></span>
+                <el-badge class="mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
+
                 <ul class="haslogin-info">
+                  <li>
+                    <a href="#/Notify">通知
+                      <el-badge class="mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
+                    </a>
+                  </li>
                   <li>
                     <a href="#/UserInfo">个人中心</a>
                   </li>
@@ -86,7 +103,7 @@ import {logout} from '../api/user'
 import {removeToken, getToken} from '../utils/auth'
 import {getCategoryList} from '../api/category'
 import {Typeit} from '../utils/plug.js'
-
+import {getUnreadCount} from '../api/notify.js'
 
 export default {
   data() { //选项 / 数据
@@ -103,10 +120,16 @@ export default {
       headTou: '', //头像
       projectList: '', //项目列表
       mobileShowTar:false, // 侧边栏
+      // 通知的数量
+      notifyCount:0,
+      // 通知的查询
+      queryParams: {
+        pageNum: 1,
+        pageSize: 2,
+      },
     }
   },
   methods: { //事件处理器
-
     logoinFun: function (msg) { //用户登录和注册跳转
       // console.log(msg);
       localStorage.setItem('logUrl', this.$route.fullPath);
@@ -172,19 +195,24 @@ export default {
       if (localStorage.getItem('userInfo') && getToken()) { //存储用户信息
         that.haslogin = true;
         that.userInfo = JSON.parse(localStorage.getItem('userInfo'));
-        // console.log(that.userInfo);
+
       } else {
         that.haslogin = false;
       }
-      //获取分类
-      // this.getCategoryList()
-
       if ((this.$route.name == "Share" || this.$route.name == "Home") && this.$store.state.keywords) {
         this.input = this.$store.state.keywords;
       } else {
         this.input = '';
         this.$store.state.keywords = '';
       }
+      if(that.haslogin){
+        // 获取通知信息
+        getUnreadCount(this.queryParams).then(response=>{
+          this.notifyCount = response.total
+        });
+      }
+
+
     },
     toggleTac(){
       this.mobileShowTar = !this.mobileShowTar;
@@ -654,6 +682,8 @@ export default {
 .my-menu {
   border: 0;
 }
+.userImg {
 
+}
 </style>
 

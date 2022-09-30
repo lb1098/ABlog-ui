@@ -84,7 +84,14 @@ export default new Router({
       },
       name: 'Info'
     },
-
+    {
+      path: '/Notify',
+      component: resolve => require(['../pages/Notify.vue'], resolve),
+      meta: {
+        auth: false
+      },
+      name: 'Notify'
+    },
     // 404页面
     {
       path: '/*',
