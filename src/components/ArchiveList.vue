@@ -54,6 +54,7 @@
       </div>
     </el-row>
     <el-pagination
+      background
       layout="prev, pager, next"
       :current-page="queryParams.pageNum"
       :page-size="queryParams.pageSize"

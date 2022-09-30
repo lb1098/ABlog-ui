@@ -41,6 +41,7 @@
       <!-- 底部 导航条 -->
       <el-col class="ab-page-nav">
         <el-pagination
+          background
           layout="prev, pager, next"
           :current-page="queryParams.pageNum"
           :page-size="queryParams.pageSize"
