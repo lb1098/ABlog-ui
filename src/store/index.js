@@ -9,7 +9,7 @@ export const state = {
   loading: false,
   themeObj: 0,//主题
   keywords:'',//关键词
-  errorImg: 'this.onerror=null;this.src="' + require('../../static/img/tou.jpg') + '"',
+  errorImg: require('../../static/img/tou.jpg') ,
   baseURL:'http://43.143.115.189:7777/'
 }
 
