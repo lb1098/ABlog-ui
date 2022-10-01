@@ -27,6 +27,10 @@
             <a :href="catchMeObj.leetcode" target="_blank"
             > <i class="iconfont icon-leetcode"></i> </a>
           </el-tooltip>
+          <el-tooltip class="item" effect="dark" content="哔哩哔哩" placement="bottom">
+            <a :href="catchMeObj.bilibili" target="_blank"
+            > <i class="iconfont icon-bilibili-line"></i> </a>
+          </el-tooltip>
           <el-tooltip class="item" content="Github" placement="bottom">
             <a :href="catchMeObj.git" target="_blank">
               <i class="iconfont icon-github"></i>
@@ -59,6 +63,7 @@ export default {
         leetcode: "https://leetcode.cn/u/glb2023/",
         qq: "/static/img/qq.jpg",
         wechat: "/static/img/wechat.jpg",
+        bilibili: "https://space.bilibili.com/17417010",
       },
     }
   },

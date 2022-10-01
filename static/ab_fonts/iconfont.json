@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "10918080",
+      "name": "bilibili-line",
+      "font_class": "bilibili-line",
+      "unicode": "e75d",
+      "unicode_decimal": 59229
+    },
+    {
       "icon_id": "459019",
       "name": "wechat",
       "font_class": "wechat",
