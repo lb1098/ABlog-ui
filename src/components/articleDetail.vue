@@ -17,8 +17,17 @@
           <i class="fa fa-fw fa-clock-o"></i><span> {{ detailObj.createTime }}</span>
           <i class="fa fa-fw fa-eye"></i> {{ detailObj.viewCount }} 次围观
         </h2>
-
       </header>
+      <div style="margin-bottom: 5px;">
+        <b style="font-weight: 700;">摘要：</b>
+        {{detailObj.summary}}
+      </div>
+      <div style="margin-bottom: 10px;">
+        <el-image style="" :src="detailObj.thumbnail" class="maxW" lazy></el-image>
+        <div style=" text-align:center;font-weight: 700">缩略图</div>
+      </div>
+
+
       <div id="article1" class="article-content markdown-body" v-html="detailObj.content"></div>
 
       <div class="donate">
