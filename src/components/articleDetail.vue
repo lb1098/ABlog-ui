@@ -20,9 +20,10 @@
       </header>
       <div style="margin-bottom: 5px;">
         <b style="font-weight: 700;">摘要：</b>
-        {{detailObj.summary}}
+        <span v-if="detailObj.summary"> {{detailObj.summary}}</span>
+        <span v-else>暂无摘要</span>
       </div>
-      <div style="margin-bottom: 10px;">
+      <div v-if="detailObj.thumbnail" style="margin-bottom: 10px;">
         <el-image style="" :src="detailObj.thumbnail" class="maxW" lazy></el-image>
         <div style=" text-align:center;font-weight: 700">缩略图</div>
       </div>
