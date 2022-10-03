@@ -71,12 +71,16 @@ export default {
     return {
       rewardData: "", //赞赏二维码
       tableData: [
-        // {
-        //   //赞赏数据
-        //   "payTime":"2021-10-23",
-        //   "name":"智障少女欢乐多",
-        //   "money":"188"
-        // },
+        {
+          "payTime":"2022-10-2",
+          "name":"杜预",
+          "money":"30"
+        },
+        {
+          "payTime":"2022-9-29",
+          "name":"Z",
+          "money":"0.01"
+        },
       ],
     };
   },
