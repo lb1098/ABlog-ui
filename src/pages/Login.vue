@@ -182,7 +182,7 @@ export default {
       fullscreenLoading: false,//全屏loading
       urlstate: 0,//重新注册
 
-      verify_url :this.$store.state.baseURL+'img/verify_code',
+      verify_url :this.$store.state.verityURL+'img/verify_code',
       verify_code:"",
     }
   },
@@ -276,7 +276,7 @@ export default {
       this.$router.push({path: '/Login?login=0'});
     },
     freshCode:function (){
-      this.verify_url = this.$store.state.baseURL+'img/verify_code?t=' + new Date().getTime()
+      this.verify_url = this.$store.state.verityURL+'img/verify_code?t=' + new Date().getTime()
     }
   },
   components: { //定义组件
