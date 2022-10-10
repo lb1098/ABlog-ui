@@ -26,15 +26,30 @@
             placeholder="用户名"
             v-model="username">
           </el-input>
-
           <el-input
             type="password"
             placeholder="密码"
             @keyup.enter.native="loginEnterFun"
             v-model="password">
           </el-input>
+          <div style="padding-bottom: 10px">
+            <el-input
+              type="text"
+              placeholder="验证码"
+              v-model="verify_code"
+              style="
+                width: 100px;
+                display: inline-block;
+                margin-right: 10px;
+                float: left;
+              "
+              maxlength="4"
+              show-word-limit
+            >
+            </el-input>
+            <img :src="verify_url" alt="点击更换验证码" class="verify_code" @click="freshCode()"></img>
+          </div>
 
-          <h3><a href="">忘记密码？</a></h3>
           <div class="lr-btn tcolors-bg" @click="gotoHome">登录</div>
           <div class="otherLogin">
             <a href="javascript:void(0)"><i class="fa fa-fw fa-wechat"></i></a>
@@ -106,6 +121,23 @@
             type="error"
             show-icon :closable="false">
           </el-alert>
+          <div style="padding-bottom: 10px">
+            <el-input
+              type="text"
+              placeholder="验证码"
+              v-model="verify_code"
+              style="
+                width: 100px;
+                display: inline-block;
+                margin-right: 10px;
+                float: left;
+              "
+              maxlength="4"
+              show-word-limit
+            >
+            </el-input>
+            <img :src="verify_url" alt="点击更换验证码" class="verify_code" @click="freshCode()"></img>
+          </div>
           <div class="lr-btn tcolors-bg" @click="newRegister" v-loading.fullscreen.lock="fullscreenLoading"
                element-loading-text="提交中">注册
           </div>
@@ -123,6 +155,7 @@ import {setToken} from '../utils/auth.js'
 import {MessageBox} from "element-ui";
 import footer from "../components/footer";
 import header from "../components/header";
+import Cookies from 'js-cookie'
 
 export default {
   name: 'Login',
@@ -148,6 +181,9 @@ export default {
       step: 1,//注册进度
       fullscreenLoading: false,//全屏loading
       urlstate: 0,//重新注册
+
+      verify_url :this.$store.state.baseURL+'img/verify_code',
+      verify_code:"",
     }
   },
   methods: { //事件处理器
@@ -167,7 +203,7 @@ export default {
     },
     gotoHome: function () {
       //用户登录
-      userLogin(this.username, this.password).then((response) => {
+      userLogin(this.username, this.password, this.verify_code, Cookies.get("VerifyCode")).then((response) => {
         // 登录成功记录token和用户信息，登录失败给对应提示
         setToken(response.token) // 会话关闭后就关闭了。
         // 存储用户信息
@@ -219,7 +255,7 @@ export default {
       }
       if (!that.nusernameErr && !that.nemailErr && !that.npasswordErr) {
         that.fullscreenLoading = true;
-        userRegister(that.nusername, that.nickName, that.nemail, that.npassword).then((response) => {
+        userRegister(that.nusername, that.nickName, that.nemail, that.npassword, this.verify_code, Cookies.get("VerifyCode")).then((response) => {
           //注册成功后调整到登录
           that.goLogin()
           this.$notify({
@@ -238,8 +274,10 @@ export default {
     },
     goRegister: function () {//去注册
       this.$router.push({path: '/Login?login=0'});
+    },
+    freshCode:function (){
+      this.verify_url = this.$store.state.baseURL+'img/verify_code?t=' + new Date().getTime()
     }
-
   },
   components: { //定义组件
     'ab-footer': footer,
@@ -252,6 +290,7 @@ export default {
   created() { //生命周期函数
     var that = this;
     that.routeChange();
+
   }
 }
 </script>
@@ -404,5 +443,10 @@ export default {
 
 .registerSuc .sucContent .el-icon-close {
   fong-size: 13px;
+}
+.verify_code {
+  /*float: left;*/
+  height: 40px;
+  padding-right:10px;
 }
 </style>
