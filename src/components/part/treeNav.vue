@@ -137,7 +137,7 @@ export default {
       let number = ($('#article1').offset().top + $('#article1').height()) - $(id).offset().top;
       let h = $('#headImgBox').height();
       let wh = $(window).height();
-      $("html,body").animate({scrollTop: ($('#detail').height()- number) - h +wh*0.6 }, 200);
+      $("html,body").animate({scrollTop: ($('#detail').height()- number) - h + wh * 0.6 }, 200);
     },
   }
 }

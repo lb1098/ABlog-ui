@@ -10,9 +10,9 @@
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :router="true">
               <el-menu-item index="/Home"><i class="fa fa-wa fa-home ab-white"></i> 首页</el-menu-item>
               <el-menu-item index="/Archive"><i class="fa fa-wa fa-archive ab-white"></i> 归档</el-menu-item>
-              <el-menu-item index="/Friendslink"><i class="fa fa-wa fa-users ab-white"></i> 友链</el-menu-item>
               <el-menu-item index="/Reward"><i class="fa fa-wa fa-cny ab-white"></i> 赞赏</el-menu-item>
               <el-menu-item index="/Info"><i class="fa fa-wa fa-vcard ab-white"></i> 关于</el-menu-item>
+              <el-menu-item index="/Friendslink"><i class="fa fa-wa fa-users ab-white"></i> 友链</el-menu-item>
               <div class="userInfo">
                 <div v-show="!haslogin" class="nologin">
                   <a href="javascript:void(0);" @click="logoinFun(1)">登录&nbsp;</a>
@@ -101,8 +101,6 @@
 <script>
 import {logout} from '../api/user'
 import {removeToken, getToken} from '../utils/auth'
-import {getCategoryList} from '../api/category'
-import {Typeit} from '../utils/plug.js'
 import {getUnreadCount} from '../api/notify.js'
 
 export default {
@@ -250,11 +248,7 @@ export default {
 
   },
   mounted() { //页面元素加载完成
-    var that = this;
-    var timer = setTimeout(function () {
-      Typeit(that.$store.state.themeObj.user_start, "#luke"); //打字机效果
-      clearTimeout(timer);
-    }, 500);
+
   }
 }
 </script>

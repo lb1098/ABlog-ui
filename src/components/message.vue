@@ -33,7 +33,7 @@
                 </div>
               </header>
               <section>
-                <p v-text="item.content"></p>
+                <p :id="'cid'+item.id" v-text="item.content"></p>
                 <div class="tmsg-replay" @click="respondMsg(item.id,item.id,item.createBy)">
                   回复
                 </div>
@@ -52,7 +52,7 @@
                     </div>
                   </header>
                   <section>
-                    <p v-text="citem.content"></p>
+                    <p :id="'cid'+citem.id" v-text="citem.content"></p>
                     <div class="tmsg-replay" @click="respondMsg(item.id,citem.id,citem.createBy)">
                       回复
                     </div>
@@ -97,8 +97,8 @@ export default {
       },
       // 我的内容
       commentCount:0,
-
-
+      cidJudge : false,
+      cid: -1,
       isRespond: false,
       textarea: '',//文本框输入内容
       // pBody: true,//表情打开控制
@@ -226,6 +226,7 @@ export default {
       that.aid = that.$route.query.aid == undefined ? 1 : parseInt(that.$route.query.aid);//获取传参的aid
       that.pageNum = that.$route.query.pageNum == undefined ? 1 : parseInt(that.$route.query.pageNum);//获取传参的aid
       that.queryParams.articleId = that.aid
+      that.cid = that.$route.query.cid == undefined ? -1 : parseInt(that.$route.query.cid); //获取传参的cid
       //公用设置数据方法
       // 这里访问的是不一样的 后台，所以不会冲突！！！
       if (that.$route.name == 'DetailArticle') {
@@ -233,6 +234,27 @@ export default {
         that.type = 0;
         getArticleComment(that.queryParams).then((response) => {
           that.setData(initData, response);
+          if(this.cid>0){
+            response.rows.forEach((comment)=> {
+              if(comment.id==this.cid){
+                this.cidJudge=true;
+              }
+              if(!this.cidJudge){
+                comment.children.forEach((cldComment)=> {
+                  if(cldComment.id==this.cid){
+                    this.cidJudge=true;
+                  }
+                })
+              }
+            })
+            if(!this.cidJudge){
+              var params = JSON.parse(JSON.stringify(this.queryParams));
+              params.pageNum++;
+              this.getCidPosition(params);
+            } else {
+              this.passCidElement();
+            }
+          }
         })
       } else if (that.$route.name == 'FriendsLink') {
           // 友链
@@ -241,7 +263,49 @@ export default {
             that.setData(initData, response);
           })
         }
+    },
+    getCidPosition(params){
+      // console.log(params)
+      getArticleComment(params).then((response) => {
+        response.rows.forEach((comment)=> {
+          if(comment.id==this.cid){
+            this.cidJudge=true;
+          }
+          if(!this.cidJudge){
+            comment.children.forEach((cldComment)=> {
+              if(cldComment.id==this.cid){
+                this.cidJudge=true;
+              }
+            })
+          }
+        })
+        if(!this.cidJudge && response.rows.length>0){
+          params.pageNum++;
+          this.getCidPosition(params);
+        } else if (this.cidJudge) {
+          this.queryParams = params;
+          this.commentCount = response.total;
+          this.commentList = response.rows;
+          // console.log("找到了")
+          //  设置跳转 设置样式
+          this.passCidElement();
 
+        }
+      })
+
+    },
+    passCidElement(){
+      // TODO 设置跳转 设置样式
+      var cid_str = '#cid'+this.cid
+      // console.log( cid_str )
+      setTimeout(()=>{
+        var node = $( cid_str )
+        // console.log(node)
+        node.addClass("ab-font-b");
+        // 跳转到节点位置
+        // console.log(node.offset().top)
+        $("html,body").animate({scrollTop: node.offset().top }, 200);
+      },500);
     },
     freshPage(currentPage){
       this.queryParams.pageNum = currentPage;
@@ -251,7 +315,7 @@ export default {
       var that = this;
       this.queryParams.pageNum = 1
       this.showCommentList(true);
-    }
+    },
   },
   components: { //定义组件
 
@@ -407,6 +471,12 @@ export default {
   font-size: 12px;
   color: #64609E;
   cursor: pointer;
+}
+
+.ab-font-b {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #E6A23C;
 }
 
 </style>

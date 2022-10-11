@@ -1,10 +1,7 @@
 <template>
   <div id="headImgBox" class="headImgBox"
-       :style="{backgroundImage:this.$store.state.themeObj.top_image?'url('+this.$store.state.themeObj.top_image+')':'url(static/img/headbg05.jpg)'}">
-    <div class="scene">
-      <div><span id="luke"></span></div>
+       :style="{background: 'center',backgroundImage:'url(static/img/headbg05.jpg)'}">
 
-    </div>
     <div class="h-information">
       <img
         :src="this.$store.state.themeObj.head_portrait?this.$store.state.themeObj.head_portrait:'static/img/tou.png'"
@@ -44,10 +41,10 @@
         </div>
       </div>
     </div>
-    <div class="ab-bottom-tip">
-      <div>向下滚动</div>
-      <div><i class="el-icon-arrow-down"></i></div>
-    </div>
+<!--    <div class="ab-bottom-tip">-->
+<!--      <div>向下滚动</div>-->
+<!--      <div><i class="el-icon-arrow-down"></i></div>-->
+<!--    </div>-->
   </div>
 </template>
 
@@ -68,10 +65,10 @@ export default {
     }
   },
   mounted: function () {
-    $(".headImgBox").height($(window).height() *0.8)
-    $(window).resize(function () {
-      $(".headImgBox").height($(window).height()*0.8)
-    });
+    // $(".headImgBox").height($(window).height() *0.8)
+    // $(window).resize(function () {
+    //   $(".headImgBox").height($(window).height()*0.8)
+    // });
   }
 }
 </script>
@@ -82,7 +79,7 @@ export default {
   user-select: none;
 }
 .headImgBox {
-  height: 650px;
+  height: 350px;
   position: relative;
   width: 100%;
   background-size: cover;
@@ -90,7 +87,6 @@ export default {
   background-repeat: no-repeat;
   margin-bottom: 50px;
   z-index: 3;
-  background-repeat: no-repeat;
   background-attachment: fixed;
 }
 

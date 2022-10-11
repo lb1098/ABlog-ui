@@ -124,7 +124,7 @@ a {
   padding: 15px 50px 50px;
 }
 .container{
-    max-width: 80%;
+    max-width: 75%;
     margin:0 auto;
     padding:0 10px;
     // overflow-x: hidden;

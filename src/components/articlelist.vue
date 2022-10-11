@@ -23,10 +23,15 @@
             <div class="markdown-body" v-text="item.summary" v-if="item.summary"></div>
             <div class="markdown-body" v-else>暂无摘要</div>
             <footer>
-              <i class="fa fa-fw fa-clock-o"></i>
-              <span v-html="showInitDate(item.createTime,'all')">{{ showInitDate(item.createTime, 'all') }}</span>
+
               <span>
-                <i class="fa fa-fw fa-eye"></i>{{ item.viewCount }}次围观
+                <i class="fa fa-fw fa-user"></i>{{item.createByNickname}}
+              </span>
+              <span>
+                <i class="fa fa-fw fa-clock-o"></i>{{ showInitDate(item.createTime, 'all') }}
+              </span>
+              <span>
+                <i class="fa fa-fw fa-eye"></i>{{ item.viewCount }}
               </span>
             </footer>
           </el-col>

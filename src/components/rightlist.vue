@@ -9,7 +9,7 @@
       <div class="hot-article-list">
         <div v-for="(item, index) in browseList" :key="'browseList' + index">
           <a :href="'#/DetailArticle?aid=' + item.id" target="_blank">{{item.title }}</a>
-          <span>—— {{ item.viewCount }} 次围观</span>
+          <span>—— <i class="fa fa-fw fa-eye"></i>{{ item.viewCount }}</span>
         </div>
       </div>
     </div>

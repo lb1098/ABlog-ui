@@ -11,8 +11,8 @@
       <el-col :span="12" class="tf-item" v-for="(item,index) in friendslink" :key="'f'+index">
         <a :href="item.address" target="_blank">
           <img :src="item.logo?item.logo:'static/img/tou.jpg'" :onerror="$store.state.errorImg">
-          <h4>{{ item.name }}</h4>
-          <p>{{ item.description }}</p>
+          <h4 style="overflow: hidden;">{{ item.name }}</h4>
+          <p style="overflow: hidden;">{{ item.description }}</p>
         </a>
       </el-col>
     </el-row>

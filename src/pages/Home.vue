@@ -5,10 +5,10 @@
     <ab-head-img-box></ab-head-img-box>
     <div class="container">
       <el-row :gutter="30">
-        <el-col :sm="24" :md="16" style="transition:all .5s ease-out;margin-bottom:30px;">
+        <el-col :sm="24" :lg="18" style="transition:all .5s ease-out;margin-bottom:30px;">
           <sg-articlelist></sg-articlelist>
         </el-col>
-        <el-col :sm="24" :md="8">
+        <el-col :sm="24" :lg="6">
           <sg-rightlist></sg-rightlist>
         </el-col>
       </el-row>
