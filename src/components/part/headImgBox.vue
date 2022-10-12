@@ -1,50 +1,7 @@
 <template>
   <div id="headImgBox" class="headImgBox"
-       :style="{background: 'center',backgroundImage:'url(static/img/headbg05.jpg)'}">
+       :style="{background: 'center',backgroundImage:'url(static/img/bgc.jpg)'}">
 
-    <div class="h-information">
-      <img
-        :src="this.$store.state.themeObj.head_portrait?this.$store.state.themeObj.head_portrait:'static/img/tou.png'"
-        alt="">
-      <h2 class="h-description">
-        {{ this.$store.state.themeObj.autograph ? this.$store.state.themeObj.autograph : "每一步，都是更接近目标的一步" }}
-      </h2>
-
-      <div class="bottom-body">
-        <div class="catch-me">
-          <el-tooltip class="item" effect="dark" content="QQ" placement="bottom">
-            <a :href="catchMeObj.qq" target="_blank"
-            > <i class="iconfont icon-QQ"></i> </a>
-          </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="微信" placement="bottom">
-            <a :href="catchMeObj.wechat" target="_blank"
-            > <i class="iconfont icon-wechat"></i> </a>
-          </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="力扣" placement="bottom">
-            <a :href="catchMeObj.leetcode" target="_blank"
-            > <i class="iconfont icon-leetcode"></i> </a>
-          </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="哔哩哔哩" placement="bottom">
-            <a :href="catchMeObj.bilibili" target="_blank"
-            > <i class="iconfont icon-bilibili-line"></i> </a>
-          </el-tooltip>
-          <el-tooltip class="item" content="Github" placement="bottom">
-            <a :href="catchMeObj.git" target="_blank">
-              <i class="iconfont icon-github"></i>
-            </a>
-          </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="Gitee" placement="bottom">
-            <a :href="catchMeObj.gitee" target="_blank"
-            > <i class="iconfont icon-gitee"></i> </a>
-          </el-tooltip>
-
-        </div>
-      </div>
-    </div>
-<!--    <div class="ab-bottom-tip">-->
-<!--      <div>向下滚动</div>-->
-<!--      <div><i class="el-icon-arrow-down"></i></div>-->
-<!--    </div>-->
   </div>
 </template>
 
@@ -86,7 +43,6 @@ export default {
   background-position: center 50%;
   background-repeat: no-repeat;
   margin-bottom: 50px;
-  z-index: 3;
   background-attachment: fixed;
 }
 

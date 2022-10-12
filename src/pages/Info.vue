@@ -7,40 +7,38 @@
         <el-col :sm="24" :lg="18" style="transition:all .5s ease-out;margin-bottom:30px;">
           <div class="leftRight">
 
-            <el-row>
-              <div class="top">关于作者</div>
+            <div class="block">
+              <div class="top">更新信息</div>
+              <div class="radio">
+                <el-radio-group v-model="reverse">
+                  <el-radio :label="false">正序</el-radio>
+                  <el-radio :label="true">倒序</el-radio>
+                </el-radio-group>
+              </div>
 
+              <el-timeline style="padding: 20px 0" :reverse="reverse">
+                <el-timeline-item
+                  v-for="(activity, index) in activities"
+                  :key="index"
+                  :timestamp="activity.timestamp">
+                  {{ activity.content }}
+                </el-timeline-item>
+              </el-timeline>
+            </div>
+
+            <div>
               <p>
-                23应届生求职中~
+                博客采用前后端分离开发
               </p>
+              <p>
+                前端采用 Vue + ElementUI + Axios + Mavon Editor + jQuery(部分)
+              </p>
+              <p>
+                后端采用 SpringBoot + Spring Security + JWT + MySQL +
+                Redis + MinIO + MyBatis-Plus + Lombok + Swagger
+              </p>
+            </div>
 
-            </el-row>
-            <el-row>
-              <div class="top">关于项目</div>
-
-              <div>
-                <p>
-                  博客采用前后端分离开发
-                </p>
-                <p>
-                  前端采用 Vue + ElementUI + Axios + Mavon Editor + jQuery(部分)
-                </p>
-                <p>
-                  后端采用 SpringBoot + Spring Security + JWT + MySQL +
-                  Redis + MinIO + MyBatis-Plus + Lombok + Swagger
-                </p>
-              </div>
-
-            </el-row>
-            <el-row>
-              <div class="top">后续升级计划</div>
-              <div>
-                <p>消息通知（已完成）</p>
-                <p>ElasticSearch并用于搜索</p>
-                <p>...</p>
-
-              </div>
-            </el-row>
           </div>
         </el-col>
         <el-col :sm="24" :md="6">
@@ -61,7 +59,27 @@ import headImgBox from "../components/part/headImgBox";
 export default {
   name: "Info",
   data() { //选项 / 数据
-    return {}
+    return {
+      reverse: false,
+      activities: [
+        {
+          content: '前端UI结构调整',
+          timestamp: '2022-10-12'
+        },
+        {
+          content: '增加消息通知功能',
+          timestamp: '2022-10-03'
+        },
+        {
+          content: '前端UI调整',
+          timestamp: '2022-09-23'
+        },
+        {
+          content: '博客系统初版正式上线',
+          timestamp: '2022-09-15'
+        },
+      ]
+    }
   },
   methods: { //事件处理器
 
@@ -100,7 +118,7 @@ export default {
 }
 
 p {
-  text-indent: 2em;
+  /*text-indent: 2em;*/
 }
 
 div p {

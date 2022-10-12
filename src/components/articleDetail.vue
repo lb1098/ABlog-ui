@@ -23,10 +23,18 @@
         <span v-if="detailObj.summary"> {{detailObj.summary}}</span>
         <span v-else>暂无摘要</span>
       </div>
-      <div v-if="detailObj.thumbnail" style="margin-bottom: 10px;">
-        <el-image style="" :src="detailObj.thumbnail" class="maxW" lazy></el-image>
-        <div style=" text-align:center;font-weight: 700">缩略图</div>
+      <div v-if="detailObj.thumbnail" style="margin-bottom: 10px;vertical-align: top;display: block;">
+        <b style="font-weight: 700; padding-bottom:5px;display: inline-block; ">缩略图:</b>
+        <el-image style=""
+                  :src="detailObj.thumbnail"
+                  class="ab-img"
+                  :z-index="999"
+                  lazy
+                  :preview-src-list="[detailObj.thumbnail,]"></el-image>
+
       </div>
+      <el-divider></el-divider>
+
 
 
       <div id="article1" class="article-content markdown-body" v-html="detailObj.content"></div>
@@ -228,5 +236,8 @@ export default {
 .bd_weixin_popup {
   position: fixed !important;
 }
-
+.ab-img {
+  width:  100px;
+  display: block;
+}
 </style>

@@ -114,7 +114,6 @@ export default {
       pMenu: true, //手机端菜单打开
       // path:'',//当前打开页面的路径
       input: '', //input输入内容
-      headBg: 'url(static/img/headbg05.jpg)', //头部背景图
       headTou: '', //头像
       projectList: '', //项目列表
       mobileShowTar:false, // 侧边栏
@@ -267,7 +266,7 @@ export default {
   left: 0;
   top: 0;
   right: 0;
-  z-index: 100;
+  z-index: 5;
 }
 
 .headBox li.is-active {

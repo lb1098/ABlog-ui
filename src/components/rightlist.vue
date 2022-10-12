@@ -1,7 +1,7 @@
 ﻿<!-- 右侧固定导航栏 -->
 <template>
   <div class="rightlistBox">
-    <div>
+    <div class="ab-right">
       <div class="ab-title">
         <h1>热门文章</h1>
       </div>
@@ -15,7 +15,46 @@
     </div>
 
 
-
+    <div class="ab-right">
+      <div class="ab-title">
+        <h1>联系站长</h1>
+      </div>
+      <div class="hot-article-list">
+        <div style="text-indent: 2em; line-height: 20px;">如果您对我的博客有什么感兴趣的地方，欢迎联系!</div>
+<!--        <div class="ab-call-image">-->
+<!--          <el-image-->
+<!--            :src="this.$store.state.themeObj.head_portrait?this.$store.state.themeObj.head_portrait:'static/img/tou.png'"-->
+<!--          ></el-image>-->
+<!--        </div>-->
+        <div class="ab-catch-me">
+          <el-tooltip class="item" effect="dark" content="QQ" placement="bottom">
+            <a :href="catchMeObj.qq" target="_blank"
+            > <i class="iconfont icon-QQ"></i> </a>
+          </el-tooltip>
+          <el-tooltip class="item" effect="dark" content="微信" placement="bottom">
+            <a :href="catchMeObj.wechat" target="_blank"
+            > <i class="iconfont icon-wechat"></i> </a>
+          </el-tooltip>
+          <el-tooltip class="item" effect="dark" content="力扣" placement="bottom">
+            <a :href="catchMeObj.leetcode" target="_blank"
+            > <i class="iconfont icon-leetcode"></i> </a>
+          </el-tooltip>
+          <el-tooltip class="item" effect="dark" content="哔哩哔哩" placement="bottom">
+            <a :href="catchMeObj.bilibili" target="_blank"
+            > <i class="iconfont icon-bilibili-line"></i> </a>
+          </el-tooltip>
+          <el-tooltip class="item" content="Github" placement="bottom">
+            <a :href="catchMeObj.git" target="_blank">
+              <i class="iconfont icon-github"></i>
+            </a>
+          </el-tooltip>
+          <el-tooltip class="item" effect="dark" content="Gitee" placement="bottom">
+            <a :href="catchMeObj.gitee" target="_blank"
+            > <i class="iconfont icon-gitee"></i> </a>
+          </el-tooltip>
+        </div>
+      </div>
+    </div>
     <!-- 右侧上滑小图片 -->
     <div v-if="this.$store.state.themeObj.user_start != 0"
       :class="gotoTop ? 'toTop hidden' : 'toTop goTop hidden'"
@@ -24,6 +63,8 @@
             ? this.$store.state.themeObj.right_img
             : 'static/img/scroll.png'  "  alt=""/>
     </div>
+
+
     <div
       v-else
       :class="gotoTop ? 'toTophui hidden' : 'toTophui goTophui hidden'"
@@ -56,6 +97,15 @@ export default {
       browseList: "", //热门文章 浏览量最多
       artCommentList: "", //最新评论
 
+      catchMeObj: {
+        //个人信息
+        git: "https://github.com/lb1098",
+        gitee: "https://gitee.com/lb1098",
+        leetcode: "https://leetcode.cn/u/glb2023/",
+        qq: "/static/img/qq.jpg",
+        wechat: "/static/img/wechat.jpg",
+        bilibili: "https://space.bilibili.com/17417010",
+      },
     };
   },
   methods: {
@@ -118,11 +168,32 @@ export default {
 <style lang="less">
 .rightlistBox {
   position: relative;
-  background-color: #fff;
-  z-index: 3;
+}
+.ab-catch-me {
+  text-align: center;
+}
+.ab-catch-me a{
+  display: inline-block;
+  text-decoration: none;
+  //height: 50px;
+  width: auto!important;
+  padding-right: 10px;
+}
+.ab-catch-me a i{
+  font-size: 32px;
+  line-height: 40px ;
+  //color: white;
+  opacity: 85%;
 }
 
-
+.ab-call-image {
+  text-align: center;
+  height: 100px;
+}
+.ab-call-image img {
+  height: 100px;
+  border-radius: 50%;
+}
 /*回到顶部*/
 /*返回到顶部*/
 .toTop {
@@ -200,10 +271,10 @@ export default {
   line-height: 14px;
   font-size: 14px;
   padding: 5px 0;
-  border-bottom: 1px solid #d4d4d5;
+  //border-bottom: 1px solid #d4d4d5;
 }
 .hot-article-list div:last-child{
-  border-bottom: 0;
+  //border-bottom: 0;
 }
 .hot-article-list a {
   display: inline-block;
@@ -214,5 +285,9 @@ export default {
 }
 .hot-article-list span {
   float: right;
+}
+.ab-right{
+  margin-bottom: 10px;
+  background-color: #fff;
 }
 </style>
