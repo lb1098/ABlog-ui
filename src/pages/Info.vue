@@ -4,7 +4,7 @@
     <ab-head-img-box></ab-head-img-box>
     <div class="container">
       <el-row :gutter="30">
-        <el-col :sm="24" :lg="18" style="transition:all .5s ease-out;margin-bottom:30px;">
+        <el-col :xs="24" :sm="18" style="transition:all .5s ease-out;margin-bottom:30px;">
           <div class="leftRight">
 
             <div class="block">
@@ -41,7 +41,7 @@
 
           </div>
         </el-col>
-        <el-col :sm="24" :md="6">
+        <el-col :xs="24" :sm="6">
           <sg-rightlist></sg-rightlist>
         </el-col>
       </el-row>
@@ -62,6 +62,10 @@ export default {
     return {
       reverse: false,
       activities: [
+        {
+          content: '增加通过标签或分类标签定位功能',
+          timestamp: '2022-10-12'
+        },
         {
           content: '前端UI结构调整',
           timestamp: '2022-10-12'

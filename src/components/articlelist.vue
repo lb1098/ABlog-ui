@@ -61,7 +61,7 @@
 
 <script>
 import {initDate} from '../utils/server.js'
-import {articleList} from '../api/article'
+import {articleList, articleListByTagId} from '../api/article'
 import {mavonEditor} from 'mavon-editor'
 import "mavon-editor/dist/markdown/github-markdown.min.css";
 import "mavon-editor/dist/highlightjs/styles/github-dark-dimmed.min.css";
@@ -74,7 +74,8 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        categoryId: 0
+        categoryId: -1,
+        tagId:-1
       },
       articleList: [],
       total: 0,
@@ -95,7 +96,21 @@ export default {
             obj.content = markdownIt.render(obj.content);
           }
         }
-        this.articleList = this.articleList.concat(response.rows)
+        this.articleList = response.rows;
+        this.total = response.total;
+      })
+    },
+    getListByTagId() {
+      articleListByTagId(this.queryParams).then((response) => {
+        const markdownIt = mavonEditor.getMarkdownIt()
+        var jsonArray = response.rows;
+        for (var i in jsonArray) {
+          var obj = jsonArray[i]
+          if (obj.content != null) {
+            obj.content = markdownIt.render(obj.content);
+          }
+        }
+        this.articleList = response.rows;
         this.total = response.total;
       })
     },
@@ -106,20 +121,20 @@ export default {
       var path = this.$route.path+'?categoryId='+this.queryParams.categoryId+'&pageNum='+this.queryParams.pageNum;
       this.$router.push(path)
     },
-    showSearchShowList: function (initData) {//展示数据
-      if (initData) {
-        this.articleList = []
-
-      }
-      this.getList()
-    },
     routeChange: function () {
       var that = this;
       // console.log(this.queryParams)
       this.queryParams.pageNum = that.$route.query.pageNum == undefined ? 1 : parseInt(that.$route.query.pageNum);
-      this.queryParams.categoryId = that.$route.query.categoryId == undefined ? 0 : parseInt(that.$route.query.categoryId);//获取传参的classId
+      this.queryParams.categoryId = that.$route.query.categoryId == undefined ? -1 : parseInt(that.$route.query.categoryId);//获取传参的classId
+      this.queryParams.tagId = that.$route.query.tagId == undefined ? -1 : parseInt(that.$route.query.tagId);
       // console.log(this.queryParams)
-      this.showSearchShowList(true);
+      if(this.queryParams.categoryId>=0)
+        this.getList();
+      else if(this.queryParams.tagId>=0)
+        this.getListByTagId();
+      else{
+        this.getList();
+      }
     }
   },
   components: { //定义组件

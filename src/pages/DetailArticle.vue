@@ -5,11 +5,11 @@
     <ab-head-img-box></ab-head-img-box>
     <div class="container" id="detail">
       <el-row :gutter="30">
-        <el-col :sm="24" :lg="18" style="transition:all .5s ease-out;margin-bottom:30px;">
+        <el-col :xs="24" :sm="18" style="transition:all .5s ease-out;margin-bottom:30px;">
           <sg-articleDetail></sg-articleDetail>
           <!--  <sg-message></sg-message>-->
         </el-col>
-        <el-col :sm="24" :lg="6">
+        <el-col :xs="24" :sm="6">
           <sg-rightlist></sg-rightlist>
         </el-col>
       </el-row>

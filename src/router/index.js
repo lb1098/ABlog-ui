@@ -21,14 +21,6 @@ export default new Router({
       name: 'Home'
     }, //首页
     {
-      path: '/Share',
-      component: resolve => require(['../pages/Share.vue'], resolve),
-      meta: {
-        auth: true
-      },
-      name: 'Share'
-    }, //分类
-    {
       path: '/DetailArticle',
       component: resolve => require(['../pages/DetailArticle.vue'], resolve),
       meta: {

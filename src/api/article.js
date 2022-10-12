@@ -11,6 +11,18 @@ export function articleList(query) {
         params: query
     })
 }
+// 查询文章列表
+export function articleListByTagId(query) {
+  return request({
+    url: '/article/articleListByTagId',
+    method: 'get',
+    headers: {
+      isToken: false
+    },
+    params: query
+  })
+}
+
 // 查询文章列表 升级版，可以附加 tagId
 export function articleListAndTag(query) {
   return request({

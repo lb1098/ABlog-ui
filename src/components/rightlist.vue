@@ -1,31 +1,56 @@
 ﻿<!-- 右侧固定导航栏 -->
 <template>
   <div class="rightlistBox">
+
     <div class="ab-right">
       <div class="ab-title">
         <h1>热门文章</h1>
       </div>
-
       <div class="hot-article-list">
         <div v-for="(item, index) in browseList" :key="'browseList' + index">
           <a :href="'#/DetailArticle?aid=' + item.id" target="_blank">{{item.title }}</a>
-          <span>—— <i class="fa fa-fw fa-eye"></i>{{ item.viewCount }}</span>
+          <span style="">—— <i class="fa fa-fw fa-eye"></i>{{ item.viewCount }}</span>
         </div>
       </div>
     </div>
 
+    <!-- 分类标签 -->
+    <div class="ab-right">
+      <div class="ab-title">
+        <h1>类别</h1>
+      </div>
+      <div class="hot-article-list">
+        <el-tag
+          style="margin: 0 5px 5px 0;cursor: pointer;"
+          v-for="(item, index) in categoryList" :key="'tag' + index"
+          effect="plain"
+          size="mini" @click="goToHomeByCategoryId(item.id)">{{item.name}}</el-tag>
+      </div>
+    </div>
+    <!--  标签   -->
+    <div class="ab-right">
+      <div class="ab-title">
+        <h1>标签</h1>
+      </div>
+      <div class="hot-article-list">
+        <el-tag
+          style="margin: 0 5px 5px 0;cursor: pointer;"
+          v-for="(item, index) in tags" :key="'tag' + index"
+          type="info"
+          effect="plain"
+          @click="goToHomeByTagId(item.id)"
+          size="mini">{{item.name}}</el-tag>
+      </div>
+    </div>
 
+
+    <!--  联系站长   -->
     <div class="ab-right">
       <div class="ab-title">
         <h1>联系站长</h1>
       </div>
       <div class="hot-article-list">
         <div style="text-indent: 2em; line-height: 20px;">如果您对我的博客有什么感兴趣的地方，欢迎联系!</div>
-<!--        <div class="ab-call-image">-->
-<!--          <el-image-->
-<!--            :src="this.$store.state.themeObj.head_portrait?this.$store.state.themeObj.head_portrait:'static/img/tou.png'"-->
-<!--          ></el-image>-->
-<!--        </div>-->
         <div class="ab-catch-me">
           <el-tooltip class="item" effect="dark" content="QQ" placement="bottom">
             <a :href="catchMeObj.qq" target="_blank"
@@ -55,6 +80,7 @@
         </div>
       </div>
     </div>
+
     <!-- 右侧上滑小图片 -->
     <div v-if="this.$store.state.themeObj.user_start != 0"
       :class="gotoTop ? 'toTop hidden' : 'toTop goTop hidden'"
@@ -85,6 +111,8 @@
 
 <script>
 import {hotArticleList} from "../api/article";
+import {tagList} from "../api/tag"
+import {getCategoryList} from "../api/category";
 
 export default {
   data() {
@@ -106,6 +134,9 @@ export default {
         wechat: "/static/img/wechat.jpg",
         bilibili: "https://space.bilibili.com/17417010",
       },
+      // 标签
+      tags:[],
+      categoryList:[],
     };
   },
   methods: {
@@ -129,9 +160,25 @@ export default {
         }
       }, 30);
     },
+    goToHomeByCategoryId(id){
+      this.$router.push("/Home?categoryId="+id);
+    },
+    goToHomeByTagId(id){
+      this.$router.push("/Home?tagId="+id);
+    },
     getHotArticleList() {
       hotArticleList().then((response) => {
         this.browseList = response;
+      });
+    },
+    getAllTagList(){
+      tagList().then((response) =>{
+        this.tags = response;
+      });
+    },
+    getAllCategoryList(){
+      getCategoryList().then((response) => {
+        this.categoryList = response;
       });
     },
   },
@@ -160,7 +207,8 @@ export default {
     };
     //查询浏览量最多的10篇文章数据
     this.getHotArticleList();
-
+    this.getAllTagList();
+    this.getAllCategoryList();
   },
 };
 </script>
@@ -266,6 +314,7 @@ export default {
   padding: 14px;
   border: 1px solid #d4d4d5;
   border-top: 0;
+  user-select: none;
 }
 .hot-article-list div {
   line-height: 14px;
@@ -284,7 +333,7 @@ export default {
   white-space:nowrap;
 }
 .hot-article-list span {
-  float: right;
+
 }
 .ab-right{
   margin-bottom: 10px;
