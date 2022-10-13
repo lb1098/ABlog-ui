@@ -1,53 +1,69 @@
 <!-- 文章列表 -->
 <template>
   <div>
+
     <el-row class="ab-article-list">
       <!-- 新版 -->
-      <!-- 头部  -->
-      <el-col class="ab-title">
-        <h1>文章列表</h1>
-        <span>共 <i style="font-size: 24px;color:#E6A23C; ">{{ total }}</i> 篇  </span>
-      </el-col>
 
       <el-col class="ab-content-list">
+
         <!-- 内容 -->
         <el-row class="ab-content" v-for="(item,index) in articleList" :key="'ab_article'+index">
-          <a :href="'#/DetailArticle?aid='+item.id" target="_blank">
-          <el-col :span="18" class="ab-content-left">
-            <header>
-              <a class="category" :href="'#/Home?categoryId='+item.categoryId">
-                <el-tag size="mini" effect="plain">{{ item.categoryName }}
-                </el-tag>
-              </a>
-              {{ item.title }}</header>
-            <div class="markdown-body" v-text="item.summary" v-if="item.summary"></div>
-            <div class="markdown-body" v-else>暂无摘要</div>
-            <footer>
-
-              <span>
-                <i class="fa fa-fw fa-user"></i>{{item.createByNickname}}
-              </span>
-              <span>
-                <i class="fa fa-fw fa-clock-o"></i>{{ showInitDate(item.createTime, 'all') }}
-              </span>
-              <span>
-                <i class="fa fa-fw fa-eye"></i>{{ item.viewCount }}
-              </span>
-            </footer>
-          </el-col>
+          <a v-if="item.thumbnail" :href="'#/DetailArticle?aid='+item.id" target="_blank">
+          <div class="item-thumb"
+               v-if="item.thumbnail"
+               :style="{
+                 'background-image':'url('+item.thumbnail+')'
+               }"
+          >
+          </div>
           </a>
-          <el-col :span="6" class="ab-content-right" v-if="item.thumbnail">
-            <el-image :src="item.thumbnail" class="maxW" lazy :preview-src-list="[item.thumbnail,]">
+          <div class="ab-item">
 
-            </el-image>
-          </el-col>
+            <a :href="'#/DetailArticle?aid='+item.id" target="_blank">
+              <div class="ab-article-title">
+                {{ item.categoryName }}
+              </div>
+            </a>
+            <div class="ab-article-summary" v-text="item.summary" v-if="item.summary"></div>
+            <div class="ab-article-summary" v-else>暂无摘要</div>
+            <el-divider></el-divider>
+            <div class="ab-article-mark">
+
+              <span>
+                <i class="fa fa-fw fa-user"></i> {{item.createByNickname}}
+              </span>
+              <span>
+                <i class="fa fa-fw fa-clock-o"></i> {{ showInitDate(item.createTime, 'all') }}
+              </span>
+              <span>
+                <i class="fa fa-fw fa-eye"></i> {{ item.viewCount }}
+              </span>
+              <span>
+                <i class="fa fa-fw fa-hashtag"></i>
+                <el-tag size="mini" effect="plain">{{ item.categoryName }}</el-tag>
+              </span>
+              <span>
+                <i class="fa fa-fw fa-tags"></i>
+                <el-tag
+                  style="margin: 0 5px 5px 0;cursor: pointer;"
+                  v-for="(citem, cindex) in item.tagVos" :key="'tagVo' + cindex"
+                  type="info"
+                  effect="plain"
+                  @click="goToHomeByTagId(citem.id)"
+                  size="mini">{{citem.name}}</el-tag>
+              </span>
+            </div>
+          </div>
+
         </el-row>
       </el-col>
+
       <!-- 底部 导航条 -->
       <el-col class="ab-page-nav">
         <el-pagination
           background
-          layout="prev, pager, next"
+          layout="total, sizes, prev, pager, next, jumper"
           :current-page="queryParams.pageNum"
           :page-size="queryParams.pageSize"
           @current-change="freshPage"
@@ -135,7 +151,10 @@ export default {
       else{
         this.getList();
       }
-    }
+    },
+    goToHomeByTagId(id){
+      this.$router.push("/Home?tagId="+id);
+    },
   },
   components: { //定义组件
 
@@ -197,17 +216,11 @@ export default {
 }
 
 .ab-article-list {
-  background-color: #fff;
+  /*background-color: #fff;*/
   border-radius: 5px;
 }
 
-.ab-title {
-  border: 1px solid #d4d4d5;
-  display: block;
-  line-height: 20px;
-  padding: 14px;
-  border-radius: 5px 5px 0 0;
-}
+
 
 .ab-title h1 {
   float: left;
@@ -221,8 +234,10 @@ export default {
   font-size: 18px;
 }
 .ab-content-list {
-  border-left: 1px solid #d4d4d5;
-  border-right: 1px solid #d4d4d5;
+  /*padding: 0 20px;*/
+  /*background: #f1f3f4;*/
+  /*border-left: 1px solid #d4d4d5;*/
+  /*border-right: 1px solid #d4d4d5;*/
   /*border-bottom: 1px solid #d4d4d5;*/
   position: relative;
 }
@@ -231,10 +246,14 @@ export default {
 
 }
 .ab-content {
-  padding: 14px 0;
-  margin:0 14px;
-  border-bottom: 1px solid #d4d4d5;
-  max-height: 150px;
+  /*padding: 14px 0;*/
+  /*margin:0 14px;*/
+  border: none;
+  border-radius: 6px!important;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  background-color: #fff;
 }
 .ab-content:last-child {
   border: 0;
@@ -281,8 +300,53 @@ export default {
 }
 
 .ab-page-nav {
-  padding: 14px 0;
-  border: 1px solid #d4d4d5;
-  border-radius: 0 0 5px 5px;
+  padding: 0 20px 10px;
+  /*background: #f1f3f4;*/
+}
+
+/*新版本*/
+.ab-new-article-list{
+
+}
+.item-thumb {
+  min-height: 190px;
+  background-position: center center;
+  background-size: cover;
+}
+.ab-item {
+
+}
+.ab-article-title {
+  /*border: 1px solid #d4d4d5;*/
+  font-size: 22px;
+  color: rgb(85, 85, 85);
+  margin-bottom: 10px;
+  display: inline-block;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+.ab-article-summary {
+  color: #98a6ad;
+  /*margin-bottom: 10px;*/
+}
+.el-divider{
+  margin: 15px 0;
+}
+.ab-article-mark {
+  color: #98a6ad;
+  display: inline-block;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+.ab-article-header {
+  padding: 20px;
+  /*background-color: #f9f9f9;*/
+  font-weight: 300;
+  color: #000;
+  font-size: 36px;
 }
 </style>

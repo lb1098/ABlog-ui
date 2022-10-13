@@ -297,7 +297,7 @@ export default {
 }
 
 .ab-title {
-  border: 1px solid #d4d4d5;
+  //border: 1px solid #d4d4d5;
   display: block;
   line-height: 20px;
   padding: 14px;
@@ -306,13 +306,13 @@ export default {
 }
 
 .ab-title h1 {
-  font-weight: 700;
+  font-weight: 300;
   font-size: 20px;
-  color: #409EFF;
+  //color: #409EFF;
 }
 .hot-article-list {
   padding: 14px;
-  border: 1px solid #d4d4d5;
+  //border: 1px solid #d4d4d5;
   border-top: 0;
   user-select: none;
 }
@@ -338,5 +338,7 @@ export default {
 .ab-right{
   margin-bottom: 10px;
   background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
 }
 </style>

@@ -322,11 +322,20 @@ a {
     .hidden{
         display: none!important;
     }
-
+    .ab-item {
+      padding: 15px;
+    }
+    .ab-article-title {
+      /*border: 1px solid #d4d4d5;*/
+      font-size: 17px;
+    }
 }
 @media screen and  (min-width:801px) {
     .headBox li.el-menu-item,.headBox .el-submenu__title{
         padding:0 12px;
+    }
+    .ab-item {
+      padding: 30px;
     }
 
 }
