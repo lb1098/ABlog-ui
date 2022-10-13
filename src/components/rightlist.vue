@@ -82,29 +82,13 @@
     </div>
 
     <!-- 右侧上滑小图片 -->
-    <div v-if="this.$store.state.themeObj.user_start != 0"
-      :class="gotoTop ? 'toTop hidden' : 'toTop goTop hidden'"
-      @click="toTopfun">
-      <img :src="this.$store.state.themeObj.right_img
-            ? this.$store.state.themeObj.right_img
-            : 'static/img/scroll.png'  "  alt=""/>
-    </div>
-
-
-    <div
-      v-else
-      :class="gotoTop ? 'toTophui hidden' : 'toTophui goTophui hidden'"
-      @click="toTopfun"
+    <el-backtop
+      :bottom="100"
+      :visibility-height="50"
+      :right="50"
     >
-      <img
-        :src="
-          this.$store.state.themeObj.right_img
-            ? this.$store.state.themeObj.right_img
-            : 'static/img/scroll.png'
-        "
-        alt=""
-      />
-    </div>
+    </el-backtop>
+
   </div>
 </template>
 
