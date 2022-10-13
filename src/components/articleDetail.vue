@@ -54,6 +54,7 @@
             :editable="false"
             :scrollStyle="true"
             :ishljs="true"
+            :navigation="true"
             v-html="detailObj.content"
             style="min-height: auto;box-shadow: none;z-index: 0"
           >
