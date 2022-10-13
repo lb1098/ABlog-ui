@@ -20,7 +20,7 @@
             <el-tag size="mini" style="cursor: pointer;" effect="plain"
                     @click="goToHomeByCategoryId(detailObj.categoryId)">{{ detailObj.categoryName }}</el-tag>
           </span>
-          <span>
+          <span v-if="detailObj.tagVos">
             <i class="fa fa-fw fa-tags"></i>
             <el-tag
               style="margin: 0 5px 5px 0;cursor: pointer;"

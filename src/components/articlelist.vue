@@ -41,7 +41,7 @@
                 <i class="fa fa-fw fa-hashtag"></i>
                 <el-tag size="mini" style="cursor: pointer;" effect="plain" @click="goToHomeByCategoryId(item.categoryId)">{{ item.categoryName }}</el-tag>
               </span>
-              <span>
+              <span v-if="item.tagVos">
                 <i class="fa fa-fw fa-tags"></i>
                 <el-tag
                   style="margin: 0 5px 5px 0;cursor: pointer;"
