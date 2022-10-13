@@ -10,7 +10,7 @@
             <i class="fa fa-fw fa-user"></i> {{ detailObj.createByNickname }}
           </span>
           <span>
-            <i class="fa fa-fw fa-clock-o"></i> {{ showInitDate(detailObj.createTime, 'all') }}
+            <i class="fa fa-fw fa-clock-o"></i> {{ detailObj.createTime }}
           </span>
           <span>
             <i class="fa fa-fw fa-eye"></i> {{ detailObj.viewCount }}
@@ -20,7 +20,7 @@
             <el-tag size="mini" style="cursor: pointer;" effect="plain"
                     @click="goToHomeByCategoryId(detailObj.categoryId)">{{ detailObj.categoryName }}</el-tag>
           </span>
-          <span v-if="detailObj.tagVos.length>0">
+          <span v-if="detailObj.tagVos && detailObj.tagVos.length>0">
             <i class="fa fa-fw fa-tags"></i>
             <el-tag
               style="margin: 0 5px 5px 0;cursor: pointer;"
@@ -44,7 +44,21 @@
         <div class="ab-detail">
           <div class="ab-detail-summary markdown-body" v-if="detailObj.summary" v-html="detailObj.summary"></div>
 
-          <div class="article-content markdown-body" v-html="detailObj.content"></div>
+          <!-- <div class="article-content markdown-body" v-html="detailObj.content"></div>-->
+
+          <mavon-editor
+            class="md"
+            :subfield="false"
+            :defaultOpen="'preview'"
+            :toolbarsFlag="false"
+            :editable="false"
+            :scrollStyle="true"
+            :ishljs="true"
+            v-html="detailObj.content"
+            style="min-height: auto;box-shadow: none;z-index: 0"
+          >
+
+          </mavon-editor>
 
           <div class="ab-detail-bottom">
             <el-row>
@@ -115,10 +129,6 @@ export default {
     }
   },
   methods: { //事件处理器
-    showInitDate: function (date, full) {
-      //年月日的编辑
-      return initDate(date, full);
-    },
     getArticleDetail: function () {
       getArticle(this.aid).then((response) => {
         this.detailObj = response
