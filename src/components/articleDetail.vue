@@ -47,16 +47,18 @@
           <!-- <div class="article-content markdown-body" v-html="detailObj.content"></div>-->
 
           <mavon-editor
-            class="md"
             :subfield="false"
-            :defaultOpen="'preview'"
+            defaultOpen="preview"
             :toolbarsFlag="false"
             :editable="false"
-            :scrollStyle="true"
             :ishljs="true"
-            :navigation="true"
-            v-html="detailObj.content"
-            style="min-height: auto;box-shadow: none;z-index: 0"
+            :navigation="false"
+            v-model="detailObj.content"
+            style="
+            min-height: auto;
+            box-shadow: none;
+            z-index: 0;
+            "
           >
 
           </mavon-editor>
@@ -133,10 +135,9 @@ export default {
     getArticleDetail: function () {
       getArticle(this.aid).then((response) => {
         this.detailObj = response
-        const markdownIt = mavonEditor.getMarkdownIt()
-        this.detailObj.content = markdownIt.render(response.content);
-        if(response.summary)
-          this.detailObj.summary = markdownIt.render('> '+response.summary);
+        // const markdownIt = mavonEditor.getMarkdownIt()
+        // if(response.summary)
+        //   this.detailObj.summary = markdownIt.render('> '+response.summary);
       })
     },
     routeChange: function () {
@@ -321,12 +322,21 @@ export default {
   padding: 20px;
 }
 .ab-detail-summary {
-  padding-bottom: 20px;
+  padding: 13px 45px!important;
+  border-left: 3px solid #dde6e9!important;
+  background-color: #f3f5f7;
+  margin-bottom: 20px;
 }
 
 .ab-detail-bottom {
   margin: 20px 0 ;
   color: rgb(155, 155, 155);
 }
-
+.v-show-content {
+  background-color: white!important;
+  padding: 0!important;
+}
+.v-note-panel {
+  border: none!important;
+}
 </style>
