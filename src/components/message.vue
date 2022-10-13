@@ -66,7 +66,7 @@
 
         <el-pagination
           background
-          layout="prev, pager, next"
+          layout="total,prev, pager, next"
           :current-page="queryParams.pageNum"
           :page-size="queryParams.pageSize"
           :total="commentCount"
@@ -342,7 +342,7 @@ export default {
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 5px;
-  border: 1px solid #d4d4d5;
+  /*border: 1px solid #d4d4d5;*/
 }
 
 .tmsg-respond h3 {
@@ -403,15 +403,15 @@ export default {
 }
 
 .tmsg-commentshow > .tmsg-commentlist {
-  border-bottom: 1px solid #e5eaed;
+  /*border-bottom: 1px solid #e5eaed;*/
 }
 
 .tmsg-c-item {
-  border-top: 1px solid #e5eaed;
+  /*border-top: 1px solid #e5eaed;*/
 }
 
 .tmsg-c-item article {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .tmsg-c-item article header {

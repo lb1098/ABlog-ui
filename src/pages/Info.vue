@@ -63,6 +63,10 @@ export default {
       reverse: false,
       activities: [
         {
+          content: '首页样式、侧边栏、文章页大修',
+          timestamp: '2022-10-13'
+        },
+        {
           content: '增加通过标签或分类标签定位功能',
           timestamp: '2022-10-12'
         },

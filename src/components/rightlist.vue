@@ -8,8 +8,7 @@
       </div>
       <div class="hot-article-list">
         <div v-for="(item, index) in browseList" :key="'browseList' + index">
-          <a :href="'#/DetailArticle?aid=' + item.id" target="_blank">{{item.title }}</a>
-          <span style="">—— <i class="fa fa-fw fa-eye"></i>{{ item.viewCount }}</span>
+          <el-link :href="'#/DetailArticle?aid=' + item.id" target="_blank" type="info">{{item.title }}</el-link>
         </div>
       </div>
     </div>
@@ -24,7 +23,8 @@
           style="margin: 0 5px 5px 0;cursor: pointer;"
           v-for="(item, index) in categoryList" :key="'tag' + index"
           effect="plain"
-          size="mini" @click="goToHomeByCategoryId(item.id)">{{item.name}}</el-tag>
+          size="mini"
+          @click="goToHomeByCategoryId(item.id)">{{item.name}}</el-tag>
       </div>
     </div>
     <!--  标签   -->
@@ -300,7 +300,8 @@ export default {
   //border: 1px solid #d4d4d5;
   display: block;
   line-height: 20px;
-  padding: 14px;
+  padding: 14px ;
+  padding-bottom: 0;
   border-radius: 5px 5px 0 0;
   background-color: #fff;
 }
@@ -325,13 +326,6 @@ export default {
 .hot-article-list div:last-child{
   //border-bottom: 0;
 }
-.hot-article-list a {
-  display: inline-block;
-  width:50%;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space:nowrap;
-}
 .hot-article-list span {
 
 }
@@ -340,5 +334,12 @@ export default {
   background-color: #fff;
   border-radius: 5px;
   overflow: hidden;
+}
+.ab-text{
+  display: inline-block;
+  white-space: nowrap;
+  width: 100px;
+  overflow: hidden;
+  text-overflow:ellipsis;
 }
 </style>

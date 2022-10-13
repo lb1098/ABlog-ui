@@ -19,17 +19,15 @@
           </div>
           </a>
           <div class="ab-item">
-
             <a :href="'#/DetailArticle?aid='+item.id" target="_blank">
               <div class="ab-article-title">
-                {{ item.categoryName }}
+                {{ item.title }}
               </div>
             </a>
             <div class="ab-article-summary" v-text="item.summary" v-if="item.summary"></div>
             <div class="ab-article-summary" v-else>暂无摘要</div>
             <el-divider></el-divider>
             <div class="ab-article-mark">
-
               <span>
                 <i class="fa fa-fw fa-user"></i> {{item.createByNickname}}
               </span>
@@ -41,7 +39,7 @@
               </span>
               <span>
                 <i class="fa fa-fw fa-hashtag"></i>
-                <el-tag size="mini" effect="plain">{{ item.categoryName }}</el-tag>
+                <el-tag size="mini" style="cursor: pointer;" effect="plain" @click="goToHomeByCategoryId(item.categoryId)">{{ item.categoryName }}</el-tag>
               </span>
               <span>
                 <i class="fa fa-fw fa-tags"></i>
@@ -55,7 +53,6 @@
               </span>
             </div>
           </div>
-
         </el-row>
       </el-col>
 
@@ -63,7 +60,7 @@
       <el-col class="ab-page-nav">
         <el-pagination
           background
-          layout="total, sizes, prev, pager, next, jumper"
+          layout=" total,prev, pager, next"
           :current-page="queryParams.pageNum"
           :page-size="queryParams.pageSize"
           @current-change="freshPage"
@@ -155,6 +152,9 @@ export default {
     goToHomeByTagId(id){
       this.$router.push("/Home?tagId="+id);
     },
+    goToHomeByCategoryId(id){
+      this.$router.push("/Home?categoryId="+id);
+    },
   },
   components: { //定义组件
 
@@ -201,22 +201,8 @@ export default {
 
 }
 
-.sharelistBox {
-  transition: all 0.5s ease-out;
-  font-size: 15px;
-}
-
-.markdown-body {
-  max-height: 200px;
-  overflow: hidden;
-}
-
-.box-card {
-  padding: 14px;
-}
 
 .ab-article-list {
-  /*background-color: #fff;*/
   border-radius: 5px;
 }
 
@@ -279,39 +265,23 @@ export default {
   white-space:nowrap;
   /*margin-bottom: 10px;*/
 }
-.ab-content-right {
-  box-sizing: border-box;
-  overflow: hidden;
-  position: absolute;
-  height: 100%;
-  right: 0;
-  top: 0;
-  padding: 10px;
-  text-align: center;
-}
-.maxW {
-  border-radius: 5px;
-  max-height: 100%;
-  overflow: hidden;
-  border:1px solid #d4d4d5;
-}
-.category {
 
-}
+
 
 .ab-page-nav {
   padding: 0 20px 10px;
+  text-align: center;
   /*background: #f1f3f4;*/
 }
-
 /*新版本*/
-.ab-new-article-list{
-
-}
 .item-thumb {
   min-height: 190px;
   background-position: center center;
   background-size: cover;
+  transition: transform .5s;
+}
+.item-thumb:hover{
+  transform: scale3d(1.1,1.1,1);
 }
 .ab-item {
 

@@ -1,68 +1,97 @@
 <!-- 文章详情模块 -->
 <template>
   <div>
-    <div class="detailBox tcommonBox">
-      <header>
-        <h1>
-
-          <a>
-            {{ detailObj.title }}
-          </a>
-          <a class="category" :href="'#/Home?categoryId='+detailObj.categoryId">
-            <el-tag effect="plain" size="small">{{ detailObj.categoryName }}
-            </el-tag>
-          </a>
-        </h1>
-        <h2>
-          <i class="fa fa-fw fa-clock-o"></i><span> {{ detailObj.createTime }}</span>
-          <i class="fa fa-fw fa-eye"></i> {{ detailObj.viewCount }} 次围观
-        </h2>
-      </header>
-      <div style="margin-bottom: 5px;">
-        <b style="font-weight: 700;">摘要：</b>
-        <span v-if="detailObj.summary"> {{detailObj.summary}}</span>
-        <span v-else>暂无摘要</span>
-      </div>
-      <div v-if="detailObj.thumbnail" style="margin-bottom: 10px;vertical-align: top;display: block;">
-        <b style="font-weight: 700; padding-bottom:5px;display: inline-block; ">缩略图:</b>
-        <el-image style=""
-                  :src="detailObj.thumbnail"
-                  class="ab-img"
-                  :z-index="999"
-                  lazy
-                  :preview-src-list="[detailObj.thumbnail,]"></el-image>
-
-      </div>
-      <el-divider></el-divider>
-
-
-
-      <div id="article1" class="article-content markdown-body" v-html="detailObj.content"></div>
-
-      <div class="donate">
-        <div class="donate-word">
-          <span @click="pdonate=!pdonate">赞赏</span>
+    <div>
+      <div class="ab-detail-article">
+        <div class="ab-detail-title">{{ detailObj.title }}</div>
+        <el-divider></el-divider>
+        <div class="ab-detail-mark">
+          <span>
+            <i class="fa fa-fw fa-user"></i> {{ detailObj.createByNickname }}
+          </span>
+          <span>
+            <i class="fa fa-fw fa-clock-o"></i> {{ showInitDate(detailObj.createTime, 'all') }}
+          </span>
+          <span>
+            <i class="fa fa-fw fa-eye"></i> {{ detailObj.viewCount }}
+          </span>
+          <span>
+            <i class="fa fa-fw fa-hashtag"></i>
+            <el-tag size="mini" style="cursor: pointer;" effect="plain"
+                    @click="goToHomeByCategoryId(detailObj.categoryId)">{{ detailObj.categoryName }}</el-tag>
+          </span>
+          <span>
+            <i class="fa fa-fw fa-tags"></i>
+            <el-tag
+              style="margin: 0 5px 5px 0;cursor: pointer;"
+              v-for="(citem, cindex) in detailObj.tagVos" :key="'tagVo' + cindex"
+              type="info"
+              effect="plain"
+              @click="goToHomeByTagId(citem.id)"
+              size="mini">{{ citem.name }}</el-tag>
+          </span>
         </div>
-        <el-row :class="pdonate?'donate-body':'donate-body donate-body-show'" :gutter="30">
-          <el-col :span="12" class="donate-item">
-            <div class="donate-tip">
-              <img :src="detailObj.wechat_image?detailObj.wechat_image: 'static/img/wx_pay.png'"
-                   :onerror="$store.state.errorImg"/>
-              <span>微信扫一扫，向我赞赏</span>
-            </div>
-          </el-col>
-          <el-col :span="12" class="donate-item">
-            <div class="donate-tip">
-              <img :src="detailObj.alipay_image?detailObj.alipay_image:'static/img/ali_pay.jpg'"
-                   :onerror="$store.state.errorImg"/>
-              <span>支付宝扫一扫，向我赞赏</span>
-            </div>
-          </el-col>
-        </el-row>
-        <div class="last_update_time" v-if="detailObj.updateTime">最后更新时间：{{detailObj.updateTime}}</div>
+      </div>
+
+      <div class="ab-detail-centent">
+        <div class="item-thumb"
+             v-if="detailObj.thumbnail"
+             :style="{
+                 'background-image':'url('+detailObj.thumbnail+')'
+               }"
+        >
+        </div>
+        <div class="ab-detail">
+          <div class="ab-detail-summary markdown-body" v-if="detailObj.summary" v-html="detailObj.summary"></div>
+
+          <div class="article-content markdown-body" v-html="detailObj.content"></div>
+
+          <div class="ab-detail-bottom">
+            <el-row>
+              <el-col :span="8">
+                <span>
+                  <i class="fa fa-fw fa-clock-o"></i>最后修改：{{ detailObj.updateTime }}
+                </span>
+              </el-col>
+
+              <el-col :span="8" style="text-align: center">
+                <el-link type="warning" @click="pdonate=!pdonate" >
+                  <i class="fa fa-fw fa-cny"></i>赞赏
+                </el-link>
+              </el-col>
+
+              <el-col :span="8">
+                <el-tooltip class="item" effect="dark" content="转载请保留本文转载地址，著作权归作者所有" placement="top">
+                  <span style="float: right;">
+                    <i class="fa fa-fw fa-copyright"></i>允许规范转载
+                  </span>
+                </el-tooltip>
+              </el-col>
+
+            </el-row>
+          </div>
+          <div class="donate">
+            <el-row :class="pdonate?'donate-body':'donate-body donate-body-show'" :gutter="30">
+              <el-col :span="12" class="donate-item">
+                <div class="donate-tip">
+                  <img :src="detailObj.wechat_image?detailObj.wechat_image: 'static/img/wx_pay.png'"
+                       :onerror="$store.state.errorImg"/>
+                  <span>微信扫一扫，向我赞赏</span>
+                </div>
+              </el-col>
+              <el-col :span="12" class="donate-item">
+                <div class="donate-tip">
+                  <img :src="detailObj.alipay_image?detailObj.alipay_image:'static/img/ali_pay.jpg'"
+                       :onerror="$store.state.errorImg"/>
+                  <span>支付宝扫一扫，向我赞赏</span>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+        </div>
       </div>
     </div>
-    <tree-nav ref="treenav"></tree-nav>
+
     <sg-message v-if="detailObj.isComment==0"></sg-message>
   </div>
 </template>
@@ -73,8 +102,7 @@ import {getArticle, updateViewCount} from '../api/article.js'
 import {mavonEditor} from 'mavon-editor'
 import message from '../components/message.vue'
 import treeNav from "./part/treeNav";
-import "mavon-editor/dist/markdown/github-markdown.min.css";
-import "mavon-editor/dist/highlightjs/styles/github-dark-dimmed.min.css";
+import 'mavon-editor/dist/markdown/github-markdown.min.css';
 
 export default {
   data() { //选项 / 数据
@@ -87,18 +115,17 @@ export default {
     }
   },
   methods: { //事件处理器
-    showInitDate: function (date, full) {//年月日的编辑
-      // console.log(detailObj.create_time,date,full);
+    showInitDate: function (date, full) {
+      //年月日的编辑
       return initDate(date, full);
     },
     getArticleDetail: function () {
       getArticle(this.aid).then((response) => {
         this.detailObj = response
         const markdownIt = mavonEditor.getMarkdownIt()
-        // markdownIt.re
         this.detailObj.content = markdownIt.render(response.content);
-        // markdown 侧边滚动
-        // this.$refs.treenav.tocAndCli();
+        if(response.summary)
+          this.detailObj.summary = markdownIt.render('> '+response.summary);
       })
     },
     routeChange: function () {
@@ -109,7 +136,6 @@ export default {
         that.haslogin = true;
         that.userInfo = JSON.parse(localStorage.getItem('userInfo'));
         that.userId = that.userInfo.userId;
-        // console.log(that.userInfo);
       } else {
         that.haslogin = false;
       }
@@ -117,20 +143,24 @@ export default {
       this.getArticleDetail()
       updateViewCount(that.aid)
     },
-
+    goToHomeByTagId(id){
+      this.$router.push("/Home?tagId="+id);
+    },
+    goToHomeByCategoryId(id){
+      this.$router.push("/Home?categoryId="+id);
+    },
   },
   watch: {
     // 如果路由有变化，会再次执行该方法
     '$route': 'routeChange'
   },
-  components: { //定义组件
+  components: {
+    //定义组件
     'sg-message': message,
     treeNav,
-
   },
-  created() { //生命周期函数
-    var that = this;
-
+  created() {
+    //生命周期函数
     this.routeChange();
   },
 
@@ -139,13 +169,13 @@ export default {
 
 <style lang="less">
 .detailBox {
-  border: 1px solid #d4d4d5;
   position: relative;
 }
+
 .category {
-  //position: absolute;
-  //top:15px;
+
 }
+
 .last_update_time {
   text-align: right;
   font-size: 20px;
@@ -172,7 +202,7 @@ export default {
 
 /*赞赏*/
 .donate-word {
-  margin: 40px 0;
+  margin: 0px 0;
   text-align: center;
 }
 
@@ -236,8 +266,56 @@ export default {
 .bd_weixin_popup {
   position: fixed !important;
 }
+
 .ab-img {
-  width:  100px;
+  width: 100px;
   display: block;
 }
+
+.ab-detail-article {
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.el-divider {
+  margin: 12px 0;
+}
+
+.ab-detail-title {
+  color: #000;
+  font-size: 36px;
+}
+
+.item-thumb {
+  min-height: 190px;
+  background-position: center center;
+  background-size: cover;
+  transition: transform .5s;
+}
+
+.item-thumb:hover {
+  transform: scale3d(1.1, 1.1, 1);
+}
+
+.ab-detail-centent {
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  margin-bottom: 20px;
+}
+.ab-detail {
+  padding: 20px;
+}
+.ab-detail-summary {
+  padding-bottom: 20px;
+}
+
+.ab-detail-bottom {
+  margin: 20px 0 ;
+  color: rgb(155, 155, 155);
+}
+
 </style>
