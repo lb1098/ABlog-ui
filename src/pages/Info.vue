@@ -63,6 +63,10 @@ export default {
       reverse: false,
       activities: [
         {
+          content: '消息回复小修',
+          timestamp: '2022-10-14'
+        },
+        {
           content: '首页样式、侧边栏、文章页大修',
           timestamp: '2022-10-13'
         },
