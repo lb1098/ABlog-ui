@@ -2,7 +2,7 @@
 <template>
   <div class="tmsgBox" ref="tmsgBox">
     <div class="tmsg-respond" ref="respondBox">
-      <h3>发表评论 <small v-show="isRespond" class="tcolorm" @click="removeRespond">取消回复</small></h3>
+      <h3>发表评论 <el-link v-show="isRespond" type="warning" @click="removeRespond">取消回复</el-link></h3>
       <form class="">
         <el-input
           type="textarea"
@@ -34,9 +34,9 @@
               </header>
               <section>
                 <p :id="'cid'+item.id" v-text="item.content"></p>
-                <div class="tmsg-replay" @click="respondMsg(item.id,item.id,item.createBy)">
+                <el-link style="margin-left: 1em" type="primary" @click="respondMsg(item.id,item.id,item.createBy)">
                   回复
-                </div>
+                </el-link>
               </section>
             </article>
             <ul v-show="item.children" class="tmsg-commentlist" style="padding-left:60px;">
@@ -53,9 +53,9 @@
                   </header>
                   <section>
                     <p :id="'cid'+citem.id" v-text="citem.content"></p>
-                    <div class="tmsg-replay" @click="respondMsg(item.id,citem.id,citem.createBy)">
+                    <el-link style="margin-left: 1em" type="primary"  @click="respondMsg(item.id,citem.id,citem.createBy)">
                       回复
-                    </div>
+                    </el-link>
                   </section>
                 </article>
               </li>
@@ -410,17 +410,22 @@ export default {
   /*border-top: 1px solid #e5eaed;*/
 }
 
+.tmsg-c-item .tmsg-respond {
+  margin-left: 1em;
+}
+
+
 .tmsg-c-item article {
   margin: 10px 0;
 }
 
 .tmsg-c-item article header {
-  margin-bottom: 10px;
+  /*margin-bottom: 10px;*/
 }
 
 .tmsg-c-item article header img {
-  width: 65px;
-  height: 65px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   float: left;
   transition: all .4s ease-in-out;
@@ -436,7 +441,7 @@ export default {
 
 .tmsg-c-item article header .i-name {
   font-size: 14px;
-  margin: 5px 8px 7px 0;
+  /*margin: 5px 8px 7px 0;*/
   color: #444;
   font-weight: bold;
   display: inline-block;
@@ -459,7 +464,7 @@ export default {
 }
 
 .tmsg-c-item article section {
-  margin-left: 80px;
+  margin-left: 40px;
 }
 
 .tmsg-c-item article section p img {
