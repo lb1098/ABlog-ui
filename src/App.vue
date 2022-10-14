@@ -64,7 +64,12 @@ body{
   -webkit-overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
 }
-
+.el-col-sm-18 {
+  padding-right: 0!important;
+}
+.el-col-sm-6 {
+  padding-right: 0!important;
+}
 table{
   border-collapse:collapse;
   border-spacing:0

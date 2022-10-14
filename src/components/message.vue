@@ -39,7 +39,7 @@
                 </el-link>
               </section>
             </article>
-            <ul v-show="item.children" class="tmsg-commentlist" style="padding-left:60px;">
+            <ul v-show="item.children && item.children.length>0" class="tmsg-commentlist tmsg-childrens">
               <li class="tmsg-c-item" v-for="(citem,cindex) in item.children" :key="'citem'+cindex">
                 <article class="">
                   <header>
@@ -478,10 +478,18 @@ export default {
   cursor: pointer;
 }
 
-.ab-font-b {
-  font-weight: bold;
-  text-decoration: underline;
-  color: #E6A23C;
+.tmsg-childrens::before {
+  position: absolute;
+  left: 15px;
+  top: -17px;
+  border: 9px solid transparent;
+  border-bottom: 10px solid #f8f8f8;
+  content: "";
 }
-
+.tmsg-childrens {
+  position: relative;
+  background: #f8f8f8;
+  margin-left: 50px;
+  padding: 1px 10px;
+}
 </style>
