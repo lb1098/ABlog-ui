@@ -6,9 +6,32 @@
       <el-row :gutter="30">
         <el-col :xs="24" :sm="18" style="transition:all .5s ease-out;margin-bottom:30px;">
           <div class="leftRight">
+            <el-alert
+              title="博客前端"
+              type="success"
+              :closable="false"
+              description="博客采用前后端分离开发。 前端采用 Vue + ElementUI + Axios + Mavon Editor + jQuery(部分)">
+            </el-alert>
+
+            <el-alert
+              title="博客后端"
+              type="success"
+              :closable="false"
+              description="后端采用 SpringBoot + Spring Security + JWT + MySQL +
+            Redis + MinIO + MyBatis-Plus + Lombok + Swagger">
+            </el-alert>
+            <br>
+            <el-alert
+              title="博客即将进行大更新。预计增加左边栏、页头及更多新功能"
+              type="info"
+              :closable="false"
+              show-icon>
+            </el-alert>
 
             <div class="block">
-              <div class="top">更新信息</div>
+              <div class="top">更新信息
+              </div>
+
               <div class="radio">
                 <el-radio-group v-model="reverse">
                   <el-radio :label="false">正序</el-radio>
@@ -26,18 +49,7 @@
               </el-timeline>
             </div>
 
-            <div>
-              <p>
-                博客采用前后端分离开发
-              </p>
-              <p>
-                前端采用 Vue + ElementUI + Axios + Mavon Editor + jQuery(部分)
-              </p>
-              <p>
-                后端采用 SpringBoot + Spring Security + JWT + MySQL +
-                Redis + MinIO + MyBatis-Plus + Lombok + Swagger
-              </p>
-            </div>
+
 
           </div>
         </el-col>
