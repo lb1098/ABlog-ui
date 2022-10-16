@@ -22,7 +22,7 @@
             </el-alert>
             <br>
             <el-alert
-              title="博客即将进行大更新。预计增加左边栏、页头及更多新功能"
+              title="博客即将进行大更新。预计前端增加左边栏、页头、增加邮箱验证、问题反馈及更多新功能"
               type="info"
               :closable="false"
               show-icon>
