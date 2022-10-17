@@ -75,6 +75,10 @@ export default {
       reverse: false,
       activities: [
         {
+          content: '邮箱注册、验证登录',
+          timestamp: '2022-10-17'
+        },
+        {
           content: '消息回复小修',
           timestamp: '2022-10-14'
         },

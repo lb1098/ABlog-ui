@@ -135,6 +135,9 @@ export default {
       this.$router.push(path)
     },
     routeChange: function () {
+      $('body,html').animate({
+        scrollTop:0,
+      },500)
       var that = this;
       // console.log(this.queryParams)
       this.queryParams.pageNum = that.$route.query.pageNum == undefined ? 1 : parseInt(that.$route.query.pageNum);

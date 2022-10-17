@@ -12,14 +12,28 @@ export function userLogin(username,password,verify_code,verify_uuid) {
     })
 }
 
-export function userRegister(username,nickName,email,password,verify_code,verify_uuid) {
+// 登录
+export function userLoginByEmail(email,code) {
+  return request({
+    url: '/email_login',
+    method: 'post',
+    headers: {
+      isToken: false
+    },
+    data: {'email':email,'verifyEmailCode':code}
+  })
+}
+
+export function userRegister(username,nickName,email,password,verify_code,verify_uuid,verify_email_code) {
     return request({
         url: '/user/register',
         method: 'post',
         headers: {
             isToken :false
         },
-        data: {"username":username,"nickName":nickName,"email":email,"password":password,'verifyCode':verify_code,'verifyUuid':verify_uuid}
+        data: {"username":username,"nickName":nickName,"email":email,"password":password,'verifyCode':verify_code,
+          'verifyUuid':verify_uuid,
+          'verifyEmailCode':verify_email_code}
     })
 }
 

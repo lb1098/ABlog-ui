@@ -47,15 +47,66 @@
               show-word-limit
             >
             </el-input>
-            <img :src="verify_url" alt="点击更换验证码" class="verify_code" @click="freshCode()"></img>
+            <el-button
+              id="img_btn"
+              type="primary"
+              @click="freshCode()"
+            >获取图像验证码
+            </el-button>
+            <img id="img_code1" style="display: none;" :src="verify_url" alt="点击更换验证码" class="verify_code" @click="freshCode()"></img>
           </div>
-
+          <br>
           <div class="lr-btn tcolors-bg" @click="gotoHome">登录</div>
-          <div class="otherLogin">
-            <a href="javascript:void(0)"><i class="fa fa-fw fa-wechat"></i></a>
-            <a href="javascript:void(0)"><i class="fa fa-fw fa-qq"></i></a>
-            <a href="javascript:void(0)"><i class="fa fa-fw fa-weibo"></i></a>
+
+          <div style="text-align: center">
+          <el-button  @click="centerDialogVisible = true" icon="el-icon-message" circle></el-button>
           </div>
+          <el-dialog
+            title="邮箱登录"
+            :visible.sync="centerDialogVisible"
+            width = "340px"
+            center>
+            <div>
+              <el-input
+                type="email"
+                placeholder="邮箱"
+                clearable
+                v-model="nemail">
+              </el-input>
+              <el-alert
+                v-show="lemailErr"
+                title="邮箱错误"
+                type="error"
+                show-icon>
+              </el-alert>
+
+              <el-input
+                type="text"
+                title="emailVerifyCode"
+                placeholder="邮箱验证码"
+                style="
+              width: 150px;
+              display: inline-block;
+              margin-right: 10px;
+              float: left;
+            "
+                v-model="verify_email_code"
+                maxlength="6"
+                show-word-limit
+              >
+              </el-input>
+              <el-button
+                type="primary"
+                @click="btnSendEmail"
+                :disabled="btn_disable"
+              >{{ buttonName }}</el-button>
+            </div>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="centerDialogVisible = false">取 消</el-button>
+              <el-button type="primary" @click="gotoHomeByEmail">登 录</el-button>
+            </span>
+          </el-dialog>
+
         </div>
         <div v-else class="registerBox">
           <div class="lr-title">
@@ -92,6 +143,28 @@
             placeholder="邮箱"
             v-model="nemail">
           </el-input>
+          <div>
+            <el-input
+              type="text"
+              title="emailVerifyCode"
+              placeholder="邮箱验证码"
+              style="
+                width: 150px;
+                display: inline-block;
+                margin-right: 10px;
+                float: left;
+              "
+              v-model="verify_email_code"
+              maxlength="6"
+              show-word-limit
+              >
+            </el-input>
+            <el-button
+              type="primary"
+              @click="btnSendEmail"
+              :disabled="btn_disable"
+            >{{ buttonName }}</el-button>
+          </div>
           <el-alert
             v-show="nemailErr"
             title="邮箱错误"
@@ -121,13 +194,14 @@
             type="error"
             show-icon :closable="false">
           </el-alert>
+
           <div style="padding-bottom: 10px">
             <el-input
               type="text"
-              placeholder="验证码"
+              placeholder="图片验证码"
               v-model="verify_code"
               style="
-                width: 100px;
+                width: 120px;
                 display: inline-block;
                 margin-right: 10px;
                 float: left;
@@ -136,8 +210,15 @@
               show-word-limit
             >
             </el-input>
-            <img :src="verify_url" alt="点击更换验证码" class="verify_code" @click="freshCode()"></img>
+            <el-button
+              id="img_btn"
+              type="primary"
+              @click="freshCode()"
+            >获取图像验证码
+            </el-button>
+            <img id="img_code" style="display: none;" :src="verify_url" alt="点击更换验证码" class="verify_code" @click="freshCode()"></img>
           </div>
+          <br>
           <div class="lr-btn tcolors-bg" @click="newRegister" v-loading.fullscreen.lock="fullscreenLoading"
                element-loading-text="提交中">注册
           </div>
@@ -145,17 +226,18 @@
       </div>
 
     </div>
-    <ab-footer style="position: fixed;bottom: 0;"></ab-footer>
+<!--    <ab-footer style="position: fixed;bottom: 0;"></ab-footer>-->
   </div>
 </template>
 
 <script>
-import {userLogin, userRegister} from '../api/user.js'
+import {userLogin, userRegister,userLoginByEmail} from '../api/user.js'
 import {setToken} from '../utils/auth.js'
 import {MessageBox} from "element-ui";
 import footer from "../components/footer";
 import header from "../components/header";
 import Cookies from 'js-cookie'
+import {sendEmail} from "../api/email";
 
 export default {
   name: 'Login',
@@ -181,9 +263,17 @@ export default {
       step: 1,//注册进度
       fullscreenLoading: false,//全屏loading
       urlstate: 0,//重新注册
+      lemailErr:false,
 
-      verify_url :this.$store.state.verityURL+'img/verify_code',
+      verify_url :this.$store.state.baseURL+'img/verify_code',
       verify_code:"",
+      verify_email_code:"",
+      btn_disable : false,
+      count :59,
+      buttonName:"获取验证码",
+
+      // tooltip
+      centerDialogVisible: false
     }
   },
   methods: { //事件处理器
@@ -192,7 +282,6 @@ export default {
       that.login = that.$route.query.login == undefined ? 1 : parseInt(that.$route.query.login);//获取传参的login
       that.urlstate = that.$route.query.urlstate == undefined ? 0 : that.$route.query.urlstate;//获取传参的usrlstate状态码
       // console.log(that.login,that.urlstate);
-
     },
     loginEnterFun: function (e) {
       var keyCode = window.event ? e.keyCode : e.which;
@@ -221,6 +310,33 @@ export default {
         });
       })
 
+    },
+    gotoHomeByEmail(){
+      var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+      if (reg.test(this.nemail)) {
+        this.lemailErr = false;
+      } else {
+        this.lemailErr = true;
+      }
+
+      userLoginByEmail(this.nemail,this.verify_email_code).then((response)=>{
+        this.centerDialogVisible = false;
+        // 登录成功记录token和用户信息，登录失败给对应提示
+        setToken(response.token) // 会话关闭后就关闭了。
+        // 存储用户信息
+        localStorage.setItem("userInfo", JSON.stringify(response.userInfo)) // 设置用户信息
+        if (localStorage.getItem('logUrl')) {
+          this.$router.push({path: localStorage.getItem('logUrl')});
+        } else {
+          this.$router.push({path: '/'});
+        }
+        this.$notify({
+          title: '登录成功',
+          message: '欢迎回来 （自动关闭）',
+          type: 'success',
+          duration: 3000,
+        });
+      });
     },
     registerEnterFun: function (e) {
       var keyCode = window.event ? e.keyCode : e.which;
@@ -255,7 +371,8 @@ export default {
       }
       if (!that.nusernameErr && !that.nemailErr && !that.npasswordErr) {
         that.fullscreenLoading = true;
-        userRegister(that.nusername, that.nickName, that.nemail, that.npassword, this.verify_code, Cookies.get("VerifyCode")).then((response) => {
+        userRegister(that.nusername, that.nickName, that.nemail, that.npassword, this.verify_code, Cookies.get("VerifyCode"),
+          this.verify_email_code).then((response) => {
           //注册成功后调整到登录
           that.goLogin()
           this.$notify({
@@ -276,8 +393,41 @@ export default {
       this.$router.push({path: '/Login?login=0'});
     },
     freshCode:function (){
-      this.verify_url = this.$store.state.verityURL+'img/verify_code?t=' + new Date().getTime()
-    }
+      this.verify_url = this.$store.state.baseURL+'img/verify_code?t=' + new Date().getTime()
+      $("#img_btn").hide()
+      $("#img_code").show()
+      $("#img_code1").show()
+    },
+    btnSendEmail(){
+      this.btn_disable = true;
+      this.buttonName ="60s后重发";
+      var timeout= setInterval(() => {
+        if (this.count < 1) {
+          this.btn_disable = false;
+          this.buttonName = "获取验证码";
+          this.count = 59;
+          clearInterval(timeout);
+        } else {
+          this.buttonName = this.count-- + "s后重发";
+        }
+      }, 1000);
+      sendEmail(this.nemail).then((response) => {
+        this.$notify({
+          title: '成功',
+          message: '已成功发送验证码到邮箱中',
+          type: 'success'
+        });
+      }).catch(()=>{
+        this.btn_disable = false;
+        this.buttonName = "获取验证码";
+        this.count = 59;
+        clearInterval(timeout);
+        this.$notify.error({
+          title: '错误',
+          message: '发送失败'
+        });
+      });
+    },
   },
   components: { //定义组件
     'ab-footer': footer,
@@ -286,6 +436,9 @@ export default {
   watch: {
     // 如果路由有变化，会再次执行该方法
     '$route': 'routeChange'
+  },
+  mounted() {
+
   },
   created() { //生命周期函数
     var that = this;
@@ -312,7 +465,7 @@ export default {
 }
 
 .loginBox {
-  padding-bottom: 0;
+  /*padding-bottom: 0;*/
 }
 
 .lr-title {
@@ -353,7 +506,7 @@ export default {
 
 .loginBox .el-alert, .registerBox .el-alert {
   top: -18px;
-  background-color: #888;
+  /*background-color: #888;*/
 }
 
 .loginBox .el-input input, .registerBox .el-input input {
