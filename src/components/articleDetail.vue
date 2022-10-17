@@ -4,11 +4,11 @@
     <div>
       <div class="ab-detail-article">
 
-        <div class="ab-detail-title">
-          <el-page-header @back="goBack" :content="detailObj.title">
+<!--        <div class="ab-detail-title"></div>-->
+        <el-page-header @back="goBack" :content="detailObj.title">
 
-          </el-page-header>
-        </div>
+        </el-page-header>
+
         <el-divider></el-divider>
         <div class="ab-detail-mark">
           <span>
@@ -146,6 +146,9 @@ export default {
       })
     },
     routeChange: function () {
+      $('body,html').animate({
+        scrollTop:0,
+      },500)
       var that = this;
       that.aid = that.$route.query.aid == undefined ? 1 : parseInt(that.$route.query.aid);//获取传参的aid
       //判断用户是否存在
@@ -165,6 +168,9 @@ export default {
     },
     goToHomeByCategoryId(id){
       this.$router.push("/Home?categoryId="+id);
+    },
+    goBack(){
+      this.$router.go(-1)
     },
   },
   watch: {
