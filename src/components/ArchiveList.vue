@@ -44,8 +44,7 @@
             :size="activities.size"
             class="ab-li-article"
           >
-
-            <el-link :href="'#/DetailArticle?aid='+article.id" target="_blank">
+            <el-link :href="'#/DetailArticle?aid='+article.id" >
               {{article.title}}
             </el-link>
             <el-tag size="mini" v-if="article.isTop>0" effect="plain">置顶</el-tag>

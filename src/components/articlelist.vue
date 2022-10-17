@@ -9,7 +9,7 @@
 
         <!-- 内容 -->
         <el-row class="ab-content" v-for="(item,index) in articleList" :key="'ab_article'+index">
-          <a v-if="item.thumbnail" :href="'#/DetailArticle?aid='+item.id" target="_blank">
+          <a v-if="item.thumbnail" :href="'#/DetailArticle?aid='+item.id">
           <div class="item-thumb"
                v-if="item.thumbnail"
                :style="{
@@ -19,7 +19,7 @@
           </div>
           </a>
           <div class="ab-item">
-            <a :href="'#/DetailArticle?aid='+item.id" target="_blank">
+            <a :href="'#/DetailArticle?aid='+item.id">
               <div class="ab-article-title">
                 {{ item.title }}
               </div>

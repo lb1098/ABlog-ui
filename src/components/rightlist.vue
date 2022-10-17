@@ -8,7 +8,7 @@
       </div>
       <div class="hot-article-list">
         <div v-for="(item, index) in browseList" :key="'browseList' + index">
-          <el-link :href="'#/DetailArticle?aid=' + item.id" target="_blank" type="info">{{item.title }}</el-link>
+          <el-link :href="'#/DetailArticle?aid=' + item.id" type="info">{{item.title }}</el-link>
         </div>
       </div>
     </div>

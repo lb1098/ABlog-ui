@@ -3,7 +3,12 @@
   <div>
     <div>
       <div class="ab-detail-article">
-        <div class="ab-detail-title">{{ detailObj.title }}</div>
+
+        <div class="ab-detail-title">
+          <el-page-header @back="goBack" :content="detailObj.title">
+
+          </el-page-header>
+        </div>
         <el-divider></el-divider>
         <div class="ab-detail-mark">
           <span>
