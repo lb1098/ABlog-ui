@@ -115,6 +115,7 @@ export default {
     getAllCategoryList(){
       getCategoryList().then((response) => {
         this.categoryList = response;
+        this.categoryList.unshift({"name":"全部","id":0})
       });
     },
   },

@@ -162,7 +162,7 @@ div p {
   line-height: 34px;
 }
 .block {
-  width: 200px;
+  width: 300px;
   margin: auto;
 
 }

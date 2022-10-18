@@ -316,6 +316,9 @@ export default {
   background-position: center center;
   background-size: cover;
   transition: transform .5s;
+  border: 2px solid #fff;
+  border-radius: 5px 5px 0 0;
+  box-sizing: border-box;
 }
 
 .item-thumb:hover {

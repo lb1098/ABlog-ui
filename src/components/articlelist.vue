@@ -13,7 +13,7 @@
           <div class="item-thumb"
                v-if="item.thumbnail"
                :style="{
-                 'background-image':'url('+item.thumbnail+')'
+                 'background-image':'url('+item.thumbnail+')',
                }"
           >
           </div>
@@ -282,6 +282,9 @@ export default {
   background-position: center center;
   background-size: cover;
   transition: transform .5s;
+  border: 2px solid #fff;
+  border-radius: 5px 5px 0 0;
+  box-sizing: border-box;
 }
 .item-thumb:hover{
   transform: scale3d(1.1,1.1,1);
