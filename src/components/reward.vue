@@ -43,7 +43,7 @@
         </el-col>
       </el-row>
       <h1>@赞赏记录：</h1>
-      <el-table :data="tableData" border style="width: 100%">
+      <el-table :data="tableData" border :default-sort="{prop:'money',order: 'descending'}" style="width: 100%">
         <el-table-column
           prop="payTime"
           label="日期"
@@ -90,6 +90,11 @@ export default {
           "payTime":"2022-9-29",
           "name":"Z",
           "money":"0.01"
+        },
+        {
+          "payTime":"2022-10-18",
+          "name":"luxj105",
+          "money":"0.03"
         },
       ],
     };
