@@ -33,7 +33,7 @@
     </el-row>
 
     <el-row>
-      <div style="width:200px;margin: auto; transform: translateX(20%)">
+      <div style="max-width: 500px;margin: auto">
         <el-timeline>
           <el-timeline-item
             v-for="(article, index) in articleList"
@@ -44,7 +44,7 @@
             :size="activities.size"
             class="ab-li-article"
           >
-            <el-link :href="'#/DetailArticle?aid='+article.id" >
+            <el-link :href="'#/DetailArticle?aid='+article.id">
               {{article.title}}
             </el-link>
             <el-tag size="mini" v-if="article.isTop>0" effect="plain">置顶</el-tag>
@@ -55,7 +55,7 @@
     <el-pagination
       style="text-align: center"
       background
-      layout=" total,prev, pager, next "
+      layout=" prev, pager, next  "
       :current-page="queryParams.pageNum"
       :page-size="queryParams.pageSize"
       :total="articleCount"

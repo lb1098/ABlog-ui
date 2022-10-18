@@ -11,7 +11,6 @@ export const state = {
   keywords:'',//关键词
   errorImg: require('../../static/img/tou.jpg') ,
   baseURL:'http://abinblog.cn:7777/',
-  verityURL:'http://abinblog.cn:7777/',
 }
 
 export default new Vuex.Store({
