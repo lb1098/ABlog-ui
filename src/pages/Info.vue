@@ -79,6 +79,10 @@ export default {
       reverse: false,
       activities: [
         {
+          content: '增加双侧边栏、调整页面样式',
+          timestamp: '2022-10-18'
+        },
+        {
           content: '邮箱注册、验证登录',
           timestamp: '2022-10-17'
         },

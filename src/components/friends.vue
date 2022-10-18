@@ -49,7 +49,7 @@ export default {
   background: #fff;
   padding: 15px;
   border-radius: 5px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   /*border: 1px solid #d4d4d5;*/
 }
 

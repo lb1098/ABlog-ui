@@ -299,7 +299,7 @@ export default {
   border-radius: 5px;
   padding: 20px;
   background-color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .el-divider {
@@ -327,7 +327,7 @@ export default {
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .ab-detail {
   padding: 20px;
