@@ -2,6 +2,17 @@
 <template>
   <div class="rightlistBox">
 
+    <div class="ab-right">
+      <div class="ab-title">
+        <h1>热门文章</h1>
+      </div>
+      <div class="hot-article-list">
+        <div v-for="(item, index) in browseList" :key="'browseList' + index">
+          <el-link :href="'#/DetailArticle?aid=' + item.id" type="info">{{item.title }}</el-link>
+        </div>
+      </div>
+    </div>
+
     <!--  联系站长   -->
     <div class="ab-right">
       <div class="ab-title">

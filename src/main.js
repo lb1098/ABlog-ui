@@ -10,7 +10,10 @@ import store from './store'
 import 'mavon-editor/dist/css/index.css'
 import MavonEditor from 'mavon-editor'
 
-Vue.config.productionTip = false
+const isDebug_mode = process.env.NODE_ENV !== 'production';
+Vue.config.debug = isDebug_mode;
+Vue.config.devtools = isDebug_mode;
+Vue.config.productionTip = isDebug_mode
 Vue.use(ElementUI)
 Vue.use(MavonEditor)
 

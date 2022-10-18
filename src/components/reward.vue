@@ -72,6 +72,11 @@ export default {
       rewardData: "", //赞赏二维码
       tableData: [
         {
+          "payTime":"2022-10-18",
+          "name":"枫叶哥",
+          "money":"50"
+        },
+        {
           "payTime":"2022-10-16",
           "name":"杜预",
           "money":"50"
