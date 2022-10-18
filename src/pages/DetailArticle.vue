@@ -4,12 +4,14 @@
     <sg-nav></sg-nav>
     <ab-head-img-box></ab-head-img-box>
     <div class="container" id="detail">
-      <el-row :gutter="30">
-        <el-col :xs="24" :sm="18" style="transition:all .5s ease-out;margin-bottom:30px;">
-          <sg-articleDetail></sg-articleDetail>
-          <!--  <sg-message></sg-message>-->
+      <el-row :gutter="10">
+        <el-col class="hidden-xs-only" :xs="24" :sm="5" >
+          <ab-leftlist></ab-leftlist>
         </el-col>
-        <el-col :xs="24" :sm="6">
+        <el-col :xs="24" :sm="14" style="transition:all .5s ease-out;margin-bottom:30px;">
+          <sg-articleDetail></sg-articleDetail>
+        </el-col>
+        <el-col :xs="24" :sm="5">
           <sg-rightlist></sg-rightlist>
         </el-col>
       </el-row>
@@ -24,6 +26,7 @@ import rightlist from '../components/rightlist.vue'
 import articleDetail from '../components/articleDetail.vue'
 import footer from "../components/footer";
 import headImgBox from "../components/part/headImgBox";
+import leftlist from "../components/leftlist";
 export default {
   name: 'DetailShare',
   data() { //选项 / 数据
@@ -36,6 +39,7 @@ export default {
     'sg-nav': header,
     'sg-articleDetail': articleDetail,
     // 'sg-message':message,
+    'ab-leftlist':leftlist,
     'sg-rightlist': rightlist,
     'ab-footer': footer,
     'ab-head-img-box':headImgBox,

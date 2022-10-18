@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import 'element-ui/lib/theme-chalk/display.css';
 export default {
   name: 'App'
 }
@@ -64,12 +65,7 @@ body{
   -webkit-overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
 }
-.el-col-sm-18 {
-  padding-right: 0!important;
-}
-.el-col-sm-6 {
-  padding-right: 0!important;
-}
+
 table{
   border-collapse:collapse;
   border-spacing:0
@@ -129,7 +125,7 @@ a {
   padding: 15px 50px 50px;
 }
 .container{
-    max-width: 1100px;
+    max-width: 1600px;
     margin:0 auto;
     padding:0 10px;
     // overflow-x: hidden;

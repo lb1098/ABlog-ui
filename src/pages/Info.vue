@@ -3,8 +3,11 @@
     <sg-nav></sg-nav>
     <ab-head-img-box></ab-head-img-box>
     <div class="container">
-      <el-row :gutter="30">
-        <el-col :xs="24" :sm="18" style="transition:all .5s ease-out;margin-bottom:30px;">
+      <el-row :gutter="10">
+        <el-col class="hidden-xs-only" :xs="24" :sm="5" >
+          <ab-leftlist></ab-leftlist>
+        </el-col>
+        <el-col :xs="24" :sm="14" style="transition:all .5s ease-out;margin-bottom:30px;">
           <div class="leftRight">
             <el-alert
               title="博客前端"
@@ -53,7 +56,7 @@
 
           </div>
         </el-col>
-        <el-col :xs="24" :sm="6">
+        <el-col :xs="24" :sm="5">
           <sg-rightlist></sg-rightlist>
         </el-col>
       </el-row>
@@ -67,6 +70,7 @@ import header from '../components/header.vue'
 import rightlist from '../components/rightlist.vue'
 import footer from "../components/footer";
 import headImgBox from "../components/part/headImgBox";
+import leftlist from "../components/leftlist";
 
 export default {
   name: "Info",
@@ -115,6 +119,7 @@ export default {
   components: { //定义组件
     'sg-nav': header,
     'ab-head-img-box': headImgBox,
+    'ab-leftlist':leftlist,
     'sg-rightlist': rightlist,
     'ab-footer': footer,
   },
@@ -151,5 +156,10 @@ p {
 
 div p {
   line-height: 34px;
+}
+.block {
+  width: 200px;
+  margin: auto;
+
 }
 </style>

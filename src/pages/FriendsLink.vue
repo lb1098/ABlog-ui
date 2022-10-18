@@ -4,12 +4,15 @@
     <sg-nav></sg-nav>
     <ab-head-img-box></ab-head-img-box>
     <div class="container">
-      <el-row :gutter="30">
-        <el-col :xs="24" :sm="18" style="transition:all .5s ease-out;margin-bottom:30px;">
+      <el-row :gutter="10">
+        <el-col class="hidden-xs-only" :xs="24" :sm="5" >
+          <ab-leftlist></ab-leftlist>
+        </el-col>
+        <el-col :xs="24" :sm="14" style="transition:all .5s ease-out;margin-bottom:30px;">
           <sg-friends></sg-friends>
           <sg-message></sg-message>
         </el-col>
-        <el-col :xs="24" :sm="6">
+        <el-col :xs="24" :sm="5">
           <sg-rightlist></sg-rightlist>
         </el-col>
       </el-row>
@@ -25,6 +28,7 @@ import rightlist from '../components/rightlist.vue'
 import message from '../components/message.vue'
 import footer from "../components/footer";
 import headImgBox from "../components/part/headImgBox";
+import leftlist from "../components/leftlist";
 
 export default {
   name: 'FriendsLink',
@@ -39,6 +43,7 @@ export default {
     'ab-head-img-box':headImgBox,
     'sg-message': message,
     'sg-friends': friends,
+    'ab-leftlist':leftlist,
     'sg-rightlist': rightlist,
     'ab-footer': footer,
   },

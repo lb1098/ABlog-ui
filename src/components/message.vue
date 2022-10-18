@@ -492,4 +492,9 @@ export default {
   margin-left: 50px;
   padding: 1px 10px;
 }
+.ab-font-b {
+  font-weight: 900;
+  text-decoration-line: underline;
+  color: darkorange;
+}
 </style>

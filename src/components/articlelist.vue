@@ -240,7 +240,7 @@ export default {
   border: none;
   border-radius: 6px!important;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
   background-color: #fff;
 }

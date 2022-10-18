@@ -33,7 +33,7 @@
     </el-row>
 
     <el-row>
-      <div>
+      <div style="width:200px;margin: auto; transform: translateX(20%)">
         <el-timeline>
           <el-timeline-item
             v-for="(article, index) in articleList"
@@ -53,6 +53,7 @@
       </div>
     </el-row>
     <el-pagination
+      style="text-align: center"
       background
       layout=" total,prev, pager, next "
       :current-page="queryParams.pageNum"
@@ -189,7 +190,7 @@ export default {
   /*border: 1px solid #d4d4d5;*/
 }
 .title{
-  text-align: left;
+  text-align: center;
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 30px;
@@ -197,7 +198,7 @@ export default {
 .label {
   font-weight: 700;
   margin-bottom: 30px;
-  text-align: left;
+  text-align: center;
   font-size: 18px;
 }
 .ab-li-article {
@@ -207,6 +208,7 @@ export default {
   padding: 0 10px;
   margin-bottom: 40px;
   line-height: 40px;
+  text-align: center;
 }
 .ab-select-category-link {
   padding: 8px 10px;
