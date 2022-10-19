@@ -81,7 +81,7 @@ legend{
 //   font-weight:normal
 // }
 ol, ul{
-  list-style:none
+  //list-style:none
 }
 caption, th{
   text-align:left

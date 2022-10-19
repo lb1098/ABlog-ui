@@ -121,10 +121,8 @@
 <script>
 import {initDate} from '../utils/server.js'
 import {getArticle, updateViewCount} from '../api/article.js'
-import {mavonEditor} from 'mavon-editor'
 import message from '../components/message.vue'
 import treeNav from "./part/treeNav";
-import 'mavon-editor/dist/markdown/github-markdown.min.css';
 
 export default {
   data() { //选项 / 数据
