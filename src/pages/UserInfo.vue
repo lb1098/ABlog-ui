@@ -182,8 +182,12 @@ export default {
 </script>
 
 <style>
+.userInfoBox {
+  list-style: none;
+}
 .userInfoBox .avatarlist {
   position: relative;
+
 }
 
 .avatar-uploader {
