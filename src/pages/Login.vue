@@ -32,30 +32,35 @@
             @keyup.enter.native="loginEnterFun"
             v-model="password">
           </el-input>
-          <div style="padding-bottom: 10px">
+          <div>
             <el-input
               type="text"
               placeholder="验证码"
               v-model="verify_code"
               style="
-                width: 100px;
+                width: 50%;
+                box-sizing: border-box;
                 display: inline-block;
-                margin-right: 10px;
-                float: left;
+                padding-right: 10px;
               "
               maxlength="4"
               show-word-limit
             >
             </el-input>
             <el-button
+              style="width: 50%;float: right;"
               id="img_btn"
               type="primary"
               @click="freshCode()"
             >获取图像验证码
             </el-button>
-            <img id="img_code1" style="display: none;" :src="verify_url" alt="点击更换验证码" class="verify_code" @click="freshCode()"></img>
+            <img id="img_code1"
+               style="
+               display: none;
+               width: 50%;
+              " :src="verify_url" alt="点击更换验证码" class="verify_code" @click="freshCode()"></img>
           </div>
-          <br>
+
           <div class="lr-btn tcolors-bg" @click="gotoHome">登录</div>
 
           <div style="text-align: center">
@@ -85,20 +90,21 @@
                 title="emailVerifyCode"
                 placeholder="邮箱验证码"
                 style="
-              width: 150px;
-              display: inline-block;
-              margin-right: 10px;
-              float: left;
-            "
+                width: 50%;
+                box-sizing: border-box;
+                display: inline-block;
+                padding-right: 10px;
+              "
                 v-model="verify_email_code"
                 maxlength="6"
                 show-word-limit
               >
               </el-input>
               <el-button
+                style="width: 50%;float: right;"
                 type="primary"
                 @click="btnSendEmail"
-                :disabled="btn_disable"
+                :disabled.sync="btn_disable"
               >{{ buttonName }}</el-button>
             </div>
             <span slot="footer" class="dialog-footer">
@@ -149,10 +155,10 @@
               title="emailVerifyCode"
               placeholder="邮箱验证码"
               style="
-                width: 150px;
+                width: 50%;
+                box-sizing: border-box;
                 display: inline-block;
-                margin-right: 10px;
-                float: left;
+                padding-right: 10px;
               "
               v-model="verify_email_code"
               maxlength="6"
@@ -160,9 +166,9 @@
               >
             </el-input>
             <el-button
+              style="width: 50%;float: right;"
               type="primary"
               @click="btnSendEmail"
-              :disabled="btn_disable"
             >{{ buttonName }}</el-button>
           </div>
           <el-alert
@@ -195,30 +201,30 @@
             show-icon :closable="false">
           </el-alert>
 
-          <div style="padding-bottom: 10px">
+          <div>
             <el-input
               type="text"
               placeholder="图片验证码"
               v-model="verify_code"
               style="
-                width: 120px;
+                width: 50%;
+                box-sizing: border-box;
                 display: inline-block;
-                margin-right: 10px;
-                float: left;
+                padding-right: 10px;
               "
               maxlength="4"
               show-word-limit
             >
             </el-input>
             <el-button
-              id="img_btn"
+              style="width: 50%;float: right;"
+              id="img_btn1"
               type="primary"
               @click="freshCode()"
             >获取图像验证码
             </el-button>
             <img id="img_code" style="display: none;" :src="verify_url" alt="点击更换验证码" class="verify_code" @click="freshCode()"></img>
           </div>
-          <br>
           <div class="lr-btn tcolors-bg" @click="newRegister" v-loading.fullscreen.lock="fullscreenLoading"
                element-loading-text="提交中">注册
           </div>
@@ -278,10 +284,11 @@ export default {
   },
   methods: { //事件处理器
     routeChange: function () {
+      $("#img_btn").show()
+      $("#img_btn1").show()
       var that = this;
       that.login = that.$route.query.login == undefined ? 1 : parseInt(that.$route.query.login);//获取传参的login
       that.urlstate = that.$route.query.urlstate == undefined ? 0 : that.$route.query.urlstate;//获取传参的usrlstate状态码
-      // console.log(that.login,that.urlstate);
     },
     loginEnterFun: function (e) {
       var keyCode = window.event ? e.keyCode : e.which;
@@ -395,6 +402,7 @@ export default {
     freshCode:function (){
       this.verify_url = this.$store.state.baseURL+'img/verify_code?t=' + new Date().getTime()
       $("#img_btn").hide()
+      $("#img_btn1").hide()
       $("#img_code").show()
       $("#img_code1").show()
     },
@@ -598,8 +606,9 @@ export default {
   fong-size: 13px;
 }
 .verify_code {
-  /*float: left;*/
+  float: right;
   height: 40px;
-  padding-right:10px;
+  width: 50%;
+  /*padding-right:10px;*/
 }
 </style>

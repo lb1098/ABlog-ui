@@ -10,6 +10,16 @@
         </el-col>
         <el-col :xs="24" :sm="14" style="transition:all .5s ease-out;margin-bottom:30px;">
           <sg-friends></sg-friends>
+          <h1 style="
+            background: #fff;
+            padding: 15px;
+            text-align: center;
+            padding-bottom: 0;
+            border-radius: 5px;
+            font-size: 32px;
+            font-weight: 700;
+            "
+          >留言板</h1>
           <sg-message></sg-message>
         </el-col>
         <el-col :xs="24" :sm="5">

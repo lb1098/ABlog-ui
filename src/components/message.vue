@@ -1,6 +1,7 @@
 <!-- 留言评论模块 -->
 <template>
   <div class="tmsgBox" ref="tmsgBox">
+
     <div class="tmsg-respond" ref="respondBox">
       <h3>发表评论 <el-link v-show="isRespond" type="warning" @click="removeRespond">取消回复</el-link></h3>
       <form class="">
@@ -408,6 +409,7 @@ export default {
 
 .tmsg-c-item {
   /*border-top: 1px solid #e5eaed;*/
+  list-style: none;
 }
 
 .tmsg-c-item .tmsg-respond {
