@@ -1,12 +1,16 @@
 <!-- 文章列表 -->
 <template>
   <div>
-
+    <!-- 页头 -->
+    <div class="ab-article-header">
+      <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item v-if="subName">{{ subName }}</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
     <el-row class="ab-article-list">
       <!-- 新版 -->
-
       <el-col class="ab-content-list">
-
         <!-- 内容 -->
         <el-row class="ab-content" v-for="(item,index) in articleList" :key="'ab_article'+index">
           <a v-if="item.thumbnail" :href="'#/DetailArticle?aid='+item.id">
@@ -92,6 +96,7 @@ export default {
       },
       articleList: [],
       total: 0,
+      subName:"",
     }
   },
 
@@ -100,6 +105,9 @@ export default {
       return initDate(oldDate, full)
     },
     getList() {
+      if(this.queryParams.categoryId<=0){
+        this.subName = ""
+      }
       articleList(this.queryParams).then((response) => {
         const markdownIt = mavonEditor.getMarkdownIt()
         var jsonArray = response.rows;
@@ -111,9 +119,18 @@ export default {
         }
         this.articleList = response.rows;
         this.total = response.total;
+        if(this.queryParams.categoryId>0){
+          if(this.total>0)
+            this.subName = '类别：'+this.articleList[0]['categoryName']
+          else
+            this.subName = "暂无内容"
+        }
       })
     },
     getListByTagId() {
+      if(this.queryParams.tagId<=0){
+        this.subName = ""
+      }
       articleListByTagId(this.queryParams).then((response) => {
         const markdownIt = mavonEditor.getMarkdownIt()
         var jsonArray = response.rows;
@@ -125,6 +142,21 @@ export default {
         }
         this.articleList = response.rows;
         this.total = response.total;
+        if(this.queryParams.tagId>0){
+          if(this.total>0){
+            let vos = this.articleList[0]['tagVos'];
+            // console.log(vos)
+            var name = ""
+            for (let idx in vos) {
+              if(vos[idx]['id'] == this.queryParams.tagId){
+                name = vos[idx]['name']
+                break;
+              }
+            }
+            this.subName = '标签：'+name
+          } else
+            this.subName = "暂无内容"
+        }
       })
     },
     // 分类选项
@@ -320,9 +352,10 @@ export default {
 }
 .ab-article-header {
   padding: 20px;
-  /*background-color: #f9f9f9;*/
-  font-weight: 300;
+  background-color: #fff;
+  border-radius: 5px;
   color: #000;
-  font-size: 36px;
+  margin-bottom: 10px;
 }
+
 </style>
