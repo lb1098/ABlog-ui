@@ -41,10 +41,15 @@
       <div class="ab-detail-centent">
         <div class="item-thumb"
              v-if="detailObj.thumbnail"
-             :style="{
-                 'background-image':'url('+detailObj.thumbnail+')'
-               }"
         >
+          <el-image
+            style="
+              border-radius: 5px;
+              height: 200px;
+              width: 100%"
+            :src="detailObj.thumbnail"
+            fit="cover"
+          ></el-image>
         </div>
         <div class="ab-detail">
           <div class="ab-detail-summary markdown-body" v-if="detailObj.summary" v-html="detailObj.summary"></div>
@@ -310,7 +315,6 @@ export default {
 }
 
 .item-thumb {
-  min-height: 190px;
   background-position: center center;
   background-size: cover;
   transition: transform .5s;

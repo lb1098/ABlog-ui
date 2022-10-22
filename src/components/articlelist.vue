@@ -14,12 +14,18 @@
         <!-- 内容 -->
         <el-row class="ab-content" v-for="(item,index) in articleList" :key="'ab_article'+index">
           <a v-if="item.thumbnail" :href="'#/DetailArticle?aid='+item.id">
+
           <div class="item-thumb"
                v-if="item.thumbnail"
-               :style="{
-                 'background-image':'url('+item.thumbnail+')',
-               }"
           >
+            <el-image
+              style="
+              border-radius: 5px;
+              height: 200px;
+              width: 100%"
+              :src="item.thumbnail"
+              fit="cover"
+            ></el-image>
           </div>
           </a>
           <div class="ab-item">
@@ -310,7 +316,6 @@ export default {
 }
 /*新版本*/
 .item-thumb {
-  min-height: 190px;
   background-position: center center;
   background-size: cover;
   transition: transform .5s;
