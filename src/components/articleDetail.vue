@@ -41,14 +41,18 @@
       <div class="ab-detail-centent">
         <div class="item-thumb"
              v-if="detailObj.thumbnail"
+             style=""
         >
           <el-image
             style="
               border-radius: 5px;
               height: 200px;
-              width: 100%"
+              width: 100%;
+              "
             :src="detailObj.thumbnail"
             fit="cover"
+            :preview-src-list="[detailObj.thumbnail,]"
+            :z-index="100"
           ></el-image>
         </div>
         <div class="ab-detail">
@@ -324,7 +328,7 @@ export default {
 }
 
 .item-thumb:hover {
-  transform: scale3d(1.1, 1.1, 1);
+  //transform: scale3d(1.1, 1.1, 1);
 }
 
 .ab-detail-centent {
@@ -354,5 +358,10 @@ export default {
 }
 .v-note-panel {
   border: none!important;
+}
+.el-icon-circle-close {
+  color: red!important;
+  font-size: 50px;
+  opacity: 1;
 }
 </style>
