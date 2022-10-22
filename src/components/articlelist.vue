@@ -351,10 +351,10 @@ export default {
 .ab-article-mark {
   color: #98a6ad;
   display: inline-block;
-  white-space: nowrap;
   width: 100%;
-  overflow: hidden;
-  text-overflow:ellipsis;
+  /*white-space: nowrap;*/
+  /*overflow: hidden;*/
+  /*text-overflow:ellipsis;*/
 }
 .ab-article-header {
   padding: 20px;
