@@ -336,7 +336,7 @@ a {
         padding:0 12px;
     }
     .ab-item {
-      padding: 30px;
+      padding: 20px;
     }
 
 }
