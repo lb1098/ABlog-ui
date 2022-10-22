@@ -2,7 +2,7 @@
 <template>
   <div>
     <sg-nav></sg-nav>
-    <ab-head-img-box address="DetailArticle"></ab-head-img-box>
+    <ab-head-img-box address="DetailArticle" ></ab-head-img-box>
     <div class="container" id="detail">
       <el-row :gutter="10">
         <el-col class="hidden-xs-only" :xs="24" :sm="5" >

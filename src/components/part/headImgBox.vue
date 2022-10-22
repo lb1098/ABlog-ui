@@ -1,14 +1,13 @@
 <template>
   <div
     class="block"
-    v-if="address=='Home'"
     style="
       height: 100px;
     "
   >
     <div class="desc">
       <vue-typed-js
-        :strings="['博文列表',]"
+        :strings="[this.title,]"
         :loop="false"
         :startDelay="300"
         :typeSpeed="150"
@@ -18,19 +17,12 @@
       </vue-typed-js>
     </div>
   </div>
-  <div
-    v-else
-    style="
-      height: 100px;
-    "
-  >
-  </div>
 </template>
 
 <script>
 export default {
   name: "headImgBox",
-  props:['address'],
+  props:['address','title'],
   data() {
     return {
 
