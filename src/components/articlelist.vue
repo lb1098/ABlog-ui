@@ -31,6 +31,7 @@
           <div class="ab-item">
             <a :href="'#/DetailArticle?aid='+item.id">
               <div class="ab-article-title">
+                <el-tag type="success" size="mini" v-if="item.isTop>0">置顶</el-tag>
                 {{ item.title }}
               </div>
             </a>
