@@ -9,6 +9,8 @@ import './assets/css/style.less'
 import store from './store'
 import 'mavon-editor/dist/css/index.css'
 import MavonEditor from 'mavon-editor'
+import VueTypedJs from 'vue-typed-js'
+
 
 const isDebug_mode = process.env.NODE_ENV !== 'production';
 Vue.config.debug = isDebug_mode;
@@ -16,6 +18,8 @@ Vue.config.devtools = isDebug_mode;
 Vue.config.productionTip = isDebug_mode
 Vue.use(ElementUI)
 Vue.use(MavonEditor)
+Vue.use(VueTypedJs)
+
 
 /* eslint-disable no-new */
 new Vue({

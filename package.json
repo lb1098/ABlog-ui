@@ -15,8 +15,10 @@
     "jquery": "^3.6.1",
     "js-cookie": "2.2.0",
     "mavon-editor": "^2.10.4",
-    "vue": "^2.5.16",
+    "vue": "2.7.13",
     "vue-router": "^3.0.1",
+    "vue-template-compiler": "2.7.13",
+    "vue-typed-js": "^0.1.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

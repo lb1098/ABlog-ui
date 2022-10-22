@@ -1,31 +1,43 @@
 <template>
-  <div id="headImgBox" class="headImgBox"
-       :style="{background: 'center',backgroundImage:'url(static/img/bgc.jpg)'}">
-
+  <div
+    class="block"
+    v-if="address=='Home'"
+    style="
+      height: 100px;
+    "
+  >
+    <div class="desc">
+      <vue-typed-js
+        :strings="['博文列表',]"
+        :loop="false"
+        :startDelay="300"
+        :typeSpeed="150"
+        :backSpeed="50"
+      >
+        <span class="typing"></span>
+      </vue-typed-js>
+    </div>
+  </div>
+  <div
+    v-else
+    style="
+      height: 100px;
+    "
+  >
   </div>
 </template>
 
 <script>
 export default {
   name: "headImgBox",
+  props:['address'],
   data() {
     return {
-      catchMeObj: {
-        //个人信息
-        git: "https://github.com/lb1098",
-        gitee: "https://gitee.com/lb1098",
-        leetcode: "https://leetcode.cn/u/glb2023/",
-        qq: "/static/img/qq.jpg",
-        wechat: "/static/img/wechat.jpg",
-        bilibili: "https://space.bilibili.com/17417010",
-      },
+
     }
   },
   mounted: function () {
-    // $(".headImgBox").height($(window).height() *0.8)
-    // $(window).resize(function () {
-    //   $(".headImgBox").height($(window).height()*0.8)
-    // });
+
   }
 }
 </script>
@@ -90,5 +102,19 @@ export default {
 }
 .ab-bottom-tip i {
   font-size: 24px;
+}
+.block {
+  position: relative;
+}
+.desc {
+  position: absolute;
+  top:50%;
+  transform: translate(-50%,-10%);
+  left: 50%;
+  font-size: 36px;
+}
+.typing {
+  font-weight: 700;
+  font-family: "Microsoft JhengHei Light";
 }
 </style>
