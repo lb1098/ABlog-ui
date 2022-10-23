@@ -7,6 +7,7 @@
   >
     <div class="desc">
       <vue-typed-js
+        v-if="this.title"
         :strings="[this.title,]"
         :loop="false"
         :startDelay="200"
