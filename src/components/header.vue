@@ -259,7 +259,7 @@ export default {
 
 .headBack {
   width: 100%;
-  background: rgba(40, 42, 44, 0.3);
+  background: rgb(255, 255, 255);
   /*margin-bottom:30px;*/
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
   position: fixed;
@@ -271,7 +271,8 @@ export default {
 
 .headBox li.is-active {
   /*background: #48456C;*/
-  background: rgba(73, 69, 107, 0.7);
+  color: #056de8!important;
+  /*background: rgba(73, 69, 107, 0.7);*/
 }
 
 .el-menu--horizontal > .el-submenu.is-active .el-submenu__title {
@@ -300,97 +301,18 @@ export default {
   vertical-align: baseline;
 }
 
-.headBox ul li.el-menu-item,
-.headBox ul li.el-menu-item.is-active,
-.headBox ul li.el-menu-item:hover,
-.headBox .el-submenu div.el-submenu__title,
-.headBox .el-submenu__title i.el-submenu__icon-arrow {
-  color: #fff;
-}
-
 .headBox .el-menu--horizontal .el-submenu > .el-menu {
   top: 38px;
   border: none;
   padding: 0;
 }
 
-.headBox > ul li.el-menu-item:hover,
-.headBox > ul li.el-submenu:hover .el-submenu__title {
-  background: #48456C;
-  border-bottom: none;
-}
-
-.headBox > ul .el-submenu .el-menu,
-.headBox > ul .el-submenu .el-menu .el-menu-item {
-  background: #48456C;
-}
-
-.headBox > ul .el-submenu .el-menu .el-menu-item {
-  min-width: 0;
-}
-
 .headBox > ul .el-submenu .el-menu .el-menu-item:hover {
   background: #64609E;
+  color: #056de8;
 }
 
 /*pc搜索框*/
-
-.headBox .pcsearchbox {
-  padding: 0;
-  max-width: 170px;
-  /*min-width: 30px;*/
-  height: 100%;
-  line-height: 38px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-}
-
-.headBox .pcsearchbox:hover .pcsearchinput {
-  opacity: 1;
-  /*transform: scaleX(1);*/
-  visibility: visible;
-}
-
-.headBox .pcsearchbox i.pcsearchicon {
-  color: #fff;
-  padding-left: 10px;
-}
-
-.headBox .pcsearchbox .pcsearchinput {
-  width: 180px;
-  padding: 10px 20px 10px 20px;
-  background: rgba(40, 42, 44, 0.6);
-  border-radius: 0 0 2px 2px;
-  position: absolute;
-  right: 0;
-  top: 38px;
-  opacity: 0;
-  visibility: hidden;
-  /*transform: scaleX(0);*/
-  transform-origin: right;
-  transition: all 0.3s ease-out;
-}
-
-.headBox .pcsearchbox .hasSearched {
-  opacity: 1;
-  /*transform: scaleX(1);*/
-  visibility: visible;
-}
-
-.headBox .pcsearchbox .el-input {
-  width: 100%;
-}
-
-.headBox .el-input__inner {
-  height: 30px;
-  border: none;
-  background: #fff;
-  /*border: 1px solid #333;*/
-  border-radius: 2px;
-  padding-right: 10px;
-}
 
 .headBox .userInfo {
   height: 100%;
@@ -398,17 +320,17 @@ export default {
   position: absolute;
   right: 30px;
   top: 0;
-  color: #fff;
+  color: #909399;
 }
 
 .headBox .userInfo a {
-  color: #fff;
+  color: #909399;
   font-size: 13px;
   transition: all 0.2s ease-out;
 }
 
 .headBox .userInfo a:hover {
-  color: #48456C;
+  color: #056de8;
 }
 
 .headBox .nologin {
@@ -428,7 +350,7 @@ export default {
 }
 
 .headBox .haslogin ul {
-  background: rgba(40, 42, 44, 0.6);
+  background: rgb(40, 42, 44);
   padding: 5px 10px;
   position: absolute;
   right: 0;
@@ -524,7 +446,8 @@ export default {
 
 .hideMenu > ul li.el-menu-item:hover,
 .hideMenu > ul li.el-menu-item.is-active {
-  background: #48576a;
+  /*background: #48576a;*/
+  color: #056de8;
 }
 
 
@@ -635,14 +558,10 @@ export default {
   }
 }
 
-.ab-white {
-  color: white !important;
-}
-
 .headBox-mobile {
   height: 40px;
   line-height: 40px;
-  color: white;
+  color: #000000;
   padding: 0 10px;
 }
 
@@ -665,8 +584,10 @@ export default {
   position: fixed;
   left: 0;
   width: auto;
-  background-color: rgba(40, 42, 44, 0.4);
+  background-color: #fefefe;
+  border-radius: 5px;
   padding: 0 20px;
+  box-shadow: 0 5px 20px rgba(18,18,18,.1);
 }
 .ab-tac .el-menu-item {
   height: 40px;

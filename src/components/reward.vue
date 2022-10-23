@@ -1,11 +1,11 @@
 <!-- 赞赏模块 -->
 <template>
   <div class="tRewardBox tcommonBox">
-    <header>
-      <h1>
-        <a href="#/DetailShare" target="_blank"> 赞赏 </a>
-      </h1>
-    </header>
+<!--    <header>-->
+<!--      <h1>-->
+<!--        <a href="#/DetailShare" target="_blank"> 赞赏 </a>-->
+<!--      </h1>-->
+<!--    </header>-->
     <section>
       <h1>赞赏说明：</h1>
       <p>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <sg-navbar></sg-navbar>
-    <ab-head-img-box></ab-head-img-box>
+    <ab-head-img-box title="归档"></ab-head-img-box>
     <div class="container">
       <el-row  :gutter="10">
         <el-col class="hidden-xs-only" :xs="24" :sm="5" >

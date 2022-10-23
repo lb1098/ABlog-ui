@@ -9,7 +9,7 @@
       <vue-typed-js
         :strings="[this.title,]"
         :loop="false"
-        :startDelay="300"
+        :startDelay="200"
         :typeSpeed="150"
         :backSpeed="50"
       >
@@ -22,7 +22,7 @@
 <script>
 export default {
   name: "headImgBox",
-  props:['address','title'],
+  props:['title'],
   data() {
     return {
 

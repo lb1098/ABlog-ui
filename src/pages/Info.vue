@@ -1,7 +1,7 @@
 <template>
   <div>
     <sg-nav></sg-nav>
-    <ab-head-img-box></ab-head-img-box>
+    <ab-head-img-box title="更新记录"></ab-head-img-box>
     <div class="container">
       <el-row :gutter="10">
         <el-col class="hidden-xs-only" :xs="24" :sm="5" >
@@ -31,7 +31,7 @@
               show-icon>
             </el-alert>
 
-            <div class="block">
+            <div class="blockInfo">
               <div class="top">更新信息
               </div>
 
@@ -161,7 +161,7 @@ p {
 div p {
   line-height: 34px;
 }
-.block {
+.blockInfo {
   width: 300px;
   margin: auto;
 
