@@ -268,7 +268,10 @@ export default {
   right: 0;
   z-index: 5;
 }
-
+.haslogin-info {
+  list-style: none;
+  box-shadow: 0 5px 20px rgb(18 18 18 / 10%);
+}
 .headBox li.is-active {
   /*background: #48456C;*/
   color: #056de8!important;
@@ -308,7 +311,6 @@ export default {
 }
 
 .headBox > ul .el-submenu .el-menu .el-menu-item:hover {
-  background: #64609E;
   color: #056de8;
 }
 
@@ -350,7 +352,7 @@ export default {
 }
 
 .headBox .haslogin ul {
-  background: rgb(40, 42, 44);
+  background: #ffffff;
   padding: 5px 10px;
   position: absolute;
   right: 0;
@@ -373,7 +375,7 @@ export default {
   position: relative;
   height: 38px;
   line-height: 38px;
-  color: #fff;
+  color: #909399;
 }
 
 .hideMenu {
@@ -392,12 +394,8 @@ export default {
   z-index: 999;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .12), 0 0 8px 0 rgba(0, 0, 0, .04);
   background: #48456C;
-  color: #fff;
+  color: #909399;
   border-right: none;
-}
-
-.hideMenu .el-submenu .el-menu {
-  background: #64609E;
 }
 
 .hideMenu .el-menu-item,
@@ -561,11 +559,12 @@ export default {
 .headBox-mobile {
   height: 40px;
   line-height: 40px;
-  color: #000000;
+
   padding: 0 10px;
 }
 
 .ab-menu {
+  color: #909399;
   display: inline-block;
   padding: 0 10px;
   transition: background-color linear 0.1s;
@@ -577,7 +576,6 @@ export default {
 
 .ab-menu:active {
   background-color: #fff;
-  color: #1b1f23;
 }
 
 .ab-tac {

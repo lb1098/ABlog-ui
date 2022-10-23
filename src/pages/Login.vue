@@ -232,7 +232,7 @@
       </div>
 
     </div>
-<!--    <ab-footer style="position: fixed;bottom: 0;"></ab-footer>-->
+    <ab-footer></ab-footer>
   </div>
 </template>
 

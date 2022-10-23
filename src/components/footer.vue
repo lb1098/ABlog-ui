@@ -14,7 +14,7 @@ export default {
 
 <style scoped>
 .ab-footer {
-  background: #232323;
+  /*background: #232323;*/
   padding: 15px 10px 10px 10px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;

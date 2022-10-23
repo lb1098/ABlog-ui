@@ -11,12 +11,12 @@
           <div class="leftRight">
             <el-table
               :data="this.notifyList">
-              <el-table-column width="80px">
-                <template slot-scope="scope">
-                  <el-tag size="medium" v-if="scope.row.isRead==0">未读</el-tag>
-                  <el-tag type="info" size="medium" v-else>已读</el-tag>
-                </template>
-              </el-table-column>
+<!--              <el-table-column width="80px">-->
+<!--                <template slot-scope="scope">-->
+<!--                  <el-tag size="medium" v-if="scope.row.isRead==0">未读</el-tag>-->
+<!--                  <el-tag type="info" size="medium" v-else>已读</el-tag>-->
+<!--                </template>-->
+<!--              </el-table-column>-->
               <el-table-column
                 label="评论人"
               >
@@ -32,11 +32,6 @@
               >
               </el-table-column>
               <el-table-column
-                prop="createTime"
-                label="通知时间"
-              >
-              </el-table-column>
-              <el-table-column
                 label="链接"
                 width="80px"
               >
@@ -44,9 +39,15 @@
                   <el-link type="primary" :href="'#'+scope.row.url">查看</el-link>
                 </template>
               </el-table-column>
+              <el-table-column
+                prop="createTime"
+                label="通知时间"
+              >
+              </el-table-column>
+
 
               <el-table-column
-                label="已读"
+                fixed="right"
                 width="80px"
               >
                 <template slot-scope="scope">
@@ -57,10 +58,16 @@
                     v-if="scope.row.isRead==0"
                     @click=" readNotify(scope.row.id)  "
                   ></el-button>
+                  <el-tag type="info" size="medium" v-else>已读</el-tag>
                 </template>
+
               </el-table-column>
 
+
             </el-table>
+
+
+
 
             <div class="ab-page">
               <el-pagination
