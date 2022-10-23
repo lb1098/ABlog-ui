@@ -13,6 +13,49 @@
       </div>
     </div>
 
+    <!--  最近 的 文章 评论  -->
+    <div class="ab-right">
+      <div class="ab-title">
+        <h1>最新文章评论</h1>
+      </div>
+      <div class="recent-comment-list">
+        <div v-for="(item, index) in recentArticleComment" :key="'recentArticleComment' + index">
+          <!--  <el-link @click="goToHref(item.articleId,item.id)" type="info">{{item.content }}</el-link>-->
+          <div class="comment-block" @click="goToHref(item.articleId,item.id)" style=" ">
+            <img style="position: absolute; left: 0;top: 50%;transform: translateY(-50%);" class="ab-left-avatar" :src="item.avatar ? item.avatar :$store.state.errorImg">
+            <div class="ab-text-overflow">
+              <b style="font-weight: 700;">{{item.username}}</b> 回复
+              <b style="font-weight: 700;">{{item.toCommentUserName}}</b>
+            </div>
+            <div class="ab-text-overflow ab-comment-time" >{{item.createTime}}</div>
+            <div class="ab-text-overflow ab-comment-content">{{item.content}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  最近 的 留言板 评论  -->
+    <div class="ab-right">
+      <div class="ab-title">
+        <h1>最新留言板</h1>
+      </div>
+      <div class="recent-comment-list">
+        <div v-for="(item, index) in recentLinkComment" :key="'recentLinkComment' + index">
+          <!--  <el-link @click="goToHref(item.articleId,item.id)" type="info">{{item.content }}</el-link>-->
+          <div class="comment-block" @click="goToLinkHref(item.id)" style=" ">
+            <img style="position: absolute; left: 0;top: 50%;transform: translateY(-50%);" class="ab-left-avatar" :src="item.avatar ? item.avatar :$store.state.errorImg">
+            <div class="ab-text-overflow">
+              <b style="font-weight: 700;">{{item.username}}</b>
+              <span v-if="item.rootId>-1">回复
+                <b style="font-weight: 700;">{{item.toCommentUserName}}</b>
+              </span>
+            </div>
+            <div class="ab-text-overflow ab-comment-time" >{{item.createTime}}</div>
+            <div class="ab-text-overflow ab-comment-content">{{item.content}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--  联系站长   -->
     <div class="ab-right">
       <div class="ab-title">
@@ -66,6 +109,7 @@
 import {hotArticleList} from "../api/article";
 import {tagList} from "../api/tag"
 import {getCategoryList} from "../api/category";
+import {recentArticleComment, recentLinkComment} from "../api/comment";
 
 export default {
   data() {
@@ -77,6 +121,8 @@ export default {
       going: false, //是否正在执行上滑动作
       browseList: "", //热门文章 浏览量最多
       artCommentList: "", //最新评论
+      recentArticleComment:"",
+      recentLinkComment:"",
 
       catchMeObj: {
         //个人信息
@@ -90,6 +136,7 @@ export default {
       // 标签
       tags:[],
       categoryList:[],
+
     };
   },
   methods: {
@@ -134,6 +181,22 @@ export default {
         this.categoryList = response;
       });
     },
+    getRecentArticleComment(){
+      recentArticleComment().then((response) => {
+        this.recentArticleComment = response;
+      });
+    },
+    getRecentLinkComment(){
+      recentLinkComment().then((response) => {
+        this.recentLinkComment = response;
+      });
+    },
+    goToHref(id,cid){
+      this.$router.push('/DetailArticle?aid=' + id +'&cid='+cid);
+    },
+    goToLinkHref(cid){
+      this.$router.push('/Friendslink?cid='+cid);
+    },
   },
   components: {
     //定义组件
@@ -162,6 +225,8 @@ export default {
     this.getHotArticleList();
     this.getAllTagList();
     this.getAllCategoryList();
+    this.getRecentArticleComment();
+    this.getRecentLinkComment();
   },
 };
 </script>
@@ -295,4 +360,31 @@ export default {
   overflow: hidden;
   text-overflow:ellipsis;
 }
+// 头像
+.ab-left-avatar {
+  width: 32px;
+  border-radius: 50%;
+}
+.recent-comment-list{
+  padding:14px;
+}
+.ab-comment-time {
+  color: #8c939d;
+}
+.comment-block {
+  padding-left: 40px!important;
+  height: 60px !important;
+  position: relative;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.5s;
+}
+.comment-block:hover {
+  background-color: #eee;
+}
+.comment-block:hover .ab-comment-content {
+  color: #409EFF;
+  text-decoration: underline;
+}
+
 </style>

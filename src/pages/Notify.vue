@@ -11,12 +11,7 @@
           <div class="leftRight">
             <el-table
               :data="this.notifyList">
-<!--              <el-table-column width="80px">-->
-<!--                <template slot-scope="scope">-->
-<!--                  <el-tag size="medium" v-if="scope.row.isRead==0">未读</el-tag>-->
-<!--                  <el-tag type="info" size="medium" v-else>已读</el-tag>-->
-<!--                </template>-->
-<!--              </el-table-column>-->
+
               <el-table-column
                 label="评论人"
               >

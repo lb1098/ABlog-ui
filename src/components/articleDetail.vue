@@ -155,7 +155,7 @@ export default {
     routeChange: function () {
       $('body,html').animate({
         scrollTop:0,
-      },500)
+      },200)
       var that = this;
       that.aid = that.$route.query.aid == undefined ? 1 : parseInt(that.$route.query.aid);//获取传参的aid
       //判断用户是否存在

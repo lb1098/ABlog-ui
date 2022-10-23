@@ -29,3 +29,17 @@ export function getLinkComment(query) {
         params: query
     })
 }
+
+export function recentArticleComment() {
+  return request({
+    url: '/comment/recentArticleComment',
+    method: 'get',
+  })
+}
+
+export function recentLinkComment() {
+  return request({
+    url: '/comment/recentLinkComment',
+    method: 'get',
+  })
+}

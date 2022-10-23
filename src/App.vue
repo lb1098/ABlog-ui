@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-      <keep-alive :include="['Aboutme', 'Message', 'FriendsLink', 'Reward']">
+      <keep-alive>
+          <!--  :include="['Aboutme', 'Message', 'FriendsLink', 'Reward']"  -->
           <router-view></router-view>
       </keep-alive>
   </div>
@@ -468,5 +469,7 @@ a {
     color:#fff;
     line-height: 100%;
 }
-
+.ab-text-overflow {
+  white-space: nowrap;overflow: hidden;text-overflow:ellipsis;
+}
 </style>

@@ -49,14 +49,7 @@ export default {
 
   },
   mounted() {
-    var anchor = document.querySelector("#detail");
-    // console.log(anchor,anchor.offsetTop);
-    var top = anchor.offsetTop - 60;
-    document.body.scrollTop = top;
-    // Firefox
-    document.documentElement.scrollTop = top;
-    // Safari
-    window.pageYOffset = top;
+
   }
 }
 </script>

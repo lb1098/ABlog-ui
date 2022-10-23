@@ -223,6 +223,7 @@ export default {
       this.$refs.tmsgBox.insertBefore(this.$refs.respondBox, this.$refs.listDom);
     },
     showCommentList: function (initData) {//评论列表
+      this.cidJudge = false
       var that = this;
       that.aid = that.$route.query.aid == undefined ? 1 : parseInt(that.$route.query.aid);//获取传参的aid
       that.pageNum = that.$route.query.pageNum == undefined ? 1 : parseInt(that.$route.query.pageNum);//获取传参的aid
@@ -235,39 +236,44 @@ export default {
         that.type = 0;
         getArticleComment(that.queryParams).then((response) => {
           that.setData(initData, response);
-          if(this.cid>0){
-            response.rows.forEach((comment)=> {
-              if(comment.id==this.cid){
-                this.cidJudge=true;
-              }
-              if(!this.cidJudge){
-                comment.children.forEach((cldComment)=> {
-                  if(cldComment.id==this.cid){
-                    this.cidJudge=true;
-                  }
-                })
-              }
-            })
-            if(!this.cidJudge){
-              var params = JSON.parse(JSON.stringify(this.queryParams));
-              params.pageNum++;
-              this.getCidPosition(params);
-            } else {
-              this.passCidElement();
-            }
-          }
+          this.getCid(response,getArticleComment);
         })
       } else if (that.$route.name == 'FriendsLink') {
           // 友链
           that.type = 1
           getLinkComment(that.queryParams).then((response) => {
             that.setData(initData, response);
+            this.getCid(response,getLinkComment);
           })
         }
     },
-    getCidPosition(params){
+    getCid(response,method){
+      if(this.cid>0){
+        response.rows.forEach((comment)=> {
+          if(comment.id==this.cid){
+            this.cidJudge=true;
+          }
+          if(!this.cidJudge){
+            comment.children.forEach((cldComment)=> {
+              if(cldComment.id==this.cid){
+                this.cidJudge=true;
+              }
+            })
+          }
+        })
+        // console.log("搜索中")
+        if(!this.cidJudge){
+          var params = JSON.parse(JSON.stringify(this.queryParams));
+          params.pageNum++;
+          this.getCidPosition(params,method);
+        } else {
+          this.passCidElement();
+        }
+      }
+    },
+    getCidPosition(params,method){
       // console.log(params)
-      getArticleComment(params).then((response) => {
+      method(params).then((response) => {
         response.rows.forEach((comment)=> {
           if(comment.id==this.cid){
             this.cidJudge=true;
@@ -296,6 +302,8 @@ export default {
 
     },
     passCidElement(){
+      $( ".ab-font-b" ).removeClass('ab-font-b')
+
       // TODO 设置跳转 设置样式
       var cid_str = '#cid'+this.cid
       // console.log( cid_str )
@@ -323,7 +331,8 @@ export default {
   },
   watch: {
     // 如果路由有变化，会再次执行该方法
-    // '$route':'routeChange'
+    '$route':'routeChange',
+    '$route.hash':'routeChange',
   },
   created() { //生命周期函数
     // console.log(this.$route);
