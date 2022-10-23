@@ -79,6 +79,14 @@ export default {
       reverse: false,
       activities: [
         {
+          content: '新增最新文章评论、最新留言板',
+          timestamp: '2022-10-23'
+        },
+        {
+          content: '大修导航栏、底部栏样式',
+          timestamp: '2022-10-22'
+        },
+        {
           content: '增加双侧边栏、调整页面样式',
           timestamp: '2022-10-18'
         },
