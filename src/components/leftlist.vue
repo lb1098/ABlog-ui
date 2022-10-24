@@ -2,7 +2,7 @@
 <template>
   <div class="rightlistBox">
 
-    <div class="ab-right">
+    <div class="ab-sidebar">
       <div class="ab-title">
         <h1>热门文章</h1>
       </div>
@@ -14,7 +14,7 @@
     </div>
 
     <!--  最近 的 文章 评论  -->
-    <div class="ab-right">
+    <div class="ab-sidebar">
       <div class="ab-title">
         <h1>最新文章评论</h1>
       </div>
@@ -35,7 +35,7 @@
     </div>
 
     <!--  最近 的 留言板 评论  -->
-    <div class="ab-right">
+    <div class="ab-sidebar">
       <div class="ab-title">
         <h1>最新留言板</h1>
       </div>
@@ -56,8 +56,9 @@
         </div>
       </div>
     </div>
+
     <!--  联系站长   -->
-    <div class="ab-right">
+    <div class="ab-sidebar">
       <div class="ab-title">
         <h1>联系站长</h1>
       </div>
@@ -68,10 +69,10 @@
             <a :href="catchMeObj.qq" target="_blank"
             > <i class="iconfont icon-QQ"></i> </a>
           </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="微信" placement="bottom">
-            <a :href="catchMeObj.wechat" target="_blank"
-            > <i class="iconfont icon-wechat"></i> </a>
-          </el-tooltip>
+<!--          <el-tooltip class="item" effect="dark" content="微信" placement="bottom">-->
+<!--            <a :href="catchMeObj.wechat" target="_blank"-->
+<!--            > <i class="iconfont icon-wechat"></i> </a>-->
+<!--          </el-tooltip>-->
           <el-tooltip class="item" effect="dark" content="力扣" placement="bottom">
             <a :href="catchMeObj.leetcode" target="_blank"
             > <i class="iconfont icon-leetcode"></i> </a>
@@ -90,16 +91,17 @@
             > <i class="iconfont icon-gitee"></i> </a>
           </el-tooltip>
         </div>
+
       </div>
+
     </div>
 
-    <!-- 右侧上滑小图片 -->
-    <el-backtop
-      :bottom="100"
-      :visibility-height="50"
-      :right="50"
-    >
-    </el-backtop>
+<!--    <div class="ab-sidebar" >-->
+<!--      <div class="other-problem">-->
+<!--        问题反馈：<el-link type="primary">abinblog@163.com</el-link>-->
+<!--      </div>-->
+<!--    </div>-->
+
 
   </div>
 </template>
@@ -347,12 +349,6 @@ export default {
 .hot-article-list span {
 
 }
-.ab-right{
-  margin-bottom: 10px;
-  background-color: #fff;
-  border-radius: 5px;
-  overflow: hidden;
-}
 .ab-text{
   display: inline-block;
   white-space: nowrap;
@@ -386,5 +382,8 @@ export default {
   color: #409EFF;
   text-decoration: underline;
 }
-
+.other-problem {
+  padding: 15px;
+  text-align: center;
+}
 </style>

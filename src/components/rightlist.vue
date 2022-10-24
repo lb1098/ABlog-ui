@@ -3,7 +3,7 @@
   <div class="rightlistBox">
 
     <!-- 分类标签 -->
-    <div class="ab-right">
+    <div class="ab-sidebar">
       <div class="ab-title">
         <h1>类别</h1>
       </div>
@@ -17,7 +17,7 @@
       </div>
     </div>
     <!--  标签   -->
-    <div class="ab-right">
+    <div class="ab-sidebar">
       <div class="ab-title">
         <h1>标签</h1>
       </div>

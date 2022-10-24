@@ -472,4 +472,11 @@ a {
 .ab-text-overflow {
   white-space: nowrap;overflow: hidden;text-overflow:ellipsis;
 }
+.ab-sidebar{
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
 </style>
