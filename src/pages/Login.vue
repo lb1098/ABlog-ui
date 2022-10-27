@@ -13,6 +13,7 @@
             <h1>登录</h1>
             <p>
               新用户<a href="#/Login?login=0" class="tcolors">注册</a>
+              或 <a href="#/ForgetPassword" class="tcolors">忘记密码</a>
             </p>
           </div>
           <el-alert
@@ -50,7 +51,7 @@
             <el-button
               style="width: 50%;float: right;"
               id="img_btn"
-              type="primary"
+              type="info"
               @click="freshCode()"
             >获取图像验证码
             </el-button>
@@ -60,7 +61,6 @@
                width: 50%;
               " :src="verify_url" alt="点击更换验证码" class="verify_code" @click="freshCode()"></img>
           </div>
-
           <div class="lr-btn tcolors-bg" @click="gotoHome">登录</div>
 
           <div style="text-align: center">
@@ -102,7 +102,7 @@
               </el-input>
               <el-button
                 style="width: 50%;float: right;"
-                type="primary"
+                type="info"
                 @click="btnSendEmail"
                 :disabled.sync="btn_disable"
               >{{ buttonName }}</el-button>
@@ -167,7 +167,7 @@
             </el-input>
             <el-button
               style="width: 50%;float: right;"
-              type="primary"
+              type="info"
               @click="btnSendEmail"
             >{{ buttonName }}</el-button>
           </div>
@@ -219,7 +219,7 @@
             <el-button
               style="width: 50%;float: right;"
               id="img_btn1"
-              type="primary"
+              type="info"
               @click="freshCode()"
             >获取图像验证码
             </el-button>
@@ -470,6 +470,7 @@ export default {
   padding: 40px;
   max-width: 320px;
   margin: 0 auto;
+  position: relative;
 }
 
 .loginBox {
@@ -505,7 +506,7 @@ export default {
   padding: 8px;
   border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .loginBox .el-input, .registerBox .el-input {

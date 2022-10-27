@@ -8,3 +8,12 @@ export function sendEmail(email) {
         params: {"email":email}
     })
 }
+
+export function verifyForget(email,code) {
+  return request ({
+    url: '/email/verify_forget',
+    method: 'get',
+    params: {"email":email,"verify_code":code,}
+  })
+}
+

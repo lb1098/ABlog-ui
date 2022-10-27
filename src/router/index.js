@@ -67,7 +67,15 @@ export default new Router({
         auth: true
       },
       name: 'UserInfo'
-    }, //用户个人中心
+    },
+    {
+      path: '/ForgetPassword',
+      component: resolve => require(['../pages/ForgetPassword.vue'], resolve),
+      meta: {
+        auth: false
+      },
+    },
+    //用户个人中心
     {
       path: '/Info',
       component: resolve => require(['../pages/Info.vue'], resolve),
