@@ -103,7 +103,7 @@ a{
 html{-webkit-text-size-adjust:none;width:100%;height:100% } /*????iphone??safari????????????*/
 input[type="text"], input[type="button"], input[type="submit"], input[type="search"]{
   -webkit-appearance:none;
-  border-radius:0;
+
 }
 /*************其他内容*************/
 #app {
