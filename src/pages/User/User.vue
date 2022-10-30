@@ -36,7 +36,7 @@ export default {
 
 <style>
 .container {
-  max-width: 1000px;
+  max-width: 900px;
 }
 .userInfoBox {
   list-style: none;
