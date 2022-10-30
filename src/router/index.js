@@ -41,11 +41,6 @@ export default new Router({
       name: 'Login'
     }, //注册登录
     {
-      path: '/UserInfo',
-      component: resolve => require(['../pages/UserInfo.vue'], resolve),
-      name: 'UserInfo'
-    },
-    {
       path: '/ForgetPassword',
       component: resolve => require(['../pages/ForgetPassword.vue'], resolve),
     },
@@ -69,6 +64,10 @@ export default new Router({
         {
           path:'info',
           component: resolve => require(['../components/User/UserInfo.vue'], resolve),
+        },
+        {
+          path:'ModifyPassword',
+          component: resolve => require(['../components/User/ModifyPassword.vue'], resolve),
         },
       ]
     },

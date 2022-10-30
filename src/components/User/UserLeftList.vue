@@ -10,6 +10,9 @@
       <el-menu-item index="/User/Info">
         <span slot="title" >用户资料</span>
       </el-menu-item>
+      <el-menu-item index="/User/ModifyPassword">
+        <span slot="title" >修改密码</span>
+      </el-menu-item>
 
     </el-menu>
   </div>
@@ -26,7 +29,7 @@ export default {
   methods:{
     routeChange: function () {
       this.activeIndex = this.$route.path == '/' ? '/Home' : this.$route.path;
-      console.log(this.activeIndex)
+
     },
   },
   created() {
@@ -42,5 +45,9 @@ export default {
 <style scoped>
 .el-menu{
   border-right: 0;
+}
+.el-menu-item{
+  height: 40px;
+  line-height: 40px;
 }
 </style>

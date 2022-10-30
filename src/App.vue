@@ -247,13 +247,7 @@ a {
     .userInfoBox  .el-input, .userInfoBox  .el-textarea{//用户中心表框
         max-width:280px!important;
     }
-    .userInfoBox li{//li 更改padding  缩小距离
-        padding:15px 10px!important;
-    }
-    .userInfoBox li .el-radio-group .el-radio{//标签样式调整
-        margin-left: 15px!important;
-        margin-bottom: 5px;
-    }
+
     .tFriendsBox .tf-item a{//好友列表自适应缩小尺寸
         padding:0 5px 0 60px!important;
          img{

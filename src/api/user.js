@@ -21,7 +21,19 @@ export function updateUserPassword(uuid, password) {
     },
   })
 }
-
+export function resetPassword(originPassword, newPassword) {
+  return request({
+    url: '/user/resetPassword',
+    method: 'post',
+    headers: {
+      isToken: true
+    },
+    data:{
+      "originPassword" : originPassword,
+      "newPassword" : newPassword
+    }
+  })
+}
 // 登录
 export function userLoginByEmail(email, code) {
   return request({
