@@ -4,6 +4,8 @@ import router from '@/router'
 import store from '../store'
 import {getToken} from '@/utils/auth'
 import errorCode from '@/utils/errorCode'
+import {logout} from "../api/user";
+import {removeToken} from "./auth";
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 
@@ -35,6 +37,8 @@ service.interceptors.response.use(res => {
     // 获取错误信息
     const msg = errorCode[code] || res.data.msg || errorCode['default']
     if (code === 401) {
+      if(router.currentRoute.path=='/Login')
+        return;
       MessageBox.confirm('登录状态已过期，您可以继续留在该页面，或者重新登录', '系统提示', {
           confirmButtonText: '重新登录',
           cancelButtonText: '取消',
@@ -45,6 +49,15 @@ service.interceptors.response.use(res => {
         router.push({
           path: '/Login?login=1'
         });
+        // 获取判断有无token，如果没有，直接退出即可
+        if (getToken()) {
+          // 如果得到了Token
+          removeToken()
+          localStorage.removeItem('userInfo');
+        } else {
+          // 如果没有，就直接删除userInfo
+          localStorage.removeItem('userInfo');
+        }
       }).catch(() => {
 
       })

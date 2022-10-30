@@ -204,8 +204,9 @@ export default {
       }
       if(that.haslogin){
         // 获取通知信息
-        getUnreadCount(this.queryParams).then(response=>{
-          this.notifyCount = response.total
+        getUnreadCount(this.queryParams).then((response)=>{
+          if(response==undefined) return;
+          this.notifyCount = response.total;
         });
       }
 
