@@ -19,24 +19,59 @@
                   |
                   <a href="javascript:void(0);" @click="logoinFun(0)">&nbsp;注册</a>
                 </div>
-                <div v-show="haslogin" class="haslogin">
-                  <i class="fa fa-fw fa-user-circle userImg"></i>
-                  <span v-text="userInfo.nickName"></span>
-                  <el-badge class="mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
-                  <ul class="haslogin-info">
-                    <li>
-                      <a href="#/Notify">通知
-                        <el-badge class="mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#/User">个人中心</a>
-                    </li>
+                <div v-show="haslogin">
+                  <div class="header-avatar">
+                    <img :src="userInfo.avatar ? userInfo.avatar:this.$store.state.errorImg" class="user-avatar"></img>
+                    <span class="iconfont icon-vip avatar-bottom-right no-vip-color"></span>
+                    <el-badge is-dot class="mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
+                  </div>
 
-                    <li>
-                      <a href="javascript:void(0);" @click="userlogout">退出登录</a>
-                    </li>
-                  </ul>
+                  <div class="user-area">
+                    <header class="avatar-header">
+                      <div class="body-avatar">
+                        <div class="header-avatar">
+                          <img :src="userInfo.avatar ? userInfo.avatar:this.$store.state.errorImg" class="user-avatar"></img>
+                          <span class="iconfont icon-vip avatar-bottom-right no-vip-color"></span>
+                        </div>
+                        <div class="header-username">{{userInfo.nickName}}</div>
+                        <div class="header-vip-time">
+                          <span>2021-10-11</span>
+                        </div>
+                      </div>
+                    </header>
+                    <section>
+                      <div class="fund">余额 <span v-text="formatNumber(this.userFund.fund)"></span></div>
+                      <div class="last-cost">消费 <span>10000.00</span></div>
+                    </section>
+                    <section>
+                      <div class="fund"><span>包月VIP</span></div>
+                      <div class="last-cost"><span>2022-11-02</span>到期</div>
+                    </section>
+                    <footer>
+                      <a href="#/User/Notify" class="item">
+                        <span class="item-icon iconfont icon-message"></span>
+                        <span class="item-word">通知</span>
+                        <el-badge class="item-mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
+                      </a>
+                      <a class="item">
+                        <span class="item-icon iconfont icon-chongzhi "></span>
+                        <span class="item-word">充值</span>
+                      </a>
+                      <a class="item">
+                        <span class="item-icon iconfont icon-vip vip-color"></span>
+                        <span class="item-word">VIP</span>
+                      </a>
+                      <a href="#/User/Info" class="item">
+                        <span class="item-icon iconfont icon-user-info"></span>
+                        <span class="item-word">资料</span>
+                      </a>
+                      <a class="item" @click="userlogout">
+                        <span class="item-icon iconfont icon-tuichu"></span>
+                        <span class="item-word">退出</span>
+                      </a>
+                    </footer>
+                  </div>
+
                 </div>
               </div>
             </el-menu>
@@ -52,25 +87,59 @@
                 |
                 <a href="javascript:void(0);" @click="logoinFun(0)">&nbsp;注册</a>
               </div>
-              <div v-show="haslogin" class="haslogin">
+              <div v-show="haslogin">
+                <div class="header-avatar">
+                  <img :src="userInfo.avatar ? userInfo.avatar:this.$store.state.errorImg" class="user-avatar"></img>
+                  <span class="iconfont icon-vip avatar-bottom-right no-vip-color"></span>
+                  <el-badge is-dot class="mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
+                </div>
 
-                <i class="fa fa-fw fa-user-circle userImg"></i>
-                <span v-text="userInfo.nickName"></span>
-                <el-badge class="mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
-
-                <ul class="haslogin-info">
-                  <li>
-                    <a href="#/Notify">通知
-                      <el-badge class="mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
+                <div class="user-area">
+                  <header class="avatar-header">
+                    <div class="body-avatar">
+                      <div class="header-avatar">
+                        <img :src="userInfo.avatar ? userInfo.avatar:this.$store.state.errorImg" class="user-avatar"></img>
+                        <span class="iconfont icon-vip avatar-bottom-right no-vip-color"></span>
+                      </div>
+                      <div class="header-username">{{userInfo.nickName}}</div>
+                      <div class="header-vip-time">
+                        <span>2021-10-11</span>
+                      </div>
+                    </div>
+                  </header>
+                  <section>
+                    <div class="fund">余额 <span>7.00</span></div>
+                    <div class="last-cost">消费 <span>10000.00</span></div>
+                  </section>
+                  <section>
+                    <div class="fund"><span>包月VIP</span></div>
+                    <div class="last-cost"><span>2022-11-02</span>到期</div>
+                  </section>
+                  <footer>
+                    <a href="#/User/Notify" class="item">
+                      <span class="item-icon iconfont icon-message"></span>
+                      <span class="item-word">通知</span>
+                      <el-badge class="item-mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
                     </a>
-                  </li>
-                  <li>
-                    <a href="#/User">个人中心</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);" @click="userlogout">退出登录</a>
-                  </li>
-                </ul>
+                    <a class="item">
+                      <span class="item-icon iconfont icon-chongzhi "></span>
+                      <span class="item-word">充值</span>
+                    </a>
+                    <a class="item">
+                      <span class="item-icon iconfont icon-vip vip-color"></span>
+                      <span class="item-word">VIP</span>
+                    </a>
+                    <a href="#/User/Info" class="item">
+                      <span class="item-icon iconfont icon-user-info"></span>
+                      <span class="item-word">资料</span>
+                    </a>
+                    <a class="item" @click="userlogout">
+                      <span class="item-icon iconfont icon-tuichu"></span>
+                      <span class="item-word">退出</span>
+                    </a>
+                  </footer>
+                </div>
+
               </div>
             </div>
             <!--  侧边栏         -->
@@ -102,6 +171,7 @@
 import {logout} from '../api/user'
 import {removeToken, getToken} from '../utils/auth'
 import {getUnreadCount} from '../api/notify.js'
+import {getUserFund, signal} from "../api/fund";
 
 export default {
   data() { //选项 / 数据
@@ -124,6 +194,10 @@ export default {
         pageNum: 1,
         pageSize: 2,
       },
+      // 用户积分对象
+      userFund:{},
+      // 是否签过到
+      isSignal:false,
     }
   },
   methods: { //事件处理器
@@ -202,20 +276,64 @@ export default {
         this.input = '';
         this.$store.state.keywords = '';
       }
+      // 是否登录了
       if(that.haslogin){
         // 获取通知信息
         getUnreadCount(this.queryParams).then((response)=>{
           if(response==undefined) return;
           this.notifyCount = response.total;
         });
+        // 获取用户积分
+        getUserFund().then((response)=>{
+          this.userFund = response
+        });
+        // 判断是否签过到
+        // if(!this.isSignal){
+        //   signal().then((response)=>{
+        //     this.isSignal = true;
+        //     var fundDis = response.fund-userFund.fund;
+        //     this.$notify({
+        //       type: '今日签到成功',
+        //       message: '积分增加 :'+fundDis,
+        //       duration: 9000,
+        //     });
+        //     this.userFund = response;
+        //   });
+        // }
+
       }
-
-
     },
     toggleTac(){
       this.mobileShowTar = !this.mobileShowTar;
     },
+    /*******
+     * num：待处理数字
+     * precision：保留小数位
+     * separator：分隔符
+     * eg:formatNumber(100000000) 结果"100,000,000"
+     * formatNumber(100000000,2); 结果："100,000,000.00"
+     * formatNumber(100000000,2,"?"); 结果："100?000?000.00"
+     *********/
+    formatNumber(num, precision, separator) {
+      var parts;
+      // 判断是否为数字
+      if (!isNaN(parseFloat(num)) && isFinite(num)) {
+        // 把类似 .5, 5. 之类的数据转化成0.5, 5, 为数据精度处理做准, 至于为什么
+        // 不在判断中直接写 if (!isNaN(num = parseFloat(num)) && isFinite(num))
+        // 是因为parseFloat有一个奇怪的精度问题, 比如 parseFloat(12312312.1234567119)
+        // 的值变成了 12312312.123456713
+        num = Number(num);
+        // 处理小数点位数
+        num = (typeof precision !== 'undefined' ? num.toFixed(precision) : num).toString();
+        // 分离数字的小数部分和整数部分
+        parts = num.split('.');
+        // 整数部分加[separator]分隔, 借用一个著名的正则表达式
+        parts[0] = parts[0].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + (separator || ','));
 
+        return parts.join('.');
+      }
+      return NaN;
+    },
   },
   components: { //定义组件
 
@@ -248,6 +366,13 @@ export default {
 
   },
   mounted() { //页面元素加载完成
+    // 特效设置
+    $('.userInfo').on( "mouseenter",function (){
+      $('.user-area').finish().fadeIn(200);
+    });
+    $('.userInfo').on( "mouseleave",function (){
+      $('.user-area').finish().fadeOut(200);
+    });
 
   }
 }
@@ -257,8 +382,9 @@ export default {
 /*********头部导航栏********/
 
 /*头部导航栏盒子*/
-
 .headBack {
+  box-sizing: border-box;
+  padding: 0 15px;
   width: 100%;
   background: rgb(255, 255, 255);
   /*margin-bottom:30px;*/
@@ -318,23 +444,14 @@ export default {
 /*pc搜索框*/
 
 .headBox .userInfo {
-  height: 100%;
+  height: 38px;
   line-height: 38px;
   position: absolute;
-  right: 30px;
+  right: 32px;
   top: 0;
-  color: #909399;
+  /*color: #909399;*/
 }
 
-.headBox .userInfo a {
-  color: #909399;
-  font-size: 13px;
-  transition: all 0.2s ease-out;
-}
-
-.headBox .userInfo a:hover {
-  color: #056de8;
-}
 
 .headBox .nologin {
   text-align: right;
@@ -597,6 +714,160 @@ export default {
 }
 .userImg {
 
+}
+
+.header-avatar {
+  position: absolute;
+  top: 3px;
+}
+.user-avatar {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+.avatar-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateX(25%);
+  font-size: 14px;
+}
+.user-area {
+  display: none;
+  position: absolute;
+  top: 20px;
+  border-radius: 5px;
+  padding: 5px 10px 6px;
+  box-sizing: border-box;
+  transform: translateY(10%);
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+  right: -32px;
+  width: 250px;
+  background-color: #fff;
+  z-index: 10;
+}
+.user-area::before{
+  content: "";
+  position: absolute;
+  top: -16px;
+  right: 5px;
+  width: 0px;
+  height: 0px;
+  border: 8px solid;
+  border-color: transparent;
+  border-bottom-color:  #fff;
+}
+.avatar-header{
+
+}
+.body-avatar {
+  position: relative;
+  height: 38px;
+  line-height: 38px;
+  box-sizing: border-box;
+  padding-left: 40px;
+}
+.body-avatar .header-avatar{
+  left: 0;
+}
+.header-username {
+  display: inline-block;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.header-vip-time {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  margin-left: 10px;
+}
+.header-vip-time span{
+  background: #fbb715;
+  color: #fff;
+  padding: 2px 8px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  font-size: 12px;
+}
+.user-area section{
+  margin-top: 8px;
+  height: 32px;
+  line-height: 32px;
+  box-sizing: border-box;
+  background: #f5f5f5;
+  padding: 0 8px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+.fund {
+  width: 45%;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.last-cost{
+  width: 45%;
+  float: right;
+  display: inline-block;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #777;
+}
+.user-area footer{
+  margin-top: 8px;
+  height: 42px;
+  line-height: 42px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.user-area footer .item {
+  position: relative;
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: #eee;
+  cursor: pointer;
+  user-select: none;
+}
+.item-icon {
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  position: absolute;
+}
+.item-word{
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  position: absolute;
+  width: 30px;
+  font-size: 12px;
+}
+.mark {
+  position: absolute;
+  height: 0;
+  width: 0;
+  display: block;
+  right: 8px;
+  top: -8px;
+  z-index: 12;
+}
+.item-mark{
+  position: absolute;
+  height: 0;
+  width: 0;
+  display: block;
+  right: 17px;
+  top: -8px;
+  z-index: 12;
 }
 </style>
 

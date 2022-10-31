@@ -4,11 +4,15 @@
       class="el-menu-demo"
       :default-active="activeIndex"
       :router="true"
+      background-color="#fbfbfb"
+      text-color="#888"
       style="text-align: center"
     >
-
       <el-menu-item index="/User/Info">
         <span slot="title" >用户资料</span>
+      </el-menu-item>
+      <el-menu-item index="/User/Notify">
+        <span slot="title" >评论通知</span>
       </el-menu-item>
       <el-menu-item index="/User/ModifyPassword">
         <span slot="title" >修改密码</span>

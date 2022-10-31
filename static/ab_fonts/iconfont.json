@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5767876",
+      "name": "消息通知",
+      "font_class": "message",
+      "unicode": "ec35",
+      "unicode_decimal": 60469
+    },
+    {
+      "icon_id": "3062429",
+      "name": "充值",
+      "font_class": "chongzhi",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "10199164",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "11372676",
+      "name": "密码",
+      "font_class": "mima",
+      "unicode": "e8b2",
+      "unicode_decimal": 59570
+    },
+    {
+      "icon_id": "27876614",
+      "name": "用户信息 用户",
+      "font_class": "user-info",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "572591",
+      "name": "VIP",
+      "font_class": "vip-a",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "1138437",
+      "name": "vip",
+      "font_class": "vip",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    },
+    {
       "icon_id": "10918080",
       "name": "bilibili-line",
       "font_class": "bilibili-line",

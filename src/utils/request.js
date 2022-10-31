@@ -37,6 +37,7 @@ service.interceptors.response.use(res => {
     // 获取错误信息
     const msg = errorCode[code] || res.data.msg || errorCode['default']
     if (code === 401) {
+      // FIXME 后期修复这边同一时间一堆401出现多个弹窗的问题
       if(router.currentRoute.path=='/Login')
         return;
       MessageBox.confirm('登录状态已过期，您可以继续留在该页面，或者重新登录', '系统提示', {
@@ -46,9 +47,6 @@ service.interceptors.response.use(res => {
         }
       ).then(() => {
         localStorage.setItem('logUrl', router.currentRoute.fullPath);
-        router.push({
-          path: '/Login?login=1'
-        });
         // 获取判断有无token，如果没有，直接退出即可
         if (getToken()) {
           // 如果得到了Token
@@ -58,6 +56,9 @@ service.interceptors.response.use(res => {
           // 如果没有，就直接删除userInfo
           localStorage.removeItem('userInfo');
         }
+        router.push({
+          path: '/Login?login=1',
+        });
       }).catch(() => {
 
       })

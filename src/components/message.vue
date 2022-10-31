@@ -304,7 +304,7 @@ export default {
     passCidElement(){
       $( ".ab-font-b" ).removeClass('ab-font-b')
 
-      // TODO 设置跳转 设置样式
+      // 设置跳转 设置样式
       var cid_str = '#cid'+this.cid
       // console.log( cid_str )
       setTimeout(()=>{

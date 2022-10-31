@@ -161,7 +161,7 @@ a {
     position: relative;
     background: #fff;
     padding:15px ;
-    border-radius: 5px;
+    //border-radius: 5px;
     //margin-bottom: 40px;
     font-size: 15px;
     z-index: 2;
@@ -472,5 +472,14 @@ a {
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.no-vip-color{
+  color: #999;
+}
+.vip-color{
+  color: #fbb715;
+}
+.svip-color{
+  color: red;
 }
 </style>

@@ -50,11 +50,7 @@ export default new Router({
       component: resolve => require(['../pages/Info.vue'], resolve),
       name: 'Info'
     },
-    {
-      path: '/Notify',
-      component: resolve => require(['../pages/Notify.vue'], resolve),
-      name: 'Notify'
-    },
+
     // 用户中心区域
     {
       path: '/User',
@@ -68,6 +64,10 @@ export default new Router({
         {
           path:'ModifyPassword',
           component: resolve => require(['../components/User/ModifyPassword.vue'], resolve),
+        },
+        {
+          path: 'Notify',
+          component: resolve => require(['../components/User/Notify.vue'], resolve),
         },
       ]
     },
