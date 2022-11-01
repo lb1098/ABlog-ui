@@ -8,6 +8,9 @@
       text-color="#888"
       style="text-align: center"
     >
+      <el-menu-item index="/User/Money">
+        <span slot="title" >钱包充值</span>
+      </el-menu-item>
       <el-menu-item index="/User/Info">
         <span slot="title" >用户资料</span>
       </el-menu-item>

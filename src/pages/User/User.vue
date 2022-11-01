@@ -4,10 +4,10 @@
     <ab-head-img-box title="个人中心"></ab-head-img-box>
     <div class="container">
       <el-row :gutter="0">
-        <el-col :xs="8" :sm="6">
+        <el-col :xs="6" :sm="4">
           <ab-user-left-list></ab-user-left-list>
         </el-col>
-        <el-col :xs="16" :sm="18">
+        <el-col :xs="18" :sm="20">
           <router-view></router-view>
         </el-col>
       </el-row>

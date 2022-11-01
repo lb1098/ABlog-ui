@@ -53,7 +53,7 @@
                         <span class="item-word">通知</span>
                         <el-badge class="item-mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
                       </a>
-                      <a class="item">
+                      <a href="#/User/Money" class="item">
                         <span class="item-icon iconfont icon-chongzhi "></span>
                         <span class="item-word">充值</span>
                       </a>
@@ -108,7 +108,7 @@
                     </div>
                   </header>
                   <section>
-                    <div class="fund">余额 <span>7.00</span></div>
+                    <div class="fund">余额 <span v-text="formatNumber(this.userFund.fund)"></span></div>
                     <div class="last-cost">消费 <span>10000.00</span></div>
                   </section>
                   <section>
@@ -121,7 +121,7 @@
                       <span class="item-word">通知</span>
                       <el-badge class="item-mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
                     </a>
-                    <a class="item">
+                    <a href="#/User/Money" class="item">
                       <span class="item-icon iconfont icon-chongzhi "></span>
                       <span class="item-word">充值</span>
                     </a>
@@ -287,19 +287,6 @@ export default {
         getUserFund().then((response)=>{
           this.userFund = response
         });
-        // 判断是否签过到
-        // if(!this.isSignal){
-        //   signal().then((response)=>{
-        //     this.isSignal = true;
-        //     var fundDis = response.fund-userFund.fund;
-        //     this.$notify({
-        //       type: '今日签到成功',
-        //       message: '积分增加 :'+fundDis,
-        //       duration: 9000,
-        //     });
-        //     this.userFund = response;
-        //   });
-        // }
 
       }
     },

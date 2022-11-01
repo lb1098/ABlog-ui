@@ -30,6 +30,7 @@
         <el-table-column
           prop="createTime"
           label="通知时间"
+          width="150px"
         >
         </el-table-column>
         <el-table-column

@@ -20,3 +20,19 @@ export function signal() {
     },
   })
 }
+// 用户申请捐助走人工积分通道
+export function apply(payType,payTime,payProof,payNumber) {
+  return request({
+    url: '/fund/apply',
+    method: 'post',
+    headers: {
+      isToken: true
+    },
+    data:{
+      "payType":payType,
+      "payTime":payTime,
+      "payProof":payProof,
+      "payNumber":payNumber
+    }
+  })
+}

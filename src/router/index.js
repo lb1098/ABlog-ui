@@ -69,6 +69,10 @@ export default new Router({
           path: 'Notify',
           component: resolve => require(['../components/User/Notify.vue'], resolve),
         },
+        {
+          path: 'Money',
+          component: resolve => require(['../components/User/Money.vue'], resolve),
+        },
       ]
     },
 
