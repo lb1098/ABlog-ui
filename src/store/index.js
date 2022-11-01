@@ -21,5 +21,9 @@ export default new Vuex.Store({
         // 变更状态
         state.isLogin = true;
       },
+      readyLogin (state) {
+        // 变更状态
+        state.isLogin = false;
+      },
     }
 })

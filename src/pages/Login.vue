@@ -244,6 +244,7 @@ import footer from "../components/footer";
 import header from "../components/header";
 import Cookies from 'js-cookie'
 import {sendEmail} from "../api/email";
+import store from "../store";
 
 export default {
   name: 'Login',
@@ -289,6 +290,7 @@ export default {
       var that = this;
       that.login = that.$route.query.login == undefined ? 1 : parseInt(that.$route.query.login);//获取传参的login
       that.urlstate = that.$route.query.urlstate == undefined ? 0 : that.$route.query.urlstate;//获取传参的usrlstate状态码
+      this.$store.commit('readyLogin');
     },
     loginEnterFun: function (e) {
       var keyCode = window.event ? e.keyCode : e.which;
