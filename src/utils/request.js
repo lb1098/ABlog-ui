@@ -36,10 +36,8 @@ service.interceptors.response.use(res => {
     const code = res.data.code || 200
     // 获取错误信息
     const msg = errorCode[code] || res.data.msg || errorCode['default']
-    if (code === 401) {
-      // FIXME 后期修复这边同一时间一堆401出现多个弹窗的问题
-      if(router.currentRoute.path=='/Login')
-        return;
+    if (code === 401 && !store.state.isLogin) {
+      store.commit('goLogin');
       MessageBox.confirm('登录状态已过期，您可以继续留在该页面，或者重新登录', '系统提示', {
           confirmButtonText: '重新登录',
           cancelButtonText: '取消',
@@ -61,6 +59,12 @@ service.interceptors.response.use(res => {
         });
       }).catch(() => {
 
+      })
+      return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
+    } else if (code === 401) {
+      Message({
+        message: msg,
+        type: 'error'
       })
       return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
     } else if (code === 500) {

@@ -11,8 +11,15 @@ export const state = {
   keywords:'',//关键词
   errorImg: require('../../static/img/tou.jpg') ,
   baseURL:'http://abinblog.cn:7777/',
+  isLogin:false,
 }
 
 export default new Vuex.Store({
     state,
+    mutations: {
+      goLogin (state) {
+        // 变更状态
+        state.isLogin = true;
+      },
+    }
 })
