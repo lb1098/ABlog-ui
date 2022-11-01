@@ -11,6 +11,12 @@
       <el-menu-item index="/User/Money">
         <span slot="title" >钱包充值</span>
       </el-menu-item>
+      <el-menu-item index="/User/FundApplyList">
+        <span slot="title" >捐助审核</span>
+      </el-menu-item>
+      <el-menu-item index="/User/FundVaryHistory">
+        <span slot="title" >积分变动</span>
+      </el-menu-item>
       <el-menu-item index="/User/Info">
         <span slot="title" >用户资料</span>
       </el-menu-item>

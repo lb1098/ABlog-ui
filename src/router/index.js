@@ -73,6 +73,14 @@ export default new Router({
           path: 'Money',
           component: resolve => require(['../components/User/Money.vue'], resolve),
         },
+        {
+          path: 'FundApplyList',
+          component: resolve => require(['../components/User/FundApplyList.vue'], resolve),
+        },
+        {
+          path: 'FundVaryHistory',
+          component: resolve => require(['../components/User/FundVaryHistory.vue'], resolve),
+        },
       ]
     },
 

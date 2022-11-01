@@ -41,7 +41,9 @@
                     </header>
                     <section>
                       <div class="fund">余额 <span v-text="formatNumber(this.userFund.fund)"></span></div>
-                      <div class="last-cost">消费 <span>10000.00</span></div>
+                      <div class="last-cost">
+                        <span>最近</span>
+                        <span><span v-if="this.lastOneFund.dataVariation>=0">+</span>{{this.lastOneFund.dataVariation}}</span></div>
                     </section>
                     <section>
                       <div class="fund"><span>包月VIP</span></div>
@@ -109,7 +111,9 @@
                   </header>
                   <section>
                     <div class="fund">余额 <span v-text="formatNumber(this.userFund.fund)"></span></div>
-                    <div class="last-cost">消费 <span>10000.00</span></div>
+                    <div class="last-cost">
+                      <span>最近</span>
+                      <span><span v-if="this.lastOneFund.dataVariation>=0">+</span>{{this.lastOneFund.dataVariation}}</span></div>
                   </section>
                   <section>
                     <div class="fund"><span>包月VIP</span></div>
@@ -171,7 +175,7 @@
 import {logout} from '../api/user'
 import {removeToken, getToken} from '../utils/auth'
 import {getUnreadCount} from '../api/notify.js'
-import {getUserFund, signal} from "../api/fund";
+import {getUserFund, lastOneFundHistory, signal} from "../api/fund";
 
 export default {
   data() { //选项 / 数据
@@ -198,6 +202,8 @@ export default {
       userFund:{},
       // 是否签过到
       isSignal:false,
+      // 最近一次积分变动对象
+      lastOneFund: {},
     }
   },
   methods: { //事件处理器
@@ -287,7 +293,10 @@ export default {
         getUserFund().then((response)=>{
           this.userFund = response
         });
-
+        // 获取用户最新的一次消费
+        lastOneFundHistory().then((response)=>{
+          this.lastOneFund = response;
+        });
       }
     },
     toggleTac(){

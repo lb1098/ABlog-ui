@@ -54,6 +54,7 @@
               <el-col :sm="12">
                 <el-form-item label="支付金额" required>
                   <el-input-number
+                    size="small"
                     placeholder="捐助金额（元）"
                     v-model="form.payNumber"
                     :min="1"
@@ -65,7 +66,7 @@
               </el-col>
               <el-col :sm="12">
                 <el-form-item label="可兑换:" v-if="form.payNumber>0">
-                  <span class="money" v-text="formatNumber(form.payNumber*100)"></span>积分
+                  <span class="money" v-text="formatNumber(form.payNumber*100)"></span> 积分
                 </el-form-item>
               </el-col>
             </el-row>

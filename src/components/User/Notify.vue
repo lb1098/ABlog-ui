@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="leftRight">
+    <div class="tcommonBox">
       <el-table
         :data="this.notifyList">
 
@@ -15,16 +15,12 @@
         </el-table-column>
 
         <el-table-column
-          prop="content"
           label="评论内容"
         >
-        </el-table-column>
-        <el-table-column
-          label="链接"
-          width="80px"
-        >
           <template slot-scope="scope">
-            <el-link type="primary" :href="'#'+scope.row.url">查看</el-link>
+            <a style="color: rgb(64,158,255);text-decoration: underline" type="primary" :href="'#'+scope.row.url">
+            <span class="ab-text-overflow" :title="scope.row.content">{{ scope.row.content }}</span>
+            </a>
           </template>
         </el-table-column>
         <el-table-column
