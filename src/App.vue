@@ -474,12 +474,12 @@ a {
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .no-vip-color{
-  color: #999;
+  color: #999!important;
 }
 .vip-color{
-  color: #fbb715;
+  color: #fbb715!important;
 }
 .svip-color{
-  color: red;
+  color: red!important;
 }
 </style>

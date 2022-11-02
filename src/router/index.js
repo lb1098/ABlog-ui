@@ -83,7 +83,11 @@ export default new Router({
         },
       ]
     },
-
+    {
+      path: '/VIP',
+      component: resolve => require(['../pages/VIP/VIP.vue'], resolve),
+      name: 'VIP'
+    },
     // 404页面
     {
       path: '/*',
