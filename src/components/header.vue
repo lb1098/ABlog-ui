@@ -26,7 +26,13 @@
                 <div v-show="haslogin">
                   <div class="header-avatar">
                     <img :src="userInfo.avatar ? userInfo.avatar:this.$store.state.errorImg" class="user-avatar"></img>
-                    <span class="iconfont icon-vip avatar-bottom-right no-vip-color"></span>
+                    <span
+                      class="iconfont icon-vip avatar-bottom-right no-vip-color"
+                      :class="{
+                      'vip-color':this.vipList[0].vipId==1,
+                      'svip-color':this.vipList[0].vipId==2,
+                      }"
+                    ></span>
                     <el-badge is-dot class="mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
                   </div>
 
@@ -35,11 +41,23 @@
                       <div class="body-avatar">
                         <div class="header-avatar">
                           <img :src="userInfo.avatar ? userInfo.avatar:this.$store.state.errorImg" class="user-avatar"></img>
-                          <span class="iconfont icon-vip avatar-bottom-right no-vip-color"></span>
+                          <span
+                            class="iconfont icon-vip avatar-bottom-right no-vip-color"
+                            :class="{
+                              'vip-color':this.vipList[0].vipId==1,
+                              'svip-color':this.vipList[0].vipId==2,
+                              }"
+                          ></span>
                         </div>
-                        <div class="header-username">{{userInfo.nickName}}</div>
+                        <div
+                          class="header-username"
+                          :class="{
+                              'vip-color':this.vipList[0].vipId==1,
+                              'svip-color':this.vipList[0].vipId==2,
+                              }"
+                        >{{userInfo.nickName}}</div>
                         <div class="header-vip-time">
-                          <span>2021-10-11</span>
+                          <span v-if="this.vipList[0].vipExpiryTime.split(' ')[0]">{{ this.vipList[0].vipExpiryTime.split(' ')[0] }}</span>
                         </div>
                       </div>
                     </header>
@@ -50,8 +68,10 @@
                         <span><span v-if="this.lastOneFund.dataVariation>=0">+</span>{{this.lastOneFund.dataVariation}}</span></div>
                     </section>
                     <section>
-                      <div class="fund"><span>包月VIP</span></div>
-                      <div class="last-cost"><span>2022-11-02</span>到期</div>
+                      <div class="fund"><span v-text="this.vipList[0].vip.vipName"></span></div>
+                      <div class="last-cost" v-if="this.vipList[0].vipExpiryTime.length>0">
+                        <span v-text="this.vipList[0].vipExpiryTime.split(' ')[0]"></span> 到期
+                      </div>
                     </section>
                     <footer>
                       <a href="#/User/Notify" class="item">
@@ -96,7 +116,13 @@
               <div v-show="haslogin">
                 <div class="header-avatar">
                   <img :src="userInfo.avatar ? userInfo.avatar:this.$store.state.errorImg" class="user-avatar"></img>
-                  <span class="iconfont icon-vip avatar-bottom-right no-vip-color"></span>
+                  <span
+                    class="iconfont icon-vip avatar-bottom-right no-vip-color"
+                    :class="{
+                      'vip-color':this.vipList[0].vipId==1,
+                      'svip-color':this.vipList[0].vipId==2,
+                      }"
+                  ></span>
                   <el-badge is-dot class="mark" v-if="this.notifyCount>0" :value="this.notifyCount" />
                 </div>
 
@@ -105,11 +131,23 @@
                     <div class="body-avatar">
                       <div class="header-avatar">
                         <img :src="userInfo.avatar ? userInfo.avatar:this.$store.state.errorImg" class="user-avatar"></img>
-                        <span class="iconfont icon-vip avatar-bottom-right no-vip-color"></span>
+                        <span
+                          class="iconfont icon-vip avatar-bottom-right no-vip-color"
+                          :class="{
+                              'vip-color':this.vipList[0].vipId==1,
+                              'svip-color':this.vipList[0].vipId==2,
+                              }"
+                        ></span>
                       </div>
-                      <div class="header-username">{{userInfo.nickName}}</div>
+                      <div
+                        class="header-username"
+                        :class="{
+                              'vip-color':this.vipList[0].vipId==1,
+                              'svip-color':this.vipList[0].vipId==2,
+                              }"
+                      >{{userInfo.nickName}}</div>
                       <div class="header-vip-time">
-                        <span>2021-10-11</span>
+                        <span v-if="this.vipList[0].vipExpiryTime.split(' ')[0]">{{ this.vipList[0].vipExpiryTime.split(' ')[0] }}</span>
                       </div>
                     </div>
                   </header>
@@ -120,8 +158,10 @@
                       <span><span v-if="this.lastOneFund.dataVariation>=0">+</span>{{this.lastOneFund.dataVariation}}</span></div>
                   </section>
                   <section>
-                    <div class="fund"><span>包月VIP</span></div>
-                    <div class="last-cost"><span>2022-11-02</span>到期</div>
+                    <div class="fund"><span v-text="this.vipList[0].vip.vipName"></span></div>
+                    <div class="last-cost" v-if="this.vipList[0].vipExpiryTime.length>0">
+                      <span v-text="this.vipList[0].vipExpiryTime.split(' ')[0]"></span> 到期
+                    </div>
                   </section>
                   <footer>
                     <a href="#/User/Notify" class="item">
@@ -184,6 +224,7 @@ import {logout} from '../api/user'
 import {removeToken, getToken} from '../utils/auth'
 import {getUnreadCount} from '../api/notify.js'
 import {getUserFund, lastOneFundHistory, signal} from "../api/fund";
+import {vipStatus} from "../api/vip";
 
 export default {
   data() { //选项 / 数据
@@ -212,6 +253,14 @@ export default {
       isSignal:false,
       // 最近一次积分变动对象
       lastOneFund: {},
+      // vip 状态列表
+      vipList:[{
+        vipId:0,
+        vipExpiryTime:"",
+        vip:{
+          vipName:"暂无会员"
+        }
+      }],
     }
   },
   methods: { //事件处理器
@@ -305,6 +354,11 @@ export default {
         lastOneFundHistory().then((response)=>{
           this.lastOneFund = response;
         });
+        // VIP 状态
+        vipStatus().then((res)=>{
+          if(res.length>0)
+            this.vipList = res;
+        })
       }
     },
     toggleTac(){

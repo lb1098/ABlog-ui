@@ -12,8 +12,28 @@
           <span class="money" v-text="formatNumber(fund)"></span> 积分
         </el-card>
       </el-col>
+
+      <el-col :sm="8" v-for="vip in vipList" :key="vip.id">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix" >
+            <span style="
+                font-size: 18px;
+                font-weight: 700"
+                :class="{
+                  'vip-color':vip.vipId==1,
+                  'svip-color':vip.vipId==2,
+                }"
+            >
+              <span class="iconfont icon-vip"></span>
+              <span v-text="vip.vip.vipName"></span>
+            </span>
+          </div>
+          <span v-if="vip.vipExpiryTime">有效期至 <span v-text="vip.vipExpiryTime"></span></span>
+        </el-card>
+      </el-col>
+
     </el-row>
-    <br>
+
     <el-row :gutter="10" >
       <el-col :sm="24">
         <el-card class="box-card">
@@ -78,7 +98,6 @@
         </el-card>
       </el-col>
     </el-row>
-    <br>
     <el-row :gutter="10">
       <el-col :sm="24">
         <el-card class="box-card">
@@ -94,6 +113,7 @@
 
 <script>
 import {apply, getUserFund, signal} from "../../api/fund";
+import {vipStatus} from "../../api/vip";
 
 export default {
   name: "Money",
@@ -111,7 +131,13 @@ export default {
         payId:"",
         payNumber:"",
       },
-
+      vipList:[{
+        vipId:0,
+        vipExpiryTime:"",
+        vip:{
+          vipName:"暂无会员"
+        }
+      }],
     };
   },
   methods: {
@@ -166,6 +192,11 @@ export default {
         this.fund = response.fund;
         this.isSignal = response.isSignal
       });
+      // VIP 状态
+      vipStatus().then((res)=>{
+        if(res.length>0)
+          this.vipList = res;
+      })
     },
     apply(){
       var form = this.form;
@@ -216,5 +247,9 @@ b {
 .el-card.is-always-shadow {
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.el-card {
+  min-height: 93px;
+  margin-bottom: 10px;
 }
 </style>

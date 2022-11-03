@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <keep-alive :include="['Home','Archive','Info', 'FriendsLink', 'Reward']">
+      <keep-alive :include="['Home','Archive','Info', 'FriendsLink', 'Reward', 'VIP']">
           <!--  :include="['Aboutme', 'Message', 'FriendsLink', 'Reward']"  -->
           <router-view></router-view>
       </keep-alive>
@@ -480,6 +480,6 @@ a {
   color: #fbb715!important;
 }
 .svip-color{
-  color: red!important;
+  color: rgb(111, 14, 230)!important;
 }
 </style>

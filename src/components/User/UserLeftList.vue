@@ -17,6 +17,9 @@
       <el-menu-item index="/User/FundVaryHistory">
         <span slot="title" >积分变动</span>
       </el-menu-item>
+      <el-menu-item index="/User/VipBuyHistory">
+        <span slot="title" >升级记录</span>
+      </el-menu-item>
       <el-menu-item index="/User/Info">
         <span slot="title" >用户资料</span>
       </el-menu-item>

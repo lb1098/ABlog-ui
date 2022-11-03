@@ -81,6 +81,10 @@ export default new Router({
           path: 'FundVaryHistory',
           component: resolve => require(['../components/User/FundVaryHistory.vue'], resolve),
         },
+        {
+          path: 'VipBuyHistory',
+          component: resolve => require(['../components/User/VipBuyHistory.vue'], resolve),
+        },
       ]
     },
     {

@@ -20,4 +20,24 @@ export function updateVip(id) {
     data:{"id":id}
   })
 }
+export function vipStatus() {
+  return request({
+    url: '/vip/vipStatus',
+    method: 'get',
+    headers: {
+      isToken: true
+    },
+  })
+}
+
+export function vipUpdateHistory(query) {
+  return request({
+    url: '/vip/vipUpdateHistory',
+    method: 'get',
+    headers: {
+      isToken: true
+    },
+    params:query,
+  })
+}
 

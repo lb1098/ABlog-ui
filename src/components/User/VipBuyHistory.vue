@@ -2,7 +2,7 @@
   <div>
     <div class="tcommonBox">
       <el-table
-        :data="fundVaryHistoryList"
+        :data="vipBuyHistory"
         style="width: 100%"
         align="left"
         header-align="center"
@@ -14,16 +14,16 @@
           width="150">
         </el-table-column>
         <el-table-column
-          label="变动操作"
+          label="升级级别"
           width="120"
           align="center"
         >
           <template slot-scope="scope">
-            <span class="ab-text-overflow">{{scope.row.operation}}</span>
+            <span class="ab-text-overflow">{{scope.row.vip.vipName}}</span>
           </template>
         </el-table-column>
         <el-table-column
-          label="积分变动"
+          label="积分花费"
           align="center"
           width="200"
         >
@@ -31,11 +31,11 @@
             <span
               :style="{
                 'font-weight': 700,
-                'color': scope.row.dataVariation>0? 'red':'green',
+                'color': 'green'
               }"
-              :title="formatNumber(scope.row.dataVariation)"
+              :title="formatNumber(scope.row.cost)"
             >
-              <span v-if="scope.row.dataVariation>=0">+</span>{{formatNumber(scope.row.dataVariation) }}</span>
+              <span>-</span>{{formatNumber(scope.row.cost) }}</span>
           </template>
         </el-table-column>
       </el-table>
@@ -54,17 +54,18 @@
 </template>
 
 <script>
-import {applyList, fundHistoryList} from "../../api/fund";
+
+import {vipUpdateHistory} from "../../api/vip";
 
 export default {
-  name: "FundVaryHistory",
+  name: "VipBuyHistory",
   data(){
     return {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
       },
-      fundVaryHistoryList:[],
+      vipBuyHistory:[],
       total:0,
     }
   },
@@ -78,8 +79,8 @@ export default {
   methods:{
     routeChange() {
       this.queryParams.pageNum = this.$route.query.pageNum == undefined ? 1 : parseInt(this.$route.query.pageNum);
-      fundHistoryList(this.queryParams).then((response)=>{
-        this.fundVaryHistoryList = response.rows;
+      vipUpdateHistory(this.queryParams).then((response)=>{
+        this.vipBuyHistory = response.rows;
         this.total = response.total;
       })
     },

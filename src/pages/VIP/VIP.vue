@@ -30,7 +30,7 @@
               <li>所有{{storeVip.vip.vipName}}资源开放</li>
               <li>所有{{storeVip.vip.vipName}}以下付费资源免积分</li>
             </ul>
-            <footer>
+            <footer v-show="haslogin">
               <el-button
                 :style="{
                 'background-color': storeVip.vip.id==1 ?'#fbb715':'#6f0ee6',
@@ -51,12 +51,14 @@ import footer from "../../components/footer";
 import header from "../../components/header";
 import headImgBox from "../../components/part/headImgBox";
 import {storeVip, updateVip} from "../../api/vip";
+import {getToken} from "../../utils/auth";
 
 export default {
   name: "VIP",
   data() { //选项 / 数据
     return {
       storeVipList:[],
+      haslogin: false, //是否已登录
     }
   },
   methods: { //事件处理器
@@ -78,8 +80,16 @@ export default {
         })
 
     },
+    isLogin(){
+      if (localStorage.getItem('userInfo') && getToken()) { //存储用户信息
+        this.haslogin = true;
+        this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      } else {
+        this.haslogin = false;
+      }
+    },
     routeChange: function () {
-
+      this.isLogin();
     },
     formatNumber(num, precision, separator) {
       /*******
@@ -121,10 +131,9 @@ export default {
   },
   mounted() {
     this.getStoreVip();
+    this.routeChange();
   },
   created() { //生命周期函数
-    var that = this;
-    that.routeChange();
 
   }
 }
@@ -153,6 +162,10 @@ export default {
   box-sizing: border-box;
   text-align: center;
   margin-bottom: 10px;
+  transition: transform 0.3s;
+}
+.vip-main:hover {
+  transform: translateY(-10px);
 }
 .vip-content{
   border-radius: 0 0 8px 8px;
