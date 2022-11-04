@@ -92,6 +92,11 @@ export default new Router({
       component: resolve => require(['../pages/VIP/VIP.vue'], resolve),
       name: 'VIP'
     },
+    {
+      path: '/Guide',
+      component: resolve => require(['../pages/Guide.vue'], resolve),
+      name: 'Guide'
+    },
     // 404页面
     {
       path: '/*',
