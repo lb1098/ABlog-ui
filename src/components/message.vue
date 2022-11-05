@@ -77,6 +77,20 @@
 
       </div>
     </div>
+
+    <el-dialog
+      title="提示"
+      :visible.sync="sendMessageVisible"
+      width="30%">
+      <span>当前您暂未登录，你确定要以游客身份回复消息吗？</span>
+      <b style="font-weight: 700;">（被回复将无法正常收到通知）</b>
+      <span slot="footer" class="dialog-footer">
+        <el-button size="mini" @click="sendMessageVisible = false">取 消</el-button>
+        <el-button size="mini" type="warning" @click="sendAnonyMsg()">以游客身份发送</el-button>
+        <el-button size="mini" type="primary" @click="goToLogin">前往登录</el-button>
+      </span>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -114,6 +128,9 @@ export default {
       toCommentId: -1,//所回复评论的id
       toCommentUserId: -1,//所评论的用户id
       sendTip: '发送~',
+
+      // AB-
+      sendMessageVisible:false,
     }
   },
   methods: {
@@ -161,46 +178,59 @@ export default {
           }, 3000)
         }
       } else{
-        var that = this;
-        that.$confirm('当前您暂未登录，你确定要以游客身份回复消息吗？（被回复无法正常收到通知）', '提示', {
-          confirmButtonText: '前往登录',
-          cancelButtonText: '以游客身份回复',
-          type: 'warning'
-        }).then(() => {
-          //确定，跳转至登录页面
-          //储存当前页面路径，登录成功后跳回来
-          localStorage.setItem('logUrl', that.$route.fullPath);
-          that.$router.push({path: '/Login?login=1'});
-        }).catch(() => {
-          if (that.textarea) {
-            that.sendTip = '咻~~';
-            sendComment(that.type, that.aid, that.rootId, that.toCommentId, that.toCommentUserId, that.textarea).then((response) => {
-              that.textarea = '';
-              that.rootId = -1;
-              that.toCommentId = -1;
-              that.toCommentUserId = -1;
-              that.routeChange();
-              that.removeRespond();
-              var timer02 = setTimeout(function () {
-                that.sendTip = '发送~';
-                clearTimeout(timer02);
-              }, 1000)
-              // 通知
-              this.$notify({
-                title: '发送成功',
-                message: '您的回复发送成功',
-                type: 'success'
-              });
-            })
-          } else {
-            that.sendTip = '内容不能为空~'
-            var timer = setTimeout(function () {
-              that.sendTip = '发送~';
-              clearTimeout(timer);
-            }, 3000)
-          }
-        });
+        this.sendMessageVisible =true
+
+        // var that = this;
+        // that.$confirm('当前您暂未登录，你确定要以游客身份回复消息吗？（被回复无法正常收到通知）', '提示', {
+        //   confirmButtonText: '前往登录',
+        //   cancelButtonText: '以游客身份回复',
+        //   type: 'warning'
+        // }).then(() => {
+        //   //确定，跳转至登录页面
+        //   //储存当前页面路径，登录成功后跳回来
+        //   localStorage.setItem('logUrl', that.$route.fullPath);
+        //   that.$router.push({path: '/Login?login=1'});
+        // }).catch(() => {
+        //
+        // });
       }
+    },
+    sendAnonyMsg(){
+      this.sendMessageVisible = false;
+      var that = this;
+      if (that.textarea) {
+        that.sendTip = '咻~~';
+        sendComment(that.type, that.aid, that.rootId, that.toCommentId, that.toCommentUserId, that.textarea).then((response) => {
+          that.textarea = '';
+          that.rootId = -1;
+          that.toCommentId = -1;
+          that.toCommentUserId = -1;
+          that.routeChange();
+          that.removeRespond();
+          var timer02 = setTimeout(function () {
+            that.sendTip = '发送~';
+            clearTimeout(timer02);
+          }, 1000)
+          // 通知
+          this.$notify({
+            title: '发送成功',
+            message: '您的回复发送成功',
+            type: 'success'
+          });
+        })
+      } else {
+        that.sendTip = '内容不能为空~'
+        var timer = setTimeout(function () {
+          that.sendTip = '发送~';
+          clearTimeout(timer);
+        }, 3000)
+      }
+    },
+    goToLogin(){
+      //确定，跳转至登录页面
+      //储存当前页面路径，登录成功后跳回来
+      localStorage.setItem('logUrl', this.$route.fullPath);
+      this.$router.push({path: '/Login?login=1'});
     },
     respondMsg: function (rootId, toCommentId, toCommentUserId) {//回复留言
 

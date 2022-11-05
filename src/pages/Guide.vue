@@ -1,18 +1,22 @@
 <template>
   <div >
     <sg-navbar></sg-navbar>
+    <div class="fix-btn-toggle" @click="hiddenAside">
+      <i v-if="!openLeftNav" class="fa fa-th-list" aria-hidden="true"></i>
+      <i v-else class="fa fa-times" aria-hidden="true"></i>
+    </div>
+    <div v-if="openLeftNav" @click="hiddenAside" class="fix-btn-shadow"></div>
     <main>
       <aside id="leftTreeNav">
-        <left-tree-nav> </left-tree-nav>
+        <left-tree-nav></left-tree-nav>
       </aside>
       <section>
         <!--  定制 隐藏导航栏      -->
-        <div class="hidden-aside-tree-nav" @click="hiddenAside()" >
+        <div class="hidden-aside-tree-nav hidden-xs-only" @click="hiddenAside()" >
           <i class="fa fa-arrow-right"
-             :class="{'rotate180':open}"
+             :class="{'rotate180':openRotate}"
              aria-hidden="true"></i>
         </div>
-
         <!--  定制 面包屑      -->
 
         <!--   主题内容     -->
@@ -33,18 +37,27 @@ export default {
   name: "Guide",
   data() { //选项 / 数据
     return {
-      open:true,// 侧边栏是否打开
+      openLeftNav:true,
+      openRotate:true,// 侧边栏是否打开
     }
   },
   methods: { //事件处理器
     hiddenAside(){
-      if(this.open){
-        this.open = false;
-        $('#leftTreeNav').animate({'width':'0%'},300);
+      if(this.openLeftNav){
+        this.openLeftNav = false
+        this.openRotate = !this.openRotate;
+        $('#leftTreeNav').finish().animate({'width':'0%'},300);
       } else{
-        this.open = true;
-        $('#leftTreeNav').animate({'width':'100%'},300);
+        this.openLeftNav = true
+        this.openRotate = !this.openRotate;
+        $('#leftTreeNav').finish().animate({'width':'100%'},300);
       }
+    },
+    miniWindow(){
+
+    },
+    largeWindow(){
+
     },
   },
   components: { //定义组件
@@ -53,8 +66,29 @@ export default {
     'left-tree-nav':LeftTreeNav,
     'guide-main':GuideMain,
   },
-  created() { //生命周期函数
+  mounted() {
+    if($(window).width()<=768 ){
+      this.openLeftNav = false;
+      $('#leftTreeNav').finish().animate({'width':'0%'},0);
+    } else {
+      this.openLeftNav = true;
+    }
 
+  },
+  created() { //生命周期函数
+    var that = this;
+    $(window).resize( function  () {           //当浏览器大小变化时
+      if(that.openLeftNav && $(window).width()<=768 ){
+        that.openLeftNav = false;
+        $('#leftTreeNav').finish().animate({'width':'0%'},300);
+      } else {
+        if(!that.openLeftNav && $(window).width()>768){
+          that.openLeftNav = true;
+          that.openRotate = true;
+          $('#leftTreeNav').finish().animate({'width':'100%'},300);
+        }
+      }
+    });
   }
 }
 </script>
@@ -76,6 +110,7 @@ aside {
   max-width: 300px;
   position: relative;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  background-color: #FFF;
 }
 section{
   position: relative;
@@ -108,5 +143,25 @@ section{
 .rotate180 {
   transform: rotate(-180deg);
 }
-
+.fix-btn-toggle {
+  position: fixed;
+  z-index: 6;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 15px;
+  top: 0;
+  left: 0;
+  color: rgb(5,109,232);
+  cursor: pointer;
+}
+.fix-btn-shadow {
+  /*display: none;*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000026;
+}
 </style>

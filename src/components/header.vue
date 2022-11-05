@@ -592,10 +592,10 @@ export default {
   cursor: pointer;
 }
 
-.hideMenu .el-menu-item,
+.el-menu-item,
 .el-submenu__title {
-  height: 40px;
-  line-height: 40px;
+  height: 38px;
+  line-height: 38px;
 }
 
 .mobileBox .searchBox {
@@ -735,8 +735,8 @@ export default {
 }
 
 .headBox-mobile {
-  height: 40px;
-  line-height: 40px;
+  height: 38px;
+  line-height: 38px;
 
   padding: 0 10px;
 }

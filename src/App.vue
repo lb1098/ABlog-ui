@@ -257,7 +257,7 @@ a {
         }
     }
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
     .headBox{
         display: none;
     }
@@ -268,8 +268,10 @@ a {
         display: block;
     }
     .headImgBox{
-        //height:450px!important;
-        //margin-bottom:-140px!important;
+
+    }
+    .GuideMain {
+      margin-left: 0!important;
     }
     .h-information{
         //display:none;
@@ -278,10 +280,21 @@ a {
         font-size: 50px!important;
         top:120px;
     }
+  .ab-tac{
+    left: 40px!important;
+  }
+    #leftTreeNav {
+      position: fixed;
+      height: 100vh;
+      background-color: #fff;
+    }
+    .fix-btn-toggle {
+      display: block;
+    }
 }
 
 
-@media screen and (min-width: 701px) {
+@media screen and (min-width: 768px) {
     .headBox{
         display: block;
     }
@@ -290,6 +303,12 @@ a {
     }
     .mobileBox{
         display: none;
+    }
+    .fix-btn-toggle {
+      display: none;
+    }
+    .fix-btn-shadow {
+      display: none;
     }
 }
 
@@ -309,7 +328,10 @@ a {
         border:none!important;
     }
     .headBox li.el-menu-item,.headBox .el-submenu__title{
-        padding:0 15px;
+        padding:0 10px;
+    }
+    .headBox li.el-menu-item,.headBox .el-submenu__title:first-child{
+      padding-left: 20px;
     }
     .toTop{
         display: none!important;
@@ -328,7 +350,7 @@ a {
 }
 @media screen and  (min-width:801px) {
     .headBox li.el-menu-item,.headBox .el-submenu__title{
-        padding:0 12px;
+
     }
     .ab-item {
       padding: 20px;
