@@ -8,7 +8,7 @@
         <el-breadcrumb-item v-if="subName">{{ subName }}</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <el-row class="ab-article-list" v-loading="loading">
+    <el-row class="ab-article-list">
       <!-- 新版 -->
       <el-col class="ab-content-list">
         <!-- 内容 -->
@@ -94,7 +94,6 @@ export default {
   name: 'Share',
   data() { //选项 / 数据
     return {
-      loading:true,
       // 查询参数
       queryParams: {
         pageNum: 1,
@@ -117,7 +116,6 @@ export default {
         this.subName = ""
       }
       articleList(this.queryParams).then((response) => {
-        this.loading = false
         const markdownIt = mavonEditor.getMarkdownIt()
         var jsonArray = response.rows;
         for (var i in jsonArray) {
