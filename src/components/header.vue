@@ -593,7 +593,8 @@ export default {
 }
 
 .el-menu-item,
-.el-submenu__title {
+.el-submenu__title,
+.el-submenu .el-menu-item{
   height: 38px;
   line-height: 38px;
 }

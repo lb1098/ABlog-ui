@@ -94,6 +94,7 @@ export default {
 </script>
 
 <style scoped>
+
 main {
   display: -webkit-flex; /* Safari */
   display: flex;
@@ -164,4 +165,5 @@ section{
   height: 100vh;
   background-color: #00000026;
 }
+
 </style>

@@ -111,4 +111,11 @@ export default {
   overflow-y: scroll;
 
 }
+.el-menu-item.is-active{
+  box-sizing: border-box;
+  /*margin-left: 20px;*/
+  border-left:3px solid rgb(41, 128, 185);
+  background-color: rgba(41, 128, 185, 0.15);
+  font-weight: 700;
+}
 </style>
