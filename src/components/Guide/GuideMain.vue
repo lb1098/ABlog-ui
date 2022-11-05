@@ -17,7 +17,7 @@
           <i class="fa fa-book" aria-hidden="true"></i> 约 100 字
         </span>
         <span>
-          <i class="fa fa-lock" aria-hidden="true"></i> 所需 13 积分
+          <i class="fa fa-lock" aria-hidden="true"></i> 需13积分 或 <span class="iconfont icon-vip vip-color"></span>
         </span>
       </div>
       <hr>
@@ -236,7 +236,7 @@ b {
   margin-bottom: 16px;
   position: relative;
 }
-.contentTitle i {
+.contentTitle > i {
 
 }
 .ab-detail-summary {
