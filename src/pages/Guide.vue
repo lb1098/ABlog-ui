@@ -20,7 +20,7 @@
         <!--  定制 面包屑      -->
 
         <!--   主题内容     -->
-        <guide-main></guide-main>
+        <router-view></router-view>
       </section>
     </main>
   </div>
@@ -31,7 +31,7 @@ import header from "../components/header";
 import headImgBox from "../components/part/headImgBox";
 import footer from "../components/footer";
 import LeftTreeNav from "../components/Guide/LeftTreeNav"
-import GuideMain from "../components/Guide/GuideMain"
+import GuideMain from "../components/Guide/Article"
 
 export default {
   name: "Guide",
@@ -52,12 +52,6 @@ export default {
         this.openRotate = !this.openRotate;
         $('#leftTreeNav').finish().animate({'width':'100%'},300);
       }
-    },
-    miniWindow(){
-
-    },
-    largeWindow(){
-
     },
   },
   components: { //定义组件
@@ -94,7 +88,6 @@ export default {
 </script>
 
 <style scoped>
-
 main {
   display: -webkit-flex; /* Safari */
   display: flex;

@@ -1,95 +1,40 @@
 <template>
   <div class="leftTreeNav">
-
     <el-menu
-      default-active="2"
       class="el-menu-vertical-demo"
+      router
     >
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-        <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
-        <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
-        <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
-        <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
-        <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <span slot="title">导航二</span>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
-        <span slot="title">导航三</span>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
-        <span slot="title">导航四</span>
-      </el-menu-item>
+      <NavItem v-for="nav in navList" :key="'nav-'+nav.id" :nav-data="nav"></NavItem>
     </el-menu>
   </div>
 </template>
 
 <script>
+
+import {getGuideNav} from "../../api/guide";
+import NavItem from "./part/NavItem";
 export default {
   name: "LeftTreeNav",
+  data() { //选项 / 数据
+    return {
+      navList:[],
+    }
+  },
+  methods: { //事件处理器
+
+  },
+  components: { //定义组件
+    NavItem,
+  },
+  mounted() {
+    var that = this;
+    getGuideNav().then(res=>{
+      that.navList=res;
+    })
+  },
+  created() { //生命周期函数
+
+  }
 }
 </script>
 
@@ -111,11 +56,26 @@ export default {
   overflow-y: scroll;
 
 }
-.el-menu-item.is-active{
+
+</style>
+
+<style>
+.leftTreeNav {
+  color: rgb(44,62,80);
+  user-select: none;
+}
+.leftTreeNav .el-menu-item.is-active{
   box-sizing: border-box;
   /*margin-left: 20px;*/
   border-left:3px solid rgb(41, 128, 185);
   background-color: rgba(41, 128, 185, 0.15);
   font-weight: 700;
+}
+.leftTreeNav .el-menu-item,
+.leftTreeNav .el-submenu__title,
+.leftTreeNav .el-submenu .el-menu-item {
+  height: 46px!important;
+  line-height: 46px!important;
+  font-size: 16px;
 }
 </style>

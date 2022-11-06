@@ -94,7 +94,13 @@ export default new Router({
     {
       path: '/Guide',
       component: resolve => require(['../pages/Guide.vue'], resolve),
-      name: 'Guide'
+      name: 'Guide',
+      children: [
+        {
+          path:'Article/:id',
+          component: resolve => require(['../components/Guide/Article.vue'], resolve),
+        },
+      ]
     },
     // 404页面
     {
