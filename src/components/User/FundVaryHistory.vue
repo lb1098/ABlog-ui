@@ -15,7 +15,7 @@
         </el-table-column>
         <el-table-column
           label="变动操作"
-          width="120"
+
           align="center"
         >
           <template slot-scope="scope">

@@ -1,5 +1,5 @@
 <template>
-  <div class="GuideMain">
+  <div class="GuideMain" v-loading="articleLoading">
     <div class="contentMain">
       <div class="contentTitle">
         <i v-if="articleObj.buyed" style="color: green" class="fa fa-unlock-alt" aria-hidden="true"></i>
@@ -19,21 +19,23 @@
         <span v-if="articleObj.hasHidden">
           <i class="fa fa-pie-chart" aria-hidden="true"></i> 隐藏内容约 {{ articleObj.hiddenWordSize }} 字
         </span>
-        <span>
-          <i class="fa"
-             :class="{'fa-lock':articleObj.fundLimit>0,'fa-unlock-alt':articleObj.fundLimit==0}"
-             aria-hidden="true"></i>
-          <span v-if="articleObj.fundLimit>0">需{{articleObj.fundLimit}}积分</span>
-          <span v-else>免费</span>
+        <span v-if="!articleObj.buyed">
+          <i class="fa fa-lock" aria-hidden="true"></i>
+          <span >需{{ articleObj.fundLimit }}积分</span>
           <span v-if="articleObj.vipLevelLimit>0">&
             <span
               :class="{'vip-color':articleObj.vipLevelLimit==1,'svip-color': articleObj.vipLevelLimit==2}"
               class="iconfont icon-vip"></span>
           </span>
         </span>
+        <span v-else><i class="fa fa-unlock-alt" aria-hidden="true"></i> 已解锁</span>
       </div>
       <hr>
       <div class="ab-detail-summary markdown-body" v-if="articleObj.summary" v-html="articleObj.summary"></div>
+      <div style="height: 400px" v-if="articleObj.guideVideoUrl">
+        <iframe :src="articleObj.guideVideoUrl"
+                height=100% width=100% scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+      </div>
       <div class="content-style">
         <mavon-editor
           :subfield="false"
@@ -54,7 +56,7 @@
 
       <div class="hidden-section" v-if="articleObj.hasHidden">
         <div v-if="!haslogin">
-          <div><b>您当前暂未登录</b></div>
+          <div><b>您当前暂未登录，无法查看隐藏内容</b></div>
         </div>
         <div v-else>
           <div v-if="!articleObj.buyed">
@@ -65,48 +67,48 @@
               <span class="btn-update-vip" @click="goToVip()">升级VIP</span>
             </b>
             <b v-else>
-              此内容查看价格为 {{ articleObj.fundLimit }} 积分 <span class="btn-buy">立即购买</span>
+              此内容查看价格为 {{ articleObj.fundLimit }} 积分 <span class="btn-buy" @click="buyArticle">立即购买</span>
             </b>
           </div>
         </div>
-          <div class="hidden-content hidden-data" v-if="articleObj.hiddenData && articleObj.hiddenData.length>0">
-            <div class="hidden-title">隐藏资源</div>
-            <mavon-editor
-              :subfield="false"
-              defaultOpen="preview"
-              :toolbarsFlag="false"
-              :editable="false"
-              :ishljs="true"
-              :navigation="false"
-              v-model="articleObj.hiddenData"
-              style="
+        <div class="hidden-content hidden-data" v-if="articleObj.hiddenData && articleObj.hiddenData.length>0">
+          <div class="hidden-title">隐藏资源</div>
+          <mavon-editor
+            :subfield="false"
+            defaultOpen="preview"
+            :toolbarsFlag="false"
+            :editable="false"
+            :ishljs="true"
+            :navigation="false"
+            v-model="articleObj.hiddenData"
+            style="
                   min-height: auto;
                   box-shadow: none;
                   z-index: 0;
                   "
-            >
-            </mavon-editor>
-          </div>
-          <div class="hidden-content hidden-guide" v-if="articleObj.hiddenGuide && articleObj.hiddenGuide.length>0">
-            <div class="hidden-title">隐藏内容</div>
-            <mavon-editor
-              :subfield="false"
-              defaultOpen="preview"
-              :toolbarsFlag="false"
-              :editable="false"
-              :ishljs="true"
-              :navigation="false"
-              v-model="articleObj.hiddenGuide"
-              style="
+          >
+          </mavon-editor>
+        </div>
+        <div class="hidden-content hidden-guide" v-if="articleObj.hiddenGuide && articleObj.hiddenGuide.length>0">
+          <div class="hidden-title">隐藏内容</div>
+          <mavon-editor
+            :subfield="false"
+            defaultOpen="preview"
+            :toolbarsFlag="false"
+            :editable="false"
+            :ishljs="true"
+            :navigation="false"
+            v-model="articleObj.hiddenGuide"
+            style="
                   min-height: auto;
                   box-shadow: none;
                   z-index: 0;
                   "
-            >
-            </mavon-editor>
-          </div>
+          >
+          </mavon-editor>
         </div>
       </div>
+
       <div class="donate">
         <el-row :class="pdonate?'donate-body':'donate-body donate-body-show'" :gutter="30">
           <el-col :span="12" class="donate-item">
@@ -152,22 +154,24 @@
       <ab-footer></ab-footer>
     </div>
     <!--  TODO 右边导航栏，后续增加   -->
+
   </div>
 </template>
 
 <script>
 import footer from "../footer";
-import {getGuideArticle} from "../../api/guide";
+import {buyGuideArticle, getGuideArticle} from "../../api/guide";
 import {getToken} from '../../utils/auth'
 
 export default {
   name: "GuideMain",
   data() { //选项 / 数据
     return {
+      articleLoading:true,
       haslogin: false, //是否已登录
       pdonate: true,
-      articleObj:{},//返回详情数据
-      articleId:0,
+      articleObj: {},//返回详情数据
+      articleId: 0,
     }
   },
   watch: {
@@ -180,20 +184,22 @@ export default {
   methods: { //事件处理器
     routeChange() {
       var that = this;
+      that.articleLoading = true;
       // 判断是否登录
-      if(getToken() && localStorage.getItem("userInfo"))
+      if (getToken() && localStorage.getItem("userInfo"))
         that.haslogin = true;
       else
         that.haslogin = false;
       // 获取ID号
-      that.id =  that.$route.params.id
-      getGuideArticle(that.id).then(res=>{
+      that.id = that.$route.params.id
+      getGuideArticle(that.id).then(res => {
         that.articleObj = res;
+        that.articleLoading = false;
       })
     },
-    goToVip(){
+    goToVip() {
       // 先判断是否登录过
-      if(this.haslogin){
+      if (this.haslogin) {
         this.$confirm('您当前已经登录，是否前往升级会员？', '提示', {
           confirmButtonText: '前往升级会员',
           cancelButtonText: '取消',
@@ -210,7 +216,23 @@ export default {
           this.$router.push("/Login?login=1")
         })
       }
-    }
+    },
+    buyArticle() {
+      this.$confirm('你确定要花费' + this.articleObj.fundLimit + '积分购买吗？', '购买', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'success'
+      }).then(() => {
+        buyGuideArticle(this.id).then(res=>{
+          this.$notify({
+            message: '购买成功',
+            type: 'success'
+          });
+          this.$router.go(0);
+        })
+      })
+
+    },
   },
   components: { //定义组件
     "ab-footer": footer,
@@ -248,9 +270,11 @@ b {
   margin-bottom: 16px;
   position: relative;
 }
+
 .contentTitle > i {
 
 }
+
 .ab-detail-summary {
   padding: 13px 45px !important;
   border-left: 3px solid #dde6e9 !important;
@@ -277,7 +301,7 @@ hr {
 
 .hidden-section {
   margin-top: 10px;
-  border: 2px dashed rgba(255, 95, 51, .3);
+  border: 1px dashed rgba(255, 95, 51, .3);
   padding: 10px 15px;
   border-radius: 5px;
 }
@@ -294,10 +318,11 @@ hr {
 .hidden-title {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   font-weight: 700;
-  color: #ff5f33;
-  font-size: 20px;
+  color: rgba(0,0,0,0.3);
+  font-size: 16px;
   z-index: 2;
 }
 
@@ -394,6 +419,7 @@ hr {
 .donate-body .donate-item:nth-of-type(2) div {
   color: #00a0e9;
 }
+
 .ab-detail-mark > span {
   margin-right: 5px;
 }

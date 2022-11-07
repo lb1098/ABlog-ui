@@ -6,10 +6,11 @@ export function getGuideNav() {
     url: '/guide/nav',
     method: 'get',
     headers: {
-      isToken: false
+      isToken: true
     },
   })
 }
+
 export function getGuideArticle(id) {
   return request({
     url: '/guide/'+id,
@@ -19,3 +20,15 @@ export function getGuideArticle(id) {
     },
   })
 }
+
+export function buyGuideArticle(id) {
+  return request({
+    url: '/guide/buyArticle',
+    method: 'post',
+    headers: {
+      isToken: true
+    },
+    params:{'id':id},
+  })
+}
+

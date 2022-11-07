@@ -1,6 +1,7 @@
 <template>
-  <div class="leftTreeNav">
+  <div class="leftTreeNav" v-loading="navLoading">
     <el-menu
+      :default-active="$route.path"
       class="el-menu-vertical-demo"
       router
     >
@@ -17,6 +18,7 @@ export default {
   name: "LeftTreeNav",
   data() { //选项 / 数据
     return {
+      navLoading:true,
       navList:[],
     }
   },
@@ -29,6 +31,7 @@ export default {
   mounted() {
     var that = this;
     getGuideNav().then(res=>{
+      that.navLoading = false;
       that.navList=res;
     })
   },
