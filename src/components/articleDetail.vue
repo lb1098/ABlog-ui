@@ -307,6 +307,7 @@ export default {
   padding: 20px;
   background-color: #fff;
   margin-bottom: 10px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 .el-divider {
@@ -337,6 +338,7 @@ export default {
   overflow: hidden;
   box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
   margin-bottom: 10px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 .ab-detail {
   padding: 20px;

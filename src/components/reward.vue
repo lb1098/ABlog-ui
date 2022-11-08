@@ -124,6 +124,7 @@ export default {
 <style>
 .tRewardBox{
   padding: 15px 50px 50px;
+  border-radius: 5px;
   /*border: 1px solid #d4d4d5;*/
 }
 .tRewardBox section {

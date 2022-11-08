@@ -159,7 +159,7 @@ export default {
   padding: 15px 50px 50px;
   border-radius: 5px;
   margin-bottom: 40px;
-  /*border: 1px solid #d4d4d5;*/
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 p {

@@ -4,23 +4,28 @@
     <sg-nav></sg-nav>
     <ab-head-img-box title="友链和留言板"></ab-head-img-box>
     <div class="container">
-      <el-row :gutter="10">
+      <el-row :gutter="10" >
         <el-col class="hidden-xs-only" :xs="24" :sm="5" >
           <ab-leftlist></ab-leftlist>
         </el-col>
         <el-col :xs="24" :sm="14" style="transition:all .5s ease-out;margin-bottom:30px;">
           <sg-friends></sg-friends>
-          <h1 style="
+          <div
+            style="
             background: #fff;
+            box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;"
+          >
+          <h1 style="
             padding: 15px;
-            text-align: center;
             padding-bottom: 0;
-            border-radius: 5px;
+            text-align: center;
             font-size: 32px;
             font-weight: 700;
             "
           >留言板</h1>
-          <sg-message></sg-message>
+          <sg-message style="box-shadow: none"></sg-message>
+          </div>
         </el-col>
         <el-col :xs="24" :sm="5">
           <sg-rightlist></sg-rightlist>
