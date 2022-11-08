@@ -91,7 +91,7 @@ export default {
     routeChange() {
       this.queryParams.pageNum = this.$route.query.pageNum == undefined ? 1 : parseInt(this.$route.query.pageNum);
       applyList(this.queryParams).then((response)=>{
-        console.log(response)
+        // console.log(response)
         this.applyList = response.rows;
         this.total = response.total;
       })

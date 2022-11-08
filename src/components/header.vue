@@ -57,7 +57,7 @@
                               'svip-color':this.vipList[0].vipId==2,
                               }"
                         >{{userInfo.nickName}}</div>
-                        <div class="header-vip-time">
+                        <div class="header-vip-time" v-if="this.vipList[0].vipExpiryTime">
                           <span v-if="this.vipList[0].vipExpiryTime.split(' ')[0]">{{ this.vipList[0].vipExpiryTime.split(' ')[0] }}</span>
                         </div>
                       </div>
@@ -69,8 +69,13 @@
                         <span><span v-if="this.lastOneFund.dataVariation>=0">+</span>{{this.lastOneFund.dataVariation}}</span></div>
                     </section>
                     <section>
-                      <div class="fund"><span v-text="this.vipList[0].vip.vipName"></span></div>
-                      <div class="last-cost" v-if="this.vipList[0].vipExpiryTime.length>0">
+                      <div class="fund" v-if="this.vipList[0].vip">
+                        <span v-text="this.vipList[0].vip.vipName"></span>
+                      </div>
+                      <div class="fund" v-else>
+                        <span> 暂无会员</span>
+                      </div>
+                      <div class="last-cost" v-if="this.vipList[0].vipExpiryTime && this.vipList[0].vipExpiryTime.length>0">
                         <span v-text="this.vipList[0].vipExpiryTime.split(' ')[0]"></span> 到期
                       </div>
                     </section>
@@ -147,7 +152,7 @@
                               'svip-color':this.vipList[0].vipId==2,
                               }"
                       >{{userInfo.nickName}}</div>
-                      <div class="header-vip-time">
+                      <div class="header-vip-time" v-if="this.vipList[0].vipExpiryTime">
                         <span v-if="this.vipList[0].vipExpiryTime.split(' ')[0]">{{ this.vipList[0].vipExpiryTime.split(' ')[0] }}</span>
                       </div>
                     </div>
@@ -159,8 +164,13 @@
                       <span><span v-if="this.lastOneFund.dataVariation>=0">+</span>{{this.lastOneFund.dataVariation}}</span></div>
                   </section>
                   <section>
-                    <div class="fund"><span v-text="this.vipList[0].vip.vipName"></span></div>
-                    <div class="last-cost" v-if="this.vipList[0].vipExpiryTime.length>0">
+                    <div class="fund" v-if="this.vipList[0].vip">
+                      <span v-text="this.vipList[0].vip.vipName"></span>
+                    </div>
+                    <div class="fund" v-else>
+                      <span> 暂无会员</span>
+                    </div>
+                    <div class="last-cost" v-if="this.vipList[0].vipExpiryTime && this.vipList[0].vipExpiryTime.length>0">
                       <span v-text="this.vipList[0].vipExpiryTime.split(' ')[0]"></span> 到期
                     </div>
                   </section>
@@ -358,7 +368,7 @@ export default {
         });
         // VIP 状态
         vipStatus().then((res)=>{
-          if(res.length>0)
+          if(res!=null && res.length>0)
             this.vipList = res;
         })
       }

@@ -25,7 +25,8 @@
                 }"
             >
               <span class="iconfont icon-vip"></span>
-              <span v-text="vip.vip.vipName"></span>
+              <span v-if="vip.vip" v-text="vip.vip.vipName"></span>
+              <span v-else>暂无会员</span>
             </span>
           </div>
           <span v-if="vip.vipExpiryTime">有效期至 <span v-text="vip.vipExpiryTime"></span></span>

@@ -1,5 +1,8 @@
 <template>
-  <el-submenu  :index="this.navData.id" :title="this.navData.name" :disabled="this.navData.status==1">
+  <el-submenu  :index="this.navData.id"
+               :title="this.navData.name"
+               :disabled="this.navData.status==1 || (this.navData.childs==null && this.navData.articles.length==0)"
+  >
     <template slot="title" >
       <i class="fa fa-folder" aria-hidden="true"></i>
       <span> {{ this.navData.name }}</span>
