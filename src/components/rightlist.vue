@@ -1,7 +1,6 @@
 ﻿<!-- 右侧固定导航栏 -->
 <template>
   <div class="rightlistBox">
-
     <!-- 分类标签 -->
     <div class="ab-sidebar">
       <div class="ab-title">
@@ -152,7 +151,7 @@ export default {
 
 <style lang="less">
 .rightlistBox {
-  position: relative;
+
 }
 .ab-catch-me {
   text-align: center;

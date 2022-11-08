@@ -64,8 +64,8 @@ body {
   color: #444 !important;
   min-height: 100vh;
   width: 100%;
-  overflow-x: hidden;
-  -webkit-overflow-x: hidden;
+  //overflow-x: hidden;
+  //-webkit-overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -129,8 +129,8 @@ input[type="text"], input[type="button"], input[type="submit"], input[type="sear
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
-  overflow-x: hidden;
-  -webkit-overflow-x: hidden;
+  //overflow-x: hidden;
+  //-webkit-overflow-x: hidden;
   color: #444;
 }
 
