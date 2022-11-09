@@ -10,7 +10,7 @@ export const state = {
   themeObj: 0,//主题
   keywords:'',//关键词
   errorImg: require('../../static/img/tou.jpg') ,
-  baseURL:'http://localhost:7777/',
+  baseURL:'http://abinblog.cn:7777/',
   isLogin:false,
 }
 
