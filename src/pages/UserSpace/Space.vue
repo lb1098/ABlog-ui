@@ -4,7 +4,7 @@
     <ab-head-img-box title="个人空间"></ab-head-img-box>
     <div class="container">
       <el-row :gutter="10">
-        <el-col :xs="24" :sm="6">
+        <el-col :xs="24" :sm="6" style="position: sticky;top: 46px">
           <ab-userinfo></ab-userinfo>
         </el-col>
         <el-col :xs="24" :sm="18">

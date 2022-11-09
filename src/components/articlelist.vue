@@ -40,7 +40,7 @@
             <el-divider></el-divider>
             <div class="ab-article-mark">
               <span>
-                <i class="fa fa-fw fa-user"></i> {{item.createByNickname}}
+                <i class="fa fa-fw fa-user"></i><el-link type="primary" :href="'#/Space/'+item.createBy">{{item.createByNickname}}</el-link>
               </span>
               <span>
                 <i class="fa fa-fw fa-clock-o"></i> {{ showInitDate(item.createTime, 'all') }}

@@ -27,7 +27,8 @@
               <header>
                 <img :src="item.avatar ? item.avatar :$store.state.errorImg" >
                 <div class="i-name">
-                  {{ item.username }}
+                  <el-link v-if="item.createBy>0" type="primary" :href="'#/Space/'+item.createBy"> {{ item.username }}</el-link>
+                  <span v-else>{{ item.username }}</span>
                 </div>
                 <div class="i-time">
                   <time>{{ item.createTime }}</time>
@@ -46,7 +47,11 @@
                   <header>
                     <img :src="citem.avatar ? citem.avatar :$store.state.errorImg">
                     <div class="i-name">
-                      {{ citem.username }} <span>回复</span> {{ citem.toCommentUserName }}
+                      <a style="color: #409EFF" v-if="citem.createBy>0" type="primary" :href="'#/Space/'+citem.createBy">{{ citem.username }}</a>
+                      <span v-else>{{ citem.username }}</span>
+                        <span>回复</span>
+                      <a style="color: #409EFF" v-if="citem.toCommentUserId>0" type="primary" :href="'#/Space/'+citem.toCommentUserId">{{ citem.toCommentUserName }}</a>
+                      <span v-else>{{ citem.toCommentUserName }}</span>
                     </div>
                     <div class="i-time">
                       <time>{{ citem.createTime }}</time>

@@ -12,7 +12,8 @@
         <el-divider></el-divider>
         <div class="ab-detail-mark">
           <span>
-            <i class="fa fa-fw fa-user"></i> {{ detailObj.createByNickname }}
+            <i class="fa fa-fw fa-user"></i>
+            <el-link type="primary" :href="'#/Space/'+detailObj.createBy">{{ detailObj.createByNickname }}</el-link>
           </span>
           <span>
             <i class="fa fa-fw fa-clock-o"></i> {{ detailObj.createTime }}

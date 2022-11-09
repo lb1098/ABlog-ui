@@ -56,7 +56,7 @@
                               'vip-color':this.vipList[0].vipId==1,
                               'svip-color':this.vipList[0].vipId==2,
                               }"
-                        >{{userInfo.nickName}}</div>
+                        >  <el-link type="primary" :href="'#/Space/'+userInfo.id"> {{userInfo.nickName}}</el-link> </div>
                         <div class="header-vip-time" v-if="this.vipList[0].vipExpiryTime">
                           <span v-if="this.vipList[0].vipExpiryTime.split(' ')[0]">{{ this.vipList[0].vipExpiryTime.split(' ')[0] }}</span>
                         </div>

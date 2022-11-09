@@ -8,7 +8,8 @@
       </div>
       <div class="ab-detail-mark">
         <span>
-          <i class="fa fa-fw fa-user"></i> {{ articleObj.createByNickname }}
+          <i class="fa fa-fw fa-user"></i>
+          <el-link type="primary" :href="'#/Space/'+articleObj.createBy">{{ articleObj.createByNickname }}</el-link>
         </span>
         <span>
           <i class="fa fa-fw fa-clock-o"></i> {{ articleObj.createTime }}

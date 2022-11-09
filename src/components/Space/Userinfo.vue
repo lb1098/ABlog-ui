@@ -10,7 +10,7 @@
         {{userInfo.nickName}}
       </div>
       <div style="text-align: center;margin-top: 10px;">
-        <el-row>
+        <el-row class="info-block">
           <el-col :span="8"  class="ab-text-overflow">
             <i class="fa fa-envelope" aria-hidden="true"></i> EMAIL
           </el-col>
@@ -90,5 +90,9 @@ export default {
   color: #777;
   font-weight: 700;
 }
-
+.info-block {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+}
 </style>
