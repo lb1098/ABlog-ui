@@ -106,9 +106,6 @@ export default new Router({
       path: '/Space/:id',
       component: resolve => require(['../pages/UserSpace/Space.vue'], resolve),
       name: 'Space',
-      children: [
-
-      ]
     },
     // 404页面
     {

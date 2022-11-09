@@ -85,3 +85,12 @@ export function savaUserInfo(userinfo) {
     data: userinfo
   })
 }
+
+export function getUserInfoById(userId) {
+  return request({
+    url: '/user/seeOtherUserInfo',
+    method: 'get',
+    params: {"userId": userId}
+  })
+}
+

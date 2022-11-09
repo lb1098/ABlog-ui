@@ -32,3 +32,13 @@ export function buyGuideArticle(id) {
   })
 }
 
+export function guideArticleByUserId(query) {
+  return request({
+    url: '/guide/guideArticleByUserId',
+    method: 'get',
+    headers: {
+      isToken: false
+    },
+    params: query
+  })
+}

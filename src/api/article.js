@@ -77,3 +77,17 @@ export function getTagByCategoryId(CategoryId) {
     method: 'get'
   })
 }
+
+// 查询文章列表
+export function articleListByUserId(query) {
+  return request({
+    url: '/article/articleListByUserId',
+    method: 'get',
+    headers: {
+      isToken: false
+    },
+    params: query
+  })
+}
+
+

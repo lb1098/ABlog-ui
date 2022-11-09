@@ -30,12 +30,6 @@ import leftlist from "../components/leftlist";
 
 export default {
   name: 'Home',
-  data() { //选项 / 数据
-    return {}
-  },
-  methods: { //事件处理器
-
-  },
   components: { //定义组件
     'sg-navbar': header,
     'ab-head-img-box':headImgBox,
@@ -44,9 +38,22 @@ export default {
     'sg-rightlist': rightlist,
     'ab-footer': footer,
   },
-  created() { //生命周期函数
+  data() { //选项 / 数据
+    return {
 
-  }
+    }
+  },
+  watch: {
+    '$route': 'routeChange',
+  },
+  mounted() {
+    this.routeChange();
+  },
+  methods: { //事件处理器
+    routeChange() {
+
+    },
+  },
 }
 </script>
 
