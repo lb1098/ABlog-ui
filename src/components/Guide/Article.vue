@@ -2,8 +2,8 @@
   <div class="GuideMain" v-loading="articleLoading">
     <div class="contentMain">
       <div class="contentTitle">
-        <i v-if="articleObj.buyed" style="color: green" class="fa fa-unlock-alt" aria-hidden="true"></i>
-        <i v-else style="color: orange" class="fa fa-lock" aria-hidden="true"></i>
+<!--        <i v-if="articleObj.buyed" style="color: green" class="fa fa-unlock-alt" aria-hidden="true"></i>-->
+<!--        <i v-else style="color: orange" class="fa fa-lock" aria-hidden="true"></i>-->
         {{ articleObj.title }}
       </div>
       <div class="ab-detail-mark">

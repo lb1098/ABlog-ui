@@ -13,8 +13,8 @@
       :index="'/Guide/Article/'+article.id"
       :key="'/Guide/Article/'+article.id"
       v-for="article in this.navData.articles">
-      <i v-if="article.isLock" style="color: orange" class="fa fa-lock" aria-hidden="true"></i>
-      <i v-else style="color: green" class="fa fa-unlock-alt" aria-hidden="true"></i>
+<!--      <i v-if="article.isLock" style="color: orange" class="fa fa-lock" aria-hidden="true"></i>-->
+<!--      <i v-else style="color: green" class="fa fa-unlock-alt" aria-hidden="true"></i>-->
       {{ article.title }}
     </el-menu-item>
     <NavItem
