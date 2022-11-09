@@ -1,5 +1,13 @@
 <template>
   <div class="GuideMain" v-loading="articleLoading">
+    <!-- 右侧上滑小图片 -->
+    <el-backtop
+      target=".GuideMain"
+      :visibility-height="50"
+      :right="100"
+      :bottom="100"
+    >
+    </el-backtop>
     <div class="contentMain">
       <div class="contentTitle">
 <!--        <i v-if="articleObj.buyed" style="color: green" class="fa fa-unlock-alt" aria-hidden="true"></i>-->
