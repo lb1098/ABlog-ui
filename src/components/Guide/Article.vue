@@ -291,7 +291,7 @@ b {
   overflow-y: scroll;
   box-sizing: border-box;
   padding: 0 25px;
-  margin-left: 40px;
+  /*margin-left: 40px;*/
 }
 
 .v-note-wrapper .v-note-panel .v-note-show .v-show-content {

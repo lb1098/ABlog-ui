@@ -10,7 +10,7 @@
       <aside id="leftTreeNav">
         <left-tree-nav></left-tree-nav>
       </aside>
-      <section>
+      <section id="rightContent">
         <!--  定制 隐藏导航栏      -->
         <div class="hidden-aside-tree-nav hidden-xs-only" @click="hiddenAside()" >
           <i class="fa fa-arrow-right"
@@ -47,10 +47,13 @@ export default {
         this.openLeftNav = false
         this.openRotate = !this.openRotate;
         $('#leftTreeNav').finish().animate({'width':'0%'},300);
+        $('#rightContent').finish().animate({'width':'100%'},300);
       } else{
         this.openLeftNav = true
         this.openRotate = !this.openRotate;
         $('#leftTreeNav').finish().animate({'width':'100%'},300);
+        // $('#rightContent').width();
+        $('#rightContent').finish().animate({'width':$(window).width()-$('#leftTreeNav').width()},300);
       }
     },
   },
@@ -64,10 +67,16 @@ export default {
     if($(window).width()<=768 ){
       this.openLeftNav = false;
       $('#leftTreeNav').finish().animate({'width':'0%'},0);
+
     } else {
       this.openLeftNav = true;
     }
-
+    // 只判断宽度
+    if($(window).width()<=768 ) {
+      $('#rightContent').width("100%");
+    } else {
+      $('#rightContent').width($(window).width()-$('#leftTreeNav').width());
+    }
   },
   created() { //生命周期函数
     var that = this;
@@ -76,11 +85,18 @@ export default {
         that.openLeftNav = false;
         $('#leftTreeNav').finish().animate({'width':'0%'},300);
       } else {
+        // $('#rightContent').width($(window).width()-300);
         if(!that.openLeftNav && $(window).width()>768){
           that.openLeftNav = true;
           that.openRotate = true;
           $('#leftTreeNav').finish().animate({'width':'100%'},300);
         }
+      }
+      // 只判断宽度
+      if($(window).width()<=768 ) {
+        $('#rightContent').width("100%");
+      } else {
+        $('#rightContent').width($(window).width()-$('#leftTreeNav').width());
       }
     });
   }
