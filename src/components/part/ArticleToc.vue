@@ -21,7 +21,6 @@
         node-key ="id"
         @node-click="scrollToPosition"
         ref="menuTree"
-        default-expand-all
         accordion>
       </el-tree>
     </el-collapse-transition>
