@@ -1,5 +1,7 @@
 <template>
   <div class="GuideMain" v-loading="articleLoading">
+
+
     <!-- 右侧上滑小图片 -->
     <el-backtop
       target=".GuideMain"
@@ -8,61 +10,79 @@
       :bottom="100"
     >
     </el-backtop>
+
     <div class="contentMain">
       <div class="contentTitle">
-<!--        <i v-if="articleObj.buyed" style="color: green" class="fa fa-unlock-alt" aria-hidden="true"></i>-->
-<!--        <i v-else style="color: orange" class="fa fa-lock" aria-hidden="true"></i>-->
+        <!--        <i v-if="articleObj.buyed" style="color: green" class="fa fa-unlock-alt" aria-hidden="true"></i>-->
+        <!--        <i v-else style="color: orange" class="fa fa-lock" aria-hidden="true"></i>-->
         {{ articleObj.title }}
       </div>
       <div class="ab-detail-mark">
+    <span>
+      <i class="fa fa-fw fa-user"></i><a style="color: #409eff"
+                                         :href="'#/Space/'+articleObj.createBy">{{ articleObj.createByNickname }}</a>
+    </span>
         <span>
-          <i class="fa fa-fw fa-user"></i><a style="color: #409eff" :href="'#/Space/'+articleObj.createBy">{{ articleObj.createByNickname }}</a>
-        </span>
+      <i class="fa fa-fw fa-clock-o"></i> {{ articleObj.createTime }}
+    </span>
         <span>
-          <i class="fa fa-fw fa-clock-o"></i> {{ articleObj.createTime }}
-        </span>
-        <span>
-          <i class="fa fa-pie-chart" aria-hidden="true"></i> 全文约 {{ articleObj.allWordSize }} 字
-        </span>
+      <i class="fa fa-pie-chart" aria-hidden="true"></i> 全文约 {{ articleObj.allWordSize }} 字
+    </span>
         <span v-if="articleObj.hasHidden">
-          <i class="fa fa-pie-chart" aria-hidden="true"></i> 隐藏内容约 {{ articleObj.hiddenWordSize }} 字
-        </span>
+      <i class="fa fa-pie-chart" aria-hidden="true"></i> 隐藏内容约 {{ articleObj.hiddenWordSize }} 字
+    </span>
         <span v-if="!articleObj.buyed">
-          <i class="fa fa-lock" aria-hidden="true"></i>
-          <span >需{{ articleObj.fundLimit }}积分</span>
-          <span v-if="articleObj.vipLevelLimit>0">&
-            <span
-              :class="{'vip-color':articleObj.vipLevelLimit==1,'svip-color': articleObj.vipLevelLimit==2}"
-              class="iconfont icon-vip"></span>
-          </span>
-        </span>
+      <i class="fa fa-lock" aria-hidden="true"></i>
+      <span>需{{ articleObj.fundLimit }}积分</span>
+      <span v-if="articleObj.vipLevelLimit>0">&
+        <span
+          :class="{'vip-color':articleObj.vipLevelLimit==1,'svip-color': articleObj.vipLevelLimit==2}"
+          class="iconfont icon-vip"></span>
+      </span>
+    </span>
         <span v-else><i class="fa fa-unlock-alt" aria-hidden="true"></i> 已解锁</span>
       </div>
       <hr>
       <div class="ab-detail-summary markdown-body" v-if="articleObj.summary" v-html="articleObj.summary"></div>
       <div style="height: 400px" v-if="articleObj.guideVideoUrl">
         <iframe :src="articleObj.guideVideoUrl"
-                height=100% width=100% scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+                height=100% width=100% scrolling="no" border="0" frameborder="no" framespacing="0"
+                allowfullscreen="true"></iframe>
       </div>
-      <div class="content-style">
-        <mavon-editor
-          :code_style="code_style"
-          :externalLink="externalLink"
-          :subfield="false"
-          defaultOpen="preview"
-          :toolbarsFlag="false"
-          :editable="false"
-          :ishljs="true"
-          :navigation="false"
-          v-model="articleObj.content"
-          style="
-            min-height: auto;
-            box-shadow: none;
-            z-index: 0;
-          "
-        >
-        </mavon-editor>
-      </div>
+
+      <el-row  :gutter="0">
+        <el-col :md="24" :lg="18">
+          <div class="content-style">
+            <mavon-editor
+              id="article1"
+              :code_style="code_style"
+              :externalLink="externalLink"
+              :subfield="false"
+              defaultOpen="preview"
+              :toolbarsFlag="false"
+              :editable="false"
+              :ishljs="true"
+              :navigation="false"
+              v-model="articleObj.content"
+              style="
+        min-height: auto;
+        box-shadow: none;
+        z-index: 0;
+      "
+            >
+            </mavon-editor>
+          </div>
+        </el-col>
+        <el-col id="toc-area" class="hidden-md-and-down"  :lg="6" >
+          <!--  TODO 右边导航栏，后续增加   -->
+          <div class="ab-guide-toc ">
+            <h3 style="font-weight: bold;margin-bottom: 10px">此页目录</h3>
+            <article-toc
+              style="border-left: 2px solid rgba(0,0,0,.2);">
+            </article-toc>
+          </div>
+        </el-col>
+      </el-row>
 
       <div class="hidden-section" v-if="articleObj.hasHidden">
         <div v-if="!haslogin">
@@ -94,10 +114,10 @@
             :navigation="false"
             v-model="articleObj.hiddenData"
             style="
-                  min-height: auto;
-                  box-shadow: none;
-                  z-index: 0;
-                  "
+              min-height: auto;
+              box-shadow: none;
+              z-index: 0;
+              "
           >
           </mavon-editor>
         </div>
@@ -114,10 +134,10 @@
             :navigation="false"
             v-model="articleObj.hiddenGuide"
             style="
-                  min-height: auto;
-                  box-shadow: none;
-                  z-index: 0;
-                  "
+              min-height: auto;
+              box-shadow: none;
+              z-index: 0;
+              "
           >
           </mavon-editor>
         </div>
@@ -142,9 +162,9 @@
       <div class="ab-detail-bottom">
         <el-row>
           <el-col :span="8">
-                <span>
-                  <i class="fa fa-fw fa-clock-o"></i>上次编辑于：{{ articleObj.updateTime }}
-                </span>
+            <span>
+              <i class="fa fa-fw fa-clock-o"></i>上次编辑于：{{ articleObj.updateTime }}
+            </span>
           </el-col>
 
           <el-col :span="8" style="text-align: center">
@@ -155,9 +175,9 @@
 
           <el-col :span="8">
             <el-tooltip class="item" effect="dark" content="转载请保留本文转载地址，著作权归作者所有" placement="top">
-                  <span style="float: right;">
-                    <i class="fa fa-fw fa-copyright"></i>允许规范转载
-                  </span>
+              <span style="float: right;">
+                <i class="fa fa-fw fa-copyright"></i>允许规范转载
+              </span>
             </el-tooltip>
           </el-col>
 
@@ -167,7 +187,7 @@
       <hr>
       <ab-footer></ab-footer>
     </div>
-    <!--  TODO 右边导航栏，后续增加   -->
+
 
   </div>
 </template>
@@ -176,6 +196,7 @@
 import footer from "../footer";
 import {buyGuideArticle, getGuideArticle} from "../../api/guide";
 import {getToken} from '../../utils/auth'
+import ArticleToc from "../part/ArticleToc";
 
 export default {
   name: "GuideMain",
@@ -183,32 +204,32 @@ export default {
     return {
       code_style: 'idea',
       externalLink: {
-        markdown_css: function() {
+        markdown_css: function () {
           // 这是你的markdown css文件路径
           return '/markdown/github-markdown.min.css';
         },
-        hljs_js: function() {
+        hljs_js: function () {
           // 这是你的hljs文件路径
           return '/highlightjs/highlight.min.js';
         },
-        hljs_css: function(css) {
+        hljs_css: function (css) {
           // 这是你的代码高亮配色文件路径
           return '/highlightjs/styles/' + css + '.min.css';
         },
-        hljs_lang: function(lang) {
+        hljs_lang: function (lang) {
           // 这是你的代码高亮语言解析路径
           return '/highlightjs/languages/' + lang + '.min.js';
         },
-        katex_css: function() {
+        katex_css: function () {
           // 这是你的katex配色方案路径路径
           return '/katex/katex.min.css';
         },
-        katex_js: function() {
+        katex_js: function () {
           // 这是你的katex.js路径
           return '/katex/katex.min.js';
         },
       },
-      articleLoading:true,
+      articleLoading: true,
       haslogin: false, //是否已登录
       pdonate: true,
       articleObj: {},//返回详情数据
@@ -221,6 +242,7 @@ export default {
   },
   mounted() {
     this.routeChange();
+    $('.ab-guide-toc').width($("#toc-area").width())
   },
   methods: { //事件处理器
     routeChange() {
@@ -264,7 +286,7 @@ export default {
         cancelButtonText: '取消',
         type: 'success'
       }).then(() => {
-        buyGuideArticle(this.id).then(res=>{
+        buyGuideArticle(this.id).then(res => {
           this.$notify({
             message: '购买成功',
             type: 'success'
@@ -277,11 +299,37 @@ export default {
   },
   components: { //定义组件
     "ab-footer": footer,
+    ArticleToc,
   },
+
+  created() {
+    var that = this;
+    $(window).resize(function () {
+      $('.ab-guide-toc').width($("#toc-area").width())
+    })
+  }
 }
 </script>
 
 <style>
+.ab-guide-toc {
+  position: fixed;
+  top: 0;
+  max-height: 50vh!important;
+  /*width: 100%;*/
+
+  margin-left: 10px;
+  padding-left: 5px;
+  box-sizing: border-box;
+  margin-top: 200px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.ab-guide-toc ::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+
 b {
   font-weight: 700;
 }
@@ -362,7 +410,7 @@ hr {
   left: 50%;
   transform: translateX(-50%);
   font-weight: 700;
-  color: rgba(0,0,0,0.3);
+  color: rgba(0, 0, 0, 0.3);
   font-size: 16px;
   z-index: 2;
 }

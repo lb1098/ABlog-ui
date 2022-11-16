@@ -12,7 +12,7 @@
 
     <el-collapse-transition>
       <el-tree
-        class="ab-toc-tree"
+        class="ab-toc-tree ab-text-overflow"
         :data="toc"
         empty-text="暂无目录"
         :props="defaultProps"
@@ -58,10 +58,10 @@ export default {
   watch: {
     // 如果路由有变化，会再次执行该方法
     '$route':'routeChange',
-    // isFixed(newValue) {
-    //   this.showDirectory = newValue;
-    //   this.tocAndCli();
-    // }
+    isFixed(newValue) {
+      this.showDirectory = newValue;
+      this.tocAndCli();
+    }
   },
   methods: { //事件处理器
     async routeChange() {//展示页面信息
@@ -162,9 +162,11 @@ export default {
       const position = $(id).offset();
       position.top = position.top - 35
       $("html,body").animate({ scrollTop: position.top }, 500);
+      $(".GuideMain").animate({ scrollTop: position.top }, 500);
     },
     handleScroll(){     //处理目录显示样式
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop // 滚动条偏移量
+      let scrollTop = $(".GuideMain").scrollTop() || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop // 滚动条偏移量
+      // console.log(scrollTop)
       let offsetTop = 1800  // 要滚动到顶部吸附的元素的偏移量
       this.isFixed = scrollTop > offsetTop ? true : false;  // 如果滚动到顶部了，this.isFixed就为true
       this.showLeft = scrollTop > offsetTop-1500 ? true : false;  // 如果滚动到顶部了，this.showLeft就为true
@@ -263,6 +265,8 @@ export default {
   },
   mounted(){
     window.addEventListener('scroll',this.handleScroll) // 监听滚动事件，然后用handleScroll这个方法进行相应的处理
+    if($(".GuideMain"))
+      $(".GuideMain").on('scroll',this.handleScroll) // 监听滚动事件，然后用handleScroll这个方法进行相应的处理
     let that = this;
     //监听退出全屏事件
     window.onresize = function() {
