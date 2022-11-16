@@ -21,7 +21,7 @@
         node-key ="id"
         @node-click="scrollToPosition"
         ref="menuTree"
-
+        default-expand-all
         accordion>
       </el-tree>
     </el-collapse-transition>
@@ -161,8 +161,14 @@ export default {
       let id = data.href
       const position = $(id).offset();
       position.top = position.top - 35
-      $("html,body").animate({ scrollTop: position.top }, 500);
-      $(".GuideMain").animate({ scrollTop: position.top }, 500);
+      if(this.$route.path.includes("Guide")){
+        var pos1 =  $("#article1").offset().top
+        // console.log( pos1)
+        // console.log( $(id).offset().top)
+        $(".GuideMain").finish().animate({ scrollTop: position.top-pos1 }, 500);
+      } else
+        $("html,body").finish().animate({ scrollTop: position.top }, 500);
+
     },
     handleScroll(){     //处理目录显示样式
       let scrollTop = $(".GuideMain").scrollTop() || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop // 滚动条偏移量
@@ -197,9 +203,6 @@ export default {
 
       if (node.parent)
         this.expand(node.parent)
-    },
-    sendComment() {     //获取发送评论框焦点
-      document.getElementById('rootInput').focus();
     },
     //全屏/非全屏
     fullScreen() {
@@ -283,7 +286,7 @@ export default {
 
 <style lang="less">
 .ab-toc-tree {
-  max-height: 80vh;
+  max-height: 50vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }
