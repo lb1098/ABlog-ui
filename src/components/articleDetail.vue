@@ -3,7 +3,6 @@
   <div>
     <div>
       <div class="ab-detail-article">
-
 <!--        <div class="ab-detail-title"></div>-->
         <el-page-header @back="goBack" :content="detailObj.title">
 
@@ -56,12 +55,13 @@
             :z-index="100"
           ></el-image>
         </div>
-        <div class="ab-detail">
+        <div class="ab-detail" id="article1">
           <div class="ab-detail-summary markdown-body" v-if="detailObj.summary" v-html="detailObj.summary"></div>
 
           <!-- <div class="article-content markdown-body" v-html="detailObj.content"></div>-->
 
           <mavon-editor
+
             :subfield = "false"
             :code_style="code_style"
             :externalLink="externalLink"
@@ -125,7 +125,6 @@
         </div>
       </div>
     </div>
-
     <sg-message v-if="detailObj.isComment==0"></sg-message>
   </div>
 </template>
@@ -134,7 +133,7 @@
 import {initDate} from '../utils/server.js'
 import {getArticle, updateViewCount} from '../api/article.js'
 import message from '../components/message.vue'
-import treeNav from "./part/treeNav";
+
 
 export default {
   data() { //选项 / 数据
@@ -217,7 +216,6 @@ export default {
   components: {
     //定义组件
     'sg-message': message,
-    treeNav,
   },
   created() {
     //生命周期函数

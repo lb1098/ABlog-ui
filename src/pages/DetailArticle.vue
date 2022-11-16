@@ -13,6 +13,11 @@
         </el-col>
         <el-col :xs="24" :sm="5">
           <sg-rightlist></sg-rightlist>
+          <div class="ab-sidebar ab-sidebar-toc">
+            <div class="ab-toc">
+              <article-toc></article-toc>
+            </div>
+          </div>
         </el-col>
       </el-row>
     </div>
@@ -27,10 +32,14 @@ import articleDetail from '../components/articleDetail.vue'
 import footer from "../components/footer";
 import headImgBox from "../components/part/headImgBox";
 import leftlist from "../components/leftlist";
+import ArticleToc from "../components/part/ArticleToc";
+
 export default {
   name: 'DetailArticle',
   data() { //选项 / 数据
-    return {}
+    return {
+      tocTop:-1,
+    }
   },
   methods: { //事件处理器
 
@@ -43,16 +52,36 @@ export default {
     'sg-rightlist': rightlist,
     'ab-footer': footer,
     'ab-head-img-box':headImgBox,
-
+    ArticleToc,
   },
   created() { //生命周期函数
 
   },
   mounted() {
-
+    var that = this;
+    $(window).on('mousewheel', function() {
+      var siderWidth = $('.ab-sidebar').width();
+      if(that.tocTop===-1 && $(".ab-sidebar-toc").offset().top!==undefined)
+        that.tocTop =  $(".ab-sidebar-toc").offset().top;
+      // console.log(that.tocTop)
+      if($(window).scrollTop()>that.tocTop){
+        $('.ab-sidebar-toc').css({
+          "position":'fixed',
+          "top":"46px",
+          "width":siderWidth+"px",
+        });
+      } else  {
+          $('.ab-sidebar-toc').css({
+            "position":'inherit',
+          });
+      }
+    });
   }
 }
 </script>
 
 <style>
+.ab-sidebar-toc {
+  /*width: 100%;*/
+}
 </style>

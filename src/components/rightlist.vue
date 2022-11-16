@@ -32,6 +32,7 @@
     </div>
 
 
+
     <!-- 右侧上滑小图片 -->
     <el-backtop
       :bottom="100"
@@ -48,6 +49,7 @@
 import {hotArticleList} from "../api/article";
 import {tagList} from "../api/tag"
 import {getCategoryList} from "../api/category";
+import ArticleToc from "./part/ArticleToc";
 
 export default {
   data() {
@@ -120,6 +122,7 @@ export default {
   },
   components: {
     //定义组件
+    ArticleToc,
   },
 
   created() {
@@ -277,5 +280,8 @@ export default {
   width: 100px;
   overflow: hidden;
   text-overflow:ellipsis;
+}
+.ab-toc {
+  padding: 14px 0;
 }
 </style>
