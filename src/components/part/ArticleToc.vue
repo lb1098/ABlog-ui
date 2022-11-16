@@ -424,4 +424,10 @@ export default {
     cursor: pointer;
   }
 }
+.el-tree-node__content {
+  display: block;
+  overflow: hidden;
+  white-space:nowrap ;
+  text-overflow: ellipsis;
+}
 </style>
