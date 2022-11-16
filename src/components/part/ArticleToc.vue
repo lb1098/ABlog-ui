@@ -12,6 +12,7 @@
 
     <el-collapse-transition>
       <el-tree
+        class="ab-toc-tree"
         :data="toc"
         empty-text="暂无目录"
         :props="defaultProps"
@@ -277,6 +278,11 @@ export default {
 
 
 <style lang="less">
+.ab-toc-tree {
+  max-height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .fold-content {
   width: 50px;
   height: auto;
