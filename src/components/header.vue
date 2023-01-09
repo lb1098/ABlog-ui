@@ -8,14 +8,14 @@
           <!-- pc端导航 -->
           <div class="headBox">
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :router="true">
-              <el-menu-item index="/Guide"><i class="fa fa-wa fa-archive ab-white"></i> 教程</el-menu-item>
+
               <el-menu-item index="/Home"><i class="fa fa-wa fa-home ab-white"></i> 首页</el-menu-item>
               <el-menu-item index="/Archive"><i class="fa fa-wa fa-archive ab-white"></i> 归档</el-menu-item>
               <el-menu-item index="/Reward"><i class="fa fa-wa fa-cny ab-white"></i> 赞赏</el-menu-item>
               <el-menu-item index="/Friendslink"><i class="fa fa-wa fa-users ab-white"></i> 友链</el-menu-item>
-
               <el-submenu index="">
                 <template slot="title">其他</template>
+                <el-menu-item index="/Guide"><i class="fa fa-wa fa-archive ab-white"></i> 教程</el-menu-item>
                 <el-menu-item index="/Info"><i class="fa fa-wa fa-vcard ab-white"></i> 关于</el-menu-item>
                 <el-menu-item index="/VIP" class="vip-color"><span class="iconfont icon-vip"></span> VIP</el-menu-item>
               </el-submenu>
