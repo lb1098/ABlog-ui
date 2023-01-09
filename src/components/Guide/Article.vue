@@ -11,6 +11,16 @@
     >
     </el-backtop>
 
+    <!--  TODO 右边导航栏，后续增加   -->
+
+    <div class="ab-guide-toc ">
+      <h3 style="font-weight: bold;margin-bottom: 10px">此页目录</h3>
+      <article-toc
+        style="border-left: 2px solid rgba(0,0,0,.2);">
+      </article-toc>
+    </div>
+
+
     <div class="contentMain">
       <div class="contentTitle">
         <!--        <i v-if="articleObj.buyed" style="color: green" class="fa fa-unlock-alt" aria-hidden="true"></i>-->
@@ -51,7 +61,7 @@
       </div>
 
       <el-row  :gutter="0">
-        <el-col :md="24" :lg="18">
+        <el-col :md="24" >
           <div class="content-style">
             <mavon-editor
               id="article1"
@@ -71,15 +81,6 @@
       "
             >
             </mavon-editor>
-          </div>
-        </el-col>
-        <el-col id="toc-area" class="hidden-md-and-down"  :lg="6" >
-          <!--  TODO 右边导航栏，后续增加   -->
-          <div class="ab-guide-toc ">
-            <h3 style="font-weight: bold;margin-bottom: 10px">此页目录</h3>
-            <article-toc
-              style="border-left: 2px solid rgba(0,0,0,.2);">
-            </article-toc>
           </div>
         </el-col>
       </el-row>
@@ -242,7 +243,7 @@ export default {
   },
   mounted() {
     this.routeChange();
-    $('.ab-guide-toc').width($("#toc-area").width())
+    $('.ab-guide-toc').width($(".contentMain").css("margin-right"))
   },
   methods: { //事件处理器
     routeChange() {
@@ -305,7 +306,7 @@ export default {
   created() {
     var that = this;
     $(window).resize(function () {
-      $('.ab-guide-toc').width($("#toc-area").width())
+      $('.ab-guide-toc').width($(".contentMain").css("margin-right"))
     })
   }
 }
@@ -315,9 +316,8 @@ export default {
 .ab-guide-toc {
   position: fixed;
   top: 0;
+  right: 0;
   max-height: 50vh!important;
-  /*width: 100%;*/
-
   margin-left: 10px;
   padding-left: 5px;
   box-sizing: border-box;
