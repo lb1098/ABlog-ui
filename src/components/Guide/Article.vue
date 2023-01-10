@@ -11,15 +11,13 @@
     >
     </el-backtop>
 
-    <!--  TODO 右边导航栏，后续增加   -->
-
-    <div class="ab-guide-toc ">
-      <h3 style="font-weight: bold;margin-bottom: 10px">此页目录</h3>
-      <article-toc
-        style="border-left: 2px solid rgba(0,0,0,.2);">
-      </article-toc>
-    </div>
-
+    <!--  右边导航栏，后续增加   -->
+<!--    <div class="ab-guide-toc ">-->
+<!--      <h3 style="font-weight: bold;margin-bottom: 10px">此页目录</h3>-->
+<!--      <article-toc-->
+<!--        style="border-left: 2px solid rgba(0,0,0,.2);">-->
+<!--      </article-toc>-->
+<!--    </div>-->
 
     <div class="contentMain">
       <div class="contentTitle">
@@ -185,8 +183,6 @@
         </el-row>
       </div>
 
-      <hr>
-      <ab-footer></ab-footer>
     </div>
 
 
@@ -335,10 +331,13 @@ b {
 }
 
 .GuideMain {
-  height: 100%;
-  overflow-y: scroll;
+  background-color: #fff;
   box-sizing: border-box;
-  padding: 0 25px;
+  padding: 10px 25px 30px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 1px rgba(0,0,0,0.1);
+
   /*margin-left: 40px;*/
 }
 
@@ -355,9 +354,7 @@ b {
 
 .contentTitle {
   font-size: 2.2rem;
-  margin-top: 3rem;
   margin-bottom: 16px;
-  position: relative;
 }
 
 .contentTitle > i {

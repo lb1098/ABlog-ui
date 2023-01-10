@@ -91,10 +91,21 @@ export default new Router({
       component: resolve => require(['../pages/VIP/VIP.vue'], resolve),
       name: 'VIP'
     },
+    // {
+    //   path: '/Guide',
+    //   component: resolve => require(['../pages/Guide.vue'], resolve),
+    //   name: 'Guide',
+    //   children: [
+    //     {
+    //       path:'Article/:id',
+    //       component: resolve => require(['../components/Guide/Article.vue'], resolve),
+    //     },
+    //   ]
+    // },
     {
       path: '/Guide',
-      component: resolve => require(['../pages/Guide.vue'], resolve),
-      name: 'Guide',
+      component: resolve => require(['../pages/GuideBlock.vue'], resolve),
+      name: 'GuideBlock',
       children: [
         {
           path:'Article/:id',

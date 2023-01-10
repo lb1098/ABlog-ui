@@ -604,7 +604,9 @@ a {
   overflow: hidden;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
-
+.ab-toc {
+  padding: 14px 0;
+}
 .no-vip-color {
   color: #999 !important;
 }

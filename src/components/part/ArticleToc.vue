@@ -160,14 +160,14 @@ export default {
       let id = data.href
       const position = $(id).offset();
       position.top = position.top - 35
-      if(this.$route.path.includes("Guide")){
-        var pos1 =  $("#article1").offset().top
-        // console.log( pos1)
-        // console.log( $(id).offset().top)
-        $(".GuideMain").finish().animate({ scrollTop: position.top-pos1 }, 500);
-      } else
-        $("html,body").finish().animate({ scrollTop: position.top }, 500);
-
+      // if(this.$route.path.includes("Guide")){
+      //   var pos1 =  $("#article1").offset().top
+      //   // console.log( pos1)
+      //   // console.log( $(id).offset().top)
+      //   $(".GuideMain").finish().animate({ scrollTop: position.top-pos1 }, 500);
+      // } else
+      $("html,body").finish().animate({ scrollTop: position.top }, 500);
+      // $(window).trigger("mousewheel")
     },
     handleScroll(){     //处理目录显示样式
       let scrollTop = $(".GuideMain").scrollTop() || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop // 滚动条偏移量
@@ -286,7 +286,7 @@ export default {
 <style lang="less">
 .ab-toc-tree {
   max-height: 50vh;
-  overflow-y: scroll;
+  //overflow-y: scroll;
   overflow-x: hidden;
 }
 .fold-content {

@@ -281,7 +281,4 @@ export default {
   overflow: hidden;
   text-overflow:ellipsis;
 }
-.ab-toc {
-  padding: 14px 0;
-}
 </style>

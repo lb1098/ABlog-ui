@@ -79,6 +79,10 @@ export default {
       reverse: false,
       activities: [
         {
+          content: '修改教程页样式',
+          timestamp: '2023-1-10'
+        },
+        {
           content: '新增最新文章评论、最新留言板',
           timestamp: '2022-10-23'
         },
