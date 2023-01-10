@@ -172,7 +172,7 @@ export default {
     handleScroll(){     //处理目录显示样式
       let scrollTop = $(".GuideMain").scrollTop() || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop // 滚动条偏移量
       // console.log(scrollTop)
-      let offsetTop = 1800  // 要滚动到顶部吸附的元素的偏移量
+      let offsetTop = 2000  // 要滚动到顶部吸附的元素的偏移量
       this.isFixed = scrollTop > offsetTop ? true : false;  // 如果滚动到顶部了，this.isFixed就为true
       this.showLeft = scrollTop > offsetTop-1500 ? true : false;  // 如果滚动到顶部了，this.showLeft就为true
       let temp;   //存储当前浏览节点

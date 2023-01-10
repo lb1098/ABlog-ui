@@ -1,12 +1,19 @@
 ﻿<!-- 右侧固定导航栏 -->
 <template>
   <div class="rightlistBox">
-    <div  v-if="$route.path!='/Guide'" class="ab-sidebar ab-sidebar-toc hidden-xs-only">
-      <div class="ab-toc">
-        <article-toc></article-toc>
+
+    <!--  只有具体的页面才会显示  -->
+    <div v-if="$route.path!='/Guide'">
+      <!-- 热门文章  -->
+      <hot-article-list></hot-article-list>
+
+      <!--  导航栏   -->
+      <div class="ab-sidebar ab-sidebar-toc hidden-xs-only">
+        <div class="ab-toc">
+          <article-toc></article-toc>
+        </div>
       </div>
     </div>
-
 
     <!-- 右侧上滑小图片 -->
     <el-backtop
@@ -23,6 +30,7 @@
 <script>
 import ContactUs from '../components/part/ContactUs'
 import ArticleToc from "./part/ArticleToc";
+import HotArticleList from "./part/HotArticleList";
 
 
 export default {
@@ -54,6 +62,7 @@ export default {
     //定义组件
     ContactUs,
     ArticleToc,
+    HotArticleList,
   },
   created() {
 

@@ -1,82 +1,32 @@
 ﻿<!-- 右侧固定导航栏 -->
 <template>
   <div class="rightlistBox">
-
-    <div class="ab-sidebar">
-      <div class="ab-title">
-        <h1>热门文章</h1>
-      </div>
-      <div class="hot-article-list">
-        <div v-for="(item, index) in browseList" :key="'browseList' + index">
-          <el-link :href="'#/DetailArticle?aid=' + item.id" type="info">{{item.title }}</el-link>
-        </div>
-      </div>
-    </div>
-
+    <!-- 最热文章 -->
+    <hot-article-list></hot-article-list>
     <!--  最近 的 文章 评论  -->
-    <div class="ab-sidebar">
-      <div class="ab-title">
-        <h1>最新文章评论</h1>
-      </div>
-      <div class="recent-comment-list">
-        <div v-for="(item, index) in recentArticleComment" :key="'recentArticleComment' + index">
-          <!--  <el-link @click="goToHref(item.articleId,item.id)" type="info">{{item.content }}</el-link>-->
-          <div class="comment-block" @click="goToHref(item.articleId,item.id)" style=" ">
-            <img style="position: absolute; left: 0;top: 50%;transform: translateY(-50%);" class="ab-left-avatar" :src="item.avatar ? item.avatar :$store.state.errorImg">
-            <div class="ab-text-overflow">
-              <b style="font-weight: 700;">{{item.username}}</b> 回复
-              <b style="font-weight: 700;">{{item.toCommentUserName}}</b>
-            </div>
-            <div class="ab-text-overflow ab-comment-time" >{{item.createTime}}</div>
-            <div class="ab-text-overflow ab-comment-content">{{item.content}}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <recent-article-comment></recent-article-comment>
     <!--  最近 的 留言板 评论  -->
-    <div class="ab-sidebar">
-      <div class="ab-title">
-        <h1>最新留言板</h1>
-      </div>
-      <div class="recent-comment-list">
-        <div v-for="(item, index) in recentLinkComment" :key="'recentLinkComment' + index">
-          <!--  <el-link @click="goToHref(item.articleId,item.id)" type="info">{{item.content }}</el-link>-->
-          <div class="comment-block" @click="goToLinkHref(item.id)" style=" ">
-            <img style="position: absolute; left: 0;top: 50%;transform: translateY(-50%);" class="ab-left-avatar" :src="item.avatar ? item.avatar :$store.state.errorImg">
-            <div class="ab-text-overflow">
-              <b style="font-weight: 700;">{{item.username}}</b>
-              <span v-if="item.rootId>-1">回复
-                <b style="font-weight: 700;">{{item.toCommentUserName}}</b>
-              </span>
-            </div>
-            <div class="ab-text-overflow ab-comment-time" >{{item.createTime}}</div>
-            <div class="ab-text-overflow ab-comment-content">{{item.content}}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <message-board></message-board>
     <!--  联系站长   -->
     <contact-us></contact-us>
 
-<!--    <div class="ab-sidebar" >-->
-<!--      <div class="other-problem">-->
-<!--        问题反馈：<el-link type="primary">abinblog@163.com</el-link>-->
-<!--      </div>-->
-<!--    </div>-->
-
+    <div class="ab-sidebar" >
+      <div class="other-problem">
+        问题反馈：<el-link type="primary">abinblog@163.com</el-link>
+      </div>
+    </div>
 
   </div>
 </template>
 
 
 <script>
-import {hotArticleList} from "../api/article";
 import {tagList} from "../api/tag"
 import {getCategoryList} from "../api/category";
-import {recentArticleComment, recentLinkComment} from "../api/comment";
 import ContactUs from "./part/ContactUs";
+import HotArticleList from "./part/HotArticleList";
+import RecentArticleComment from "./part/RecentArticleComment";
+import MessageBoard from "./part/MessageBoard";
 
 export default {
   data() {
@@ -86,10 +36,7 @@ export default {
       loveme: false,
       gotoTop: false, //返回顶部
       going: false, //是否正在执行上滑动作
-      browseList: "", //热门文章 浏览量最多
       artCommentList: "", //最新评论
-      recentArticleComment:"",
-      recentLinkComment:"",
 
       // 标签
       tags:[],
@@ -124,11 +71,6 @@ export default {
     goToHomeByTagId(id){
       this.$router.push("/Home?tagId="+id);
     },
-    getHotArticleList() {
-      hotArticleList().then((response) => {
-        this.browseList = response;
-      });
-    },
     getAllTagList(){
       tagList().then((response) =>{
         this.tags = response;
@@ -139,26 +81,13 @@ export default {
         this.categoryList = response;
       });
     },
-    getRecentArticleComment(){
-      recentArticleComment().then((response) => {
-        this.recentArticleComment = response;
-      });
-    },
-    getRecentLinkComment(){
-      recentLinkComment().then((response) => {
-        this.recentLinkComment = response;
-      });
-    },
-    goToHref(id,cid){
-      this.$router.push('/DetailArticle?aid=' + id +'&cid='+cid);
-    },
-    goToLinkHref(cid){
-      this.$router.push('/Friendslink?cid='+cid);
-    },
   },
   components: {
     //定义组件
-    ContactUs
+    ContactUs,
+    HotArticleList,
+    RecentArticleComment,
+    MessageBoard,
   },
 
   created() {
@@ -181,11 +110,8 @@ export default {
       }
     };
     //查询浏览量最多的10篇文章数据
-    this.getHotArticleList();
     this.getAllTagList();
     this.getAllCategoryList();
-    this.getRecentArticleComment();
-    this.getRecentLinkComment();
   },
 };
 </script>
